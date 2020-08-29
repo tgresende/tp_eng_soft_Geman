@@ -27,7 +27,7 @@ public class main implements ActionListener {
 		connection = sqllConnection.dbConnector();
 		JFrame frame = new JFrame();
 		
-		JButton button = new JButton("Click me teste");
+		JButton button = new JButton("Click me teste de pull");
 		button.addActionListener(this);
 		
 		label = new JLabel("Click in the button");
