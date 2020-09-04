@@ -5,6 +5,8 @@ import java.sql.*;
 import javax.swing.*;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,33 +17,78 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import UIComponents.primaryButton;
+import apresentacao.usuario_apresentacao;
 import connections.sqllConnection;
 
 public class main implements ActionListener {
 	
+	usuario_apresentacao usuario_Apr = new usuario_apresentacao();
+	
 	Connection connection=null;
 	int count = 0;
-	JLabel label;
+	JLabel label, labelForm;
 
 	public main() {
 		connection = sqllConnection.dbConnector();
 		JFrame frame = new JFrame();
 		
-		JButton button = new JButton("Click me teste de pull");
-		button.addActionListener(this);
+		
+		JPanel panelusuario = usuario_Apr.render();
 		
 		label = new JLabel("Click in the button");
+		labelForm = new JLabel("Form chamado");
+		
+		primaryButton buttonprimary = new primaryButton();
+		
+		JButton button = new JButton("Click me teste de pull");
+		JButton menuButton = new JButton("Alterar Form");
+		//JButton testebutton = buttonprimary.getButton("botao de teste");
+		menuButton.setSize(new Dimension(100,100));
+		
+		JPanel panelForm = new JPanel();
+		panelForm.setBorder(BorderFactory.createEmptyBorder(30,30,10,30));
+		panelForm.setLayout(new GridLayout(0,1));
+		panelForm.add(labelForm);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(BorderFactory.createEmptyBorder(30,30,10,30));
 		panel.setLayout(new GridLayout(0,1));
 		panel.add(button);
+		//panel.add(testebutton);
 		panel.add(label);
+
+		button.addActionListener(this);
+		menuButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	panel.removeAll();
+            	panel.revalidate();
+            	panel.repaint();
+            	panel.add(panelusuario);
+                JOptionPane.showMessageDialog(null, "teste");
+            }
+        });
+		
+		
+		
+		
+		
+		
+		
+		JPanel mainPanel = new JPanel();
+		mainPanel.setBorder(BorderFactory.createEmptyBorder(30,30,10,30));
+		mainPanel.setLayout(new GridLayout(5,1));
+		mainPanel.setBackground(Color.blue);
+		mainPanel.add(menuButton);
+	
 		
 		frame.add(panel, BorderLayout.CENTER);
+		frame.add(mainPanel, BorderLayout.WEST);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Minha tela");
-		frame.pack();
+		frame.setSize(new Dimension(800, 500));
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 	
