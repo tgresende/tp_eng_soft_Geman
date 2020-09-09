@@ -1,37 +1,36 @@
 package UIComponents;
 
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
+import java.awt.Font;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Method;
 
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 
 import UIComponents_Interface.IButton;
+import UIClasses.BordaArredondada;
+import UIClasses.Cores;
 
 public class primaryButton implements IButton{
 	
 	JButton primaryButton;
-	ActionListener action;
+	Cores cor = new Cores();
 
 	public JButton getButton(String label, ActionListener action) {
 		primaryButton = new JButton();
-		this.action = action;
 		primaryButton.setText(label);
 		setButtonStyle();
-		
 		primaryButton.addActionListener(action);
-		
 		return primaryButton;
 	}
 	
 
 	@Override
 	public void setButtonStyle() {
-		primaryButton.setBackground(Color.blue);
-		primaryButton.setSize(new Dimension(100,100));
+		primaryButton.setPreferredSize(new Dimension(100,40));
+		primaryButton.setFont(new Font("Arial", Font.PLAIN, 16));
+		primaryButton.setBorder(new BordaArredondada(10));
+		primaryButton.setBackground(cor.getPretoPrincipal());
+		primaryButton.setForeground(cor.getBrancoPrincipal());
 	}
 	
 	
