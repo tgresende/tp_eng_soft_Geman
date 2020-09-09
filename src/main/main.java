@@ -18,12 +18,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import UIComponents.primaryButton;
+import apresentacao.maquina_apresentacao;
 import apresentacao.usuario_apresentacao;
 import connections.sqllConnection;
 
 public class main implements ActionListener {
 	
 	usuario_apresentacao usuario_Apr = new usuario_apresentacao();
+	maquina_apresentacao maquina_Apr = new maquina_apresentacao();
 	
 	Connection connection=null;
 	int count = 0;
@@ -35,6 +37,7 @@ public class main implements ActionListener {
 		
 		
 		JPanel panelusuario = usuario_Apr.render();
+		JPanel panelmaquina = maquina_Apr.render();
 		
 		label = new JLabel("Click in the button");
 		labelForm = new JLabel("Form chamado");
