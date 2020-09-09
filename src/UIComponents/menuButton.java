@@ -9,12 +9,10 @@ import javax.swing.JButton;
 import UIClasses.BordaArredondada;
 import UIClasses.Cores;
 
-public class primaryButton{
-	
+public class menuButton {
+
 	JButton primaryButton;
 	Cores cor = new Cores();
-	
-	
 
 	public JButton getButton(String label, ActionListener action) {
 		primaryButton = new JButton();
@@ -32,9 +30,5 @@ public class primaryButton{
 		primaryButton.setBackground(cor.getPretoPrincipal());
 		primaryButton.setForeground(cor.getBrancoPrincipal());
 	}
-	
-	
-	
-	
 	
 }

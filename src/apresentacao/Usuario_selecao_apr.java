@@ -2,20 +2,21 @@ package apresentacao;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Method;
 import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import UIComponents.primaryButton;
+import UIComponents.primaryTextField;
 import logica.usuario_logica;
 import objetoAcessoDados.usuario_objAcessoDados;
 
-public class usuario_apresentacao {
+public class Usuario_selecao_apr {
 
-	primaryButton buttonprimary = new primaryButton();
+	
 	usuario_logica _usuario_logica = new usuario_logica();
 	
 	ActionListener action = new ActionListener() {
@@ -30,9 +31,13 @@ public class usuario_apresentacao {
 	};
 	
 	public JPanel render() {
+		primaryButton buttonprimary = new primaryButton();
+		primaryTextField textprimary = new primaryTextField();
 		JPanel painel = new JPanel();
+		JTextField txtTeste =  textprimary.getTextField("Inserir");
 		JButton testebutton =  buttonprimary.getButton("Inserir",action);
 		painel.add(testebutton);
+		painel.add(txtTeste);
 		return painel;
 	}
 }
