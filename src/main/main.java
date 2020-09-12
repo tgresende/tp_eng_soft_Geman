@@ -12,12 +12,13 @@ import java.awt.event.ActionListener;
 import UIComponents.menuButton;
 import UIFunctions.panelFunctions;
 import apresentacao.maquina_apresentacao;
+import apresentacao.Maquina_selecao_apr;
 import apresentacao.Usuario_selecao_apr;
 
 public class main{
 	
 	Usuario_selecao_apr usuario_selecao = new Usuario_selecao_apr();
-	maquina_apresentacao maquina_selecao  = new maquina_apresentacao();
+	Maquina_selecao_apr maquina_selecao  = new Maquina_selecao_apr();
 	menuButton botao_menu = new menuButton();
 	panelFunctions pnlFunc = new panelFunctions();
 	JPanel mainPanel;
@@ -51,7 +52,7 @@ public class main{
 		JButton botao_maquina = botao_menu.getButton("Máquina",abrirTelaMaquina);
 		menuPanel.add(botao_maquina);
 	}
-
+	
 	public main() {
 		JFrame frame = new JFrame();
 		JPanel menuPanel = new JPanel();
@@ -70,11 +71,8 @@ public class main{
 		frame.setVisible(true);
 	}
 	
-	
 	public static void main(String[] args) {
 		new main();
 		
 	}
-	
-
 }
