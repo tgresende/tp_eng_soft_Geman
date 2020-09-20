@@ -41,7 +41,7 @@ public class main{
 	};
 	
 	private void construirMenu(JPanel menuPanel) {
-		menuPanel.setBorder(BorderFactory.createEmptyBorder(30,30,10,30));
+		menuPanel.setBorder(BorderFactory.createEmptyBorder(15,15,15,15));
 		menuPanel.setLayout(new GridLayout(5,1));
 		menuPanel.setBackground(Color.blue);
 		
@@ -58,7 +58,7 @@ public class main{
 		
 		construirMenu(menuPanel);		
 		mainPanel = new JPanel();
-		mainPanel.setBorder(BorderFactory.createEmptyBorder(30,30,10,30));
+		mainPanel.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
 		mainPanel.setLayout(new GridLayout(0,1));
 
 		frame.add(mainPanel, BorderLayout.CENTER);
@@ -73,7 +73,6 @@ public class main{
 	
 	public static void main(String[] args) {
 		new main();
-		
 	}
 	
 
