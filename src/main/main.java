@@ -64,7 +64,7 @@ public class main{
 		frame.add(mainPanel, BorderLayout.CENTER);
 		frame.add(menuPanel, BorderLayout.WEST);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("Minha tela");
+		frame.setTitle("Gerenciamento de Manutenção");
 		frame.setSize(new Dimension(800, 500));
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
