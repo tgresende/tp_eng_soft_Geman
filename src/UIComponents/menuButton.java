@@ -21,7 +21,6 @@ public class menuButton {
 		primaryButton.addActionListener(action);
 		return primaryButton;
 	}
-	
 
 	public void setButtonStyle() {
 		primaryButton.setPreferredSize(new Dimension(100,40));
