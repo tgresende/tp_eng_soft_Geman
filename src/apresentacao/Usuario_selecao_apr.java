@@ -15,6 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import UIComponents.ButtonsContainer;
+import UIComponents.DataGrid;
 import UIComponents.GoBackButton;
 import UIComponents.Header;
 import UIComponents.SelectionContainer;
@@ -67,9 +68,20 @@ public class Usuario_selecao_apr {
 		
 		mainContainer.setLayout(new BoxLayout(mainContainer, BoxLayout.Y_AXIS));
 		
+		Object [][] dados = {
+		        {"Ana Monteiro", "48 9923-7898", "ana.monteiro@gmail.com"},
+		        {"João da Silva", "48 8890-3345", "joaosilva@hotmail.com"},
+		        {"Pedro Cascaes", "48 9870-5634", "pedrinho@gmail.com"}
+		    };
+
+		String [] colunas = {"Nome", "Telefone", "Email"};
+		
+		JPanel gridPanel = new DataGrid().getGrid(dados, colunas);
 		mainContainer.add(header);
 		mainContainer.add(buttonContainer);
 		mainContainer.add(contentContainer);
+		mainContainer.add(gridPanel);
+		
 		return mainContainer;
 	}
 }
