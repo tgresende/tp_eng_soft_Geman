@@ -9,12 +9,11 @@ import javax.swing.table.DefaultTableModel;
 
 public class DataGrid {
 
-    JTable table;
     JPanel panel;
     JScrollPane rollBar;
     DefaultTableModel model;
 
-	public JPanel getTablePanel(DefaultTableModel model) {
+	public JPanel getTablePanel(DefaultTableModel model,JTable table) {
 		panel = new JPanel();
 		panel.setLayout(new GridLayout(1, 1));
 		table = new JTable(model);
