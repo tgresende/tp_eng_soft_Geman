@@ -25,7 +25,8 @@ public class main{
 	ActionListener abrirTelaUsuario = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-        	JPanel panelusuario = usuario_selecao.render();
+        	JPanel panelusuario = new JPanel();
+        	usuario_selecao.render(panelusuario);
         	pnlFunc.telaConstructor(mainPanel, panelusuario);
         	
         }
@@ -39,6 +40,8 @@ public class main{
         	
         }
 	};
+	
+	
 	
 	private void construirMenu(JPanel menuPanel) {
 		menuPanel.setBorder(BorderFactory.createEmptyBorder(15,15,15,15));

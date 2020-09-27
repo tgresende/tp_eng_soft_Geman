@@ -32,20 +32,17 @@ public class Usuario_selecao_apr {
 	JTable table;
     JScrollPane rollBar;
 	DefaultTableModel model;
-	JPanel mainContainer;
 	JButton backbutton;
 	JButton btnInsert;
 	JButton btnEdit;
 	JButton btnDelete;
 	Method _a;
 
-	public JPanel render() {
+	public void render(JPanel mainContainer) {
 		JPanel tablePanel;
 		JPanel header = new Header().getHeader("Usuários",backbutton);
 		JPanel buttonContainer =  new ButtonsContainer().getContainer(buttonList);
 		JScrollPane contentContainer = new SelectionContainer().getPanel();
-		mainContainer = new JPanel();
-		
 		mainContainer.setLayout(new BoxLayout(mainContainer, BoxLayout.Y_AXIS));
 		model = _usuario_logica.getModelList();
 		tablePanel = new JPanel();
@@ -53,13 +50,10 @@ public class Usuario_selecao_apr {
 		table = new JTable(model);
 		rollBar = new JScrollPane(table);
 		tablePanel.add(rollBar);
-
 		mainContainer.add(header);
 		mainContainer.add(buttonContainer);
 		mainContainer.add(contentContainer);
 		mainContainer.add(tablePanel);
-		
-		return mainContainer;
 	}
 
 
