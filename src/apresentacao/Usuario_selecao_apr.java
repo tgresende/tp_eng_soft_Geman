@@ -3,6 +3,7 @@ package apresentacao;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,8 +27,41 @@ public class Usuario_selecao_apr {
 
 	
 	usuario_logica _usuario_logica;
+	List<JButton> buttonList;
+	
 	JTable table;
     JScrollPane rollBar;
+	DefaultTableModel model;
+	JPanel mainContainer;
+	JButton backbutton;
+	JButton btnInsert;
+	JButton btnEdit;
+	JButton btnDelete;
+	Method _a;
+
+	public JPanel render() {
+		JPanel tablePanel;
+		JPanel header = new Header().getHeader("Usuários",backbutton);
+		JPanel buttonContainer =  new ButtonsContainer().getContainer(buttonList);
+		JScrollPane contentContainer = new SelectionContainer().getPanel();
+		mainContainer = new JPanel();
+		
+		mainContainer.setLayout(new BoxLayout(mainContainer, BoxLayout.Y_AXIS));
+		model = _usuario_logica.getModelList();
+		tablePanel = new JPanel();
+		tablePanel.setLayout(new GridLayout(1, 1));
+		table = new JTable(model);
+		rollBar = new JScrollPane(table);
+		tablePanel.add(rollBar);
+
+		mainContainer.add(header);
+		mainContainer.add(buttonContainer);
+		mainContainer.add(contentContainer);
+		mainContainer.add(tablePanel);
+		
+		return mainContainer;
+	}
+
 
 	ActionListener action = new ActionListener() {
         @Override
@@ -45,8 +79,10 @@ public class Usuario_selecao_apr {
         public void actionPerformed(ActionEvent e) {
         	if (table.getSelectedRow() == -1)
         		return;
-        	JOptionPane.showMessageDialog(null, table.getValueAt(table.getSelectedRow(), 0));
+        	_usuario_logica.delete((int)table.getValueAt(table.getSelectedRow(), 0));
+        	model.removeRow(table.getSelectedRow());
         }
+        
 	};
 	
 	ActionListener editRegister = new ActionListener() {
@@ -78,40 +114,15 @@ public class Usuario_selecao_apr {
         }
 	};
 	
-	public JPanel render() {
+	public Usuario_selecao_apr() {
+		backbutton = new GoBackButton().getButton(goBackAction);
+		btnInsert = new primaryButton().getButton("Inserir", newRegister);
+		btnEdit = new primaryButton().getButton("Editar", editRegister);
+		btnDelete = new primaryButton().getButton("Excluir", deleteRegister);
 		_usuario_logica = new usuario_logica();
-		JButton backbutton = new GoBackButton().getButton(goBackAction);
-		JButton btnInsert = new primaryButton().getButton("Inserir", newRegister);
-		JButton btnEdit = new primaryButton().getButton("Editar", editRegister);
-		JButton btnDelete = new primaryButton().getButton("Excluir", deleteRegister);
-
-		DefaultTableModel model;
-		JPanel tablePanel;
-		
-		
-		List<JButton> buttonList = new ArrayList<>();
+		buttonList = new ArrayList<>();
 		buttonList.add(btnInsert);
 		buttonList.add(btnEdit);
 		buttonList.add(btnDelete);
-	
-		JPanel header = new Header().getHeader("Usuários",backbutton);
-		JPanel buttonContainer =  new ButtonsContainer().getContainer(buttonList);
-		JScrollPane contentContainer = new SelectionContainer().getPanel();
-		JPanel mainContainer = new JPanel();
-		
-		mainContainer.setLayout(new BoxLayout(mainContainer, BoxLayout.Y_AXIS));
-		model = _usuario_logica.getModelList();
-		tablePanel = new JPanel();
-		tablePanel.setLayout(new GridLayout(1, 1));
-		table = new JTable(model);
-		rollBar = new JScrollPane(table);
-		tablePanel.add(rollBar);
-
-		mainContainer.add(header);
-		mainContainer.add(buttonContainer);
-		mainContainer.add(contentContainer);
-		mainContainer.add(tablePanel);
-		
-		return mainContainer;
-	}
+	}	
 }

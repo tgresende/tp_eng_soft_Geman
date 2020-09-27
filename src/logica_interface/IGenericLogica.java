@@ -8,5 +8,5 @@ public interface IGenericLogica <T extends genericObjetoAcessoDados> {
 	public List<T> getList();
 	public T get();
 	public void save();
-	public void delete();
+	public void delete(int id);
 }

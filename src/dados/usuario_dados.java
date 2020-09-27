@@ -59,9 +59,16 @@ public class usuario_dados implements IGenericDados<usuario_objAcessoDados>{
 	}
 
 	@Override
-	public void delete() {
-		// TODO Auto-generated method stub
-		
+	public void delete(int id) {
+		String cmd = "delete from USUARIO where Id=?";
+		try {
+			PreparedStatement pst = connection.prepareStatement(cmd);
+			pst.setInt(1, id);
+			pst.executeUpdate();
+			pst.close();
+		}catch(Exception e) {
+			throw new Error(e.getMessage());
+		}
 	}
 
 }

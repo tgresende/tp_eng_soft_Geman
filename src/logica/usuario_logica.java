@@ -2,6 +2,7 @@ package logica;
 
 import java.util.List;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import connections.sqllConnection;
@@ -36,6 +37,8 @@ public class usuario_logica implements IGenericLogica<usuario_objAcessoDados> {
 							usuario.getCargo()
 							}
 			);
+    		JOptionPane.showMessageDialog(null, usuario.getNome());
+
 		}
 		
 		return model;
@@ -59,9 +62,8 @@ public class usuario_logica implements IGenericLogica<usuario_objAcessoDados> {
 	}
 
 	@Override
-	public void delete() {
-		// TODO Auto-generated method stub
-		
+	public void delete(int id) {
+		dados.delete(id);
 	}
 
 	
