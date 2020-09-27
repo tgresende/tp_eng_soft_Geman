@@ -2,6 +2,8 @@ package logica;
 
 import java.util.List;
 
+import javax.swing.table.DefaultTableModel;
+
 import connections.sqllConnection;
 import dados.usuario_dados;
 import logica_interface.IGenericLogica;
@@ -18,6 +20,25 @@ public class usuario_logica implements IGenericLogica<usuario_objAcessoDados> {
 	
 	public usuario_logica(int id, int cargo, String nome) {
 		usuario = new usuario_objAcessoDados(id, cargo, nome);
+	}
+	
+	public DefaultTableModel getModelList() {
+		DefaultTableModel model = new DefaultTableModel();
+		model.addColumn("Id");
+		model.addColumn("Nome");
+		model.addColumn("Cargo");
+		
+		for (usuario_objAcessoDados usuario : dados.getList()) {
+			model.addRow(
+					new Object[]{
+							usuario.getId(), 
+							usuario.getNome(),
+							usuario.getCargo()
+							}
+			);
+		}
+		
+		return model;
 	}
 	
 	@Override

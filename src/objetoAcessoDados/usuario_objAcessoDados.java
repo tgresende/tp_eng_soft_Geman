@@ -8,8 +8,33 @@ public class usuario_objAcessoDados extends genericObjetoAcessoDados {
 		this.Nome = nome;
 	}
 	
-	public int Cargo;
-	public String Nome;
+	int Cargo;
+	String Nome;
+	
+	
+	public String getNome() {
+		return Nome;
+	}
+	
+	public int getId() {
+		return Id;
+	}
+	
+	public int getCargo() {
+		return Cargo;
+	}
+	
+	public void setNome(String nome) {
+		Nome=nome ;
+	}
+	
+	public void setId(int id) {
+		Id=id;
+	}
+	
+	public void setCargo(int cargo) {
+		Cargo = cargo;
+	}
 	
 	
 }

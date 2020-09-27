@@ -1,18 +1,16 @@
 package apresentacao;
 
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 import UIComponents.ButtonsContainer;
 import UIComponents.DataGrid;
@@ -20,21 +18,22 @@ import UIComponents.GoBackButton;
 import UIComponents.Header;
 import UIComponents.SelectionContainer;
 import UIComponents.primaryButton;
-import UIComponents.primaryTextField;
 import logica.usuario_logica;
 import objetoAcessoDados.usuario_objAcessoDados;
 
 public class Usuario_selecao_apr {
 
 	
-	usuario_logica _usuario_logica = new usuario_logica();
+	usuario_logica _usuario_logica;
+
+
 	
 	ActionListener action = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
         	List<usuario_objAcessoDados> usuarios = _usuario_logica.getList();
         	for(usuario_objAcessoDados usuario : usuarios){
-        		JOptionPane.showMessageDialog(null, usuario.Nome);
+        		JOptionPane.showMessageDialog(null, usuario.getNome());
         	}
         	
         }
@@ -45,17 +44,21 @@ public class Usuario_selecao_apr {
         public void actionPerformed(ActionEvent e) {
         	List<usuario_objAcessoDados> usuarios = _usuario_logica.getList();
         	for(usuario_objAcessoDados usuario : usuarios){
-        		JOptionPane.showMessageDialog(null, usuario.Nome);
+        		JOptionPane.showMessageDialog(null, usuario.getNome());
         	}
         	
         }
 	};
 	
 	public JPanel render() {
-		
+		_usuario_logica = new usuario_logica();
 		JButton backbutton = new GoBackButton().getButton(goBackAction);
 		JButton btnInsert = new primaryButton().getButton("Inserir", action);
 		JButton btnDelete = new primaryButton().getButton("Excluir", action);
+
+		DefaultTableModel model;
+		JPanel tablePanel;
+		
 		
 		List<JButton> buttonList = new ArrayList<>();
 		buttonList.add(btnInsert);
@@ -67,20 +70,13 @@ public class Usuario_selecao_apr {
 		JPanel mainContainer = new JPanel();
 		
 		mainContainer.setLayout(new BoxLayout(mainContainer, BoxLayout.Y_AXIS));
-		
-		Object [][] dados = {
-		        {"Ana Monteiro", "48 9923-7898", "ana.monteiro@gmail.com"},
-		        {"João da Silva", "48 8890-3345", "joaosilva@hotmail.com"},
-		        {"Pedro Cascaes", "48 9870-5634", "pedrinho@gmail.com"}
-		    };
+		model = _usuario_logica.getModelList();
+		tablePanel = new DataGrid().getTablePanel(model);
 
-		String [] colunas = {"Nome", "Telefone", "Email"};
-		
-		JPanel gridPanel = new DataGrid().getGrid(dados, colunas);
 		mainContainer.add(header);
 		mainContainer.add(buttonContainer);
 		mainContainer.add(contentContainer);
-		mainContainer.add(gridPanel);
+		mainContainer.add(tablePanel);
 		
 		return mainContainer;
 	}
