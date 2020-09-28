@@ -20,9 +20,8 @@ public class TextFieldContainer {
 	
 	public JPanel getContainer(List<JTextField> textFields, List<JLabel> labels) {
 		panel = new JPanel();
-		BoxLayout box = new BoxLayout(panel, BoxLayout.Y_AXIS);
-		panel.setLayout(box);
-		
+		//BoxLayout box = new BoxLayout(panel, BoxLayout.Y_AXIS);
+		//panel.setLayout(box);
 		
 		int i = 0;
 		for (JTextField textField : textFields) {
