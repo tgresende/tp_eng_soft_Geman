@@ -25,7 +25,7 @@ public class Usuario_edicao_apr {
         public void actionPerformed(ActionEvent e) {
         	List<usuario_objAcessoDados> usuarios = _usuario_logica.getList();
         	for(usuario_objAcessoDados usuario : usuarios){
-        		JOptionPane.showMessageDialog(null, usuario.Nome);
+        		JOptionPane.showMessageDialog(null, usuario.getNome());
         	}
         	
         }
