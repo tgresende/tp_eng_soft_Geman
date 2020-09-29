@@ -13,6 +13,7 @@ import UIComponents.menuButton;
 import UIFunctions.panelFunctions;
 import apresentacao.Maquina_selecao_apr;
 import apresentacao.OS_selecao_apr;
+import apresentacao.Relatorio_selecao_apr;
 import apresentacao.Usuario_selecao_apr;
 
 public class main{
@@ -20,6 +21,7 @@ public class main{
 	Usuario_selecao_apr usuario_selecao = new Usuario_selecao_apr();
 	Maquina_selecao_apr maquina_selecao  = new Maquina_selecao_apr();
 	OS_selecao_apr OS_selecao = new OS_selecao_apr();
+	Relatorio_selecao_apr relatorio_selecao = new Relatorio_selecao_apr();
 	menuButton botao_menu = new menuButton();
 	panelFunctions pnlFunc = new panelFunctions();
 	JPanel mainPanel;
@@ -51,6 +53,13 @@ public class main{
 		
 	};
 	
+	ActionListener abrirTelaRelatorio = new ActionListener() {
+		public void actionPerformed(ActionEvent arg0) {
+			JPanel panelRelatorio = relatorio_selecao.render();	
+			pnlFunc.telaConstructor(mainPanel, panelRelatorio);
+		}
+	};
+	
 	private void construirMenu(JPanel menuPanel) {
 		menuPanel.setBorder(BorderFactory.createEmptyBorder(15,15,15,15));
 		menuPanel.setLayout(new GridLayout(5,1));
@@ -64,6 +73,9 @@ public class main{
 		
 		JButton botao_OS = botao_menu.getButton("OS", abrirTelaOS);
 		menuPanel.add(botao_OS);
+		
+		JButton botao_Relatorio = botao_menu.getButton("Relatórios", abrirTelaRelatorio);
+		menuPanel.add(botao_Relatorio);
 	}
 	
 	public main() {
