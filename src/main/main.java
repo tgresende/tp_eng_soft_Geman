@@ -11,7 +11,6 @@ import java.awt.event.ActionListener;
 
 import UIComponents.menuButton;
 import UIFunctions.panelFunctions;
-import apresentacao.maquina_apresentacao;
 import apresentacao.Maquina_selecao_apr;
 import apresentacao.Usuario_selecao_apr;
 
