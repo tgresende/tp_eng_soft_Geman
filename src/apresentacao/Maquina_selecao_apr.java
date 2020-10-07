@@ -22,11 +22,12 @@ import UIComponents.SelectionContainer;
 import UIComponents.primaryButton;
 import UIComponents.primaryTextField;
 import UIFunctions.panelFunctions;
+import logica.MaquinaLogica;
 import logica.usuario_logica;
 
 public class Maquina_selecao_apr {
 	
-	usuario_logica _usuario_logica;
+	MaquinaLogica _maquina_logica;
 	List<JButton> buttonList;
 	
 	JTable table;
@@ -91,7 +92,7 @@ public class Maquina_selecao_apr {
 		mainContainer = new JPanel();
 		
 		mainContainer.setLayout(new BoxLayout(mainContainer, BoxLayout.Y_AXIS));
-		model = _usuario_logica.getModelList();
+		model = _maquina_logica.getModelList();
 		tablePanel =new JPanel();
 		tablePanel.setLayout(new GridLayout(1,1));
 		table = new JTable(model);
@@ -111,11 +112,10 @@ public class Maquina_selecao_apr {
 		btnInsert = new primaryButton().getButton("Inserir", newRegister);
 		btnEdit = new primaryButton().getButton("Editar", editRegister);
 		btnDelete = new primaryButton().getButton("Excluir", deleteRegister);
-		_usuario_logica = new usuario_logica();
+		_maquina_logica = new MaquinaLogica();
 		buttonList = new ArrayList<>();
 		buttonList.add(btnInsert);
 		buttonList.add(btnEdit);
 		buttonList.add(btnDelete);
 	}
-	
 }

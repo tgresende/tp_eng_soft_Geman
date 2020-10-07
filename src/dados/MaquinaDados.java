@@ -6,48 +6,49 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import dados_interface.IGenericDados;
+import objetoAcessoDados.MaquinaObjAcessoDados;
 
-import dados_interface.IGenericDados;	
-import objetoAcessoDados.usuario_objAcessoDados;
-
-public class usuario_dados implements IGenericDados<usuario_objAcessoDados>{
-
+public class MaquinaDados implements IGenericDados<MaquinaObjAcessoDados> {
+	
 	private Connection connection=null;
 	
-	public usuario_dados(Connection conn) {
+	public MaquinaDados(Connection conn) {
 		connection = conn;
 	}
 	
+	
 	@Override
-	public List<usuario_objAcessoDados> getList() {
-		String query = "Select * from USUARIO";
+	public List<MaquinaObjAcessoDados> getList() {
+		String query = "Select * from MAQUINA";
 		PreparedStatement pst = null;
 		ResultSet res = null;
-		List<usuario_objAcessoDados> usuarios = new ArrayList<usuario_objAcessoDados>();
+		List<MaquinaObjAcessoDados> maquinas = new ArrayList<MaquinaObjAcessoDados>();
 		
 		try {
 			pst = connection.prepareStatement(query);
 			res = pst.executeQuery();
 			
-			while(res.next()){
-				usuario_objAcessoDados usuario = 
-						new usuario_objAcessoDados(
-							res.getInt("Id"), 
-							res.getInt("Cargo"),
-							res.getString("Nome"));
-				usuarios.add(usuario);
+			while(res.next()) {
+				MaquinaObjAcessoDados maquina =
+						new MaquinaObjAcessoDados(
+								res.getInt("Id"),
+								res.getString("Nome"),
+								res.getString("Modelo"),
+								res.getString("Fabricante"));
+				maquinas.add(maquina);
 			}
-			
 			res.close();
 		}catch(Exception e) {
 			throw new Error(e.getMessage());
+			
 		}
-
-		return usuarios;
+		
+		return maquinas;
 	}
 
 	@Override
-	public usuario_objAcessoDados get() {
+	public MaquinaObjAcessoDados get() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -60,14 +61,13 @@ public class usuario_dados implements IGenericDados<usuario_objAcessoDados>{
 
 	@Override
 	public void delete(int id) {
-		String cmd = "delete from USUARIO where Id=?";
+		String cmd = "delete from MAQUINA where Id=?";
 		try {
 			PreparedStatement pst = connection.prepareStatement(cmd);
 			pst.setInt(1, id);
-			pst.executeUpdate();
 			pst.close();
 		}catch(Exception e) {
 			throw new Error(e.getMessage());
-		}
+		}	
 	}
 }
