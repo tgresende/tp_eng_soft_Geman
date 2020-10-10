@@ -19,7 +19,7 @@ public class primaryTextField {
 	}
 	
 	public void setTextFieldStyle() {
-		JTextField.setPreferredSize(new Dimension(100,40));
+		JTextField.setPreferredSize(new Dimension(200,30));
 		JTextField.setFont(new Font("Arial", Font.PLAIN, 16));
 	}
 	

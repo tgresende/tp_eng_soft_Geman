@@ -1,6 +1,7 @@
 package main;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -11,17 +12,17 @@ import java.awt.event.ActionListener;
 
 import UIComponents.menuButton;
 import UIFunctions.panelFunctions;
-import apresentacao.Maquina_selecao_apr;
-import apresentacao.OS_selecao_apr;
-import apresentacao.Relatorio_selecao_apr;
+//import apresentacao.Maquina_selecao_apr;
+//import apresentacao.OS_selecao_apr;
+// import apresentacao.Relatorio_selecao_apr;
 import apresentacao.Usuario_selecao_apr;
 
 public class main{
 	
 	Usuario_selecao_apr usuario_selecao = new Usuario_selecao_apr();
-	Maquina_selecao_apr maquina_selecao  = new Maquina_selecao_apr();
-	OS_selecao_apr OS_selecao = new OS_selecao_apr();
-	Relatorio_selecao_apr relatorio_selecao = new Relatorio_selecao_apr();
+	//Maquina_selecao_apr maquina_selecao  = new Maquina_selecao_apr();
+	//OS_selecao_apr OS_selecao = new OS_selecao_apr();
+	//Relatorio_selecao_apr relatorio_selecao = new Relatorio_selecao_apr();
 	menuButton botao_menu = new menuButton();
 	panelFunctions pnlFunc = new panelFunctions();
 	JPanel mainPanel;
@@ -38,8 +39,8 @@ public class main{
 	ActionListener abrirTelaMaquina = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-        	JPanel panelmaquina = maquina_selecao.render();
-        	pnlFunc.telaConstructor(mainPanel, panelmaquina);
+     //   	JPanel panelmaquina = maquina_selecao.render();
+       // 	pnlFunc.telaConstructor(mainPanel, panelmaquina);
         	
         }
 	};
@@ -47,35 +48,45 @@ public class main{
 	ActionListener abrirTelaOS = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			JPanel panelOS = OS_selecao.render();
-			pnlFunc.telaConstructor(mainPanel, panelOS);		
+		//	JPanel panelOS = OS_selecao.render();
+	//		pnlFunc.telaConstructor(mainPanel, panelOS);		
 		}
 		
 	};
 	
 	ActionListener abrirTelaRelatorio = new ActionListener() {
 		public void actionPerformed(ActionEvent arg0) {
-			JPanel panelRelatorio = relatorio_selecao.render();	
-			pnlFunc.telaConstructor(mainPanel, panelRelatorio);
+		//	JPanel panelRelatorio = relatorio_selecao.render();	
+		//	pnlFunc.telaConstructor(mainPanel, panelRelatorio);
 		}
 	};
 	
 	private void construirMenu(JPanel menuPanel) {
 		menuPanel.setBorder(BorderFactory.createEmptyBorder(15,15,15,15));
-		menuPanel.setLayout(new GridLayout(5,1));
-		menuPanel.setBackground(Color.blue);
+
 		
+		menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
+
+		
+		menuPanel.setBackground(Color.white);
 		JButton botao_usuario = botao_menu.getButton("Usuário",abrirTelaUsuario);
+		menuPanel.add(Box.createRigidArea(new Dimension(0,50)));
+
 		menuPanel.add(botao_usuario);
-		
+		menuPanel.add(Box.createRigidArea(new Dimension(0,50)));
+
 		JButton botao_maquina = botao_menu.getButton("Máquina",abrirTelaMaquina);
 		menuPanel.add(botao_maquina);
-		
+		menuPanel.add(Box.createRigidArea(new Dimension(0,50)));
+
 		JButton botao_OS = botao_menu.getButton("OS", abrirTelaOS);
 		menuPanel.add(botao_OS);
-		
+		menuPanel.add(Box.createRigidArea(new Dimension(0,50)));
+
 		JButton botao_Relatorio = botao_menu.getButton("Relatórios", abrirTelaRelatorio);
 		menuPanel.add(botao_Relatorio);
+		menuPanel.add(Box.createRigidArea(new Dimension(0,50)));
+
 	}
 	
 	public main() {
@@ -86,6 +97,10 @@ public class main{
 		mainPanel = new JPanel();
 		mainPanel.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
 		mainPanel.setLayout(new GridLayout(0,1));
+		mainPanel.setBackground(Color.white);
+
+		Border blackline = BorderFactory.createLineBorder(Color.black);
+		mainPanel.setBorder(blackline);
 
 		frame.add(mainPanel, BorderLayout.CENTER);
 		frame.add(menuPanel, BorderLayout.WEST);

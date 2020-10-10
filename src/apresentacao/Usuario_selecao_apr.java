@@ -1,5 +1,7 @@
 package apresentacao;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,6 +22,7 @@ import UIComponents.GoBackButton;
 import UIComponents.Header;
 import UIComponents.SelectionContainer;
 import UIComponents.primaryButton;
+import UIFunctions.panelFunctions;
 import logica.usuario_logica;
 import objetoAcessoDados.usuario_objAcessoDados;
 
@@ -27,6 +30,9 @@ public class Usuario_selecao_apr {
 
 	
 	usuario_logica _usuario_logica;
+	Usuario_edicao_apr usuarioEdicao;
+	panelFunctions pnlFunc = new panelFunctions();
+
 	List<JButton> buttonList;
 	
 	JTable table;
@@ -45,12 +51,18 @@ public class Usuario_selecao_apr {
 		JPanel buttonContainer =  new ButtonsContainer().getContainer(buttonList);
 		JScrollPane contentContainer = new SelectionContainer().getPanel();
 		mainContainer = new JPanel();
-		
+		mainContainer.setOpaque(false);
+
 		mainContainer.setLayout(new BoxLayout(mainContainer, BoxLayout.Y_AXIS));
 		model = _usuario_logica.getModelList();
 		tablePanel = new JPanel();
 		tablePanel.setLayout(new GridLayout(1, 1));
 		table = new JTable(model);
+        table.setFont(new Font("", 1, 14));
+        table.setBackground(Color.white);
+        table.getTableHeader().setBackground(Color.white);
+        table.getTableHeader().setFont(new Font("Times New Roman", Font.BOLD, 16));
+
 		rollBar = new JScrollPane(table);
 		tablePanel.add(rollBar);
 
@@ -97,9 +109,10 @@ public class Usuario_selecao_apr {
 	ActionListener newRegister = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-        	if (table.getSelectedRow() == -1)
-        		return;
-        	JOptionPane.showMessageDialog(null, table.getValueAt(table.getSelectedRow(), 0));
+        	usuarioEdicao = new Usuario_edicao_apr();
+        	JPanel panelEdicao = usuarioEdicao.render();
+        	pnlFunc.telaConstructor(mainContainer, panelEdicao);
+        	
         }
 	};
 	
