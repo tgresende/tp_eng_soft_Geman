@@ -120,6 +120,7 @@ public class Usuario_edicao_apr {
 	private void mountRolePanel() {
 		pnlRole   = new JPanel();
 		pnlRole.setMaximumSize(new Dimension(655, 35));
+
 		pnlRole.setOpaque(false);
 
 		labelRole= fieldlabel.getLabel("Cargo:");
