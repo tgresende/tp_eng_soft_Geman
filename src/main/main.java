@@ -12,17 +12,17 @@ import java.awt.event.ActionListener;
 
 import UIComponents.menuButton;
 import UIFunctions.panelFunctions;
-//import apresentacao.Maquina_selecao_apr;
-//import apresentacao.OS_selecao_apr;
-// import apresentacao.Relatorio_selecao_apr;
+import apresentacao.Maquina_selecao_apr;
+import apresentacao.OS_selecao_apr;
+import apresentacao.Relatorio_selecao_apr;
 import apresentacao.Usuario_selecao_apr;
 
 public class main{
 	
 	Usuario_selecao_apr usuario_selecao = new Usuario_selecao_apr();
-	//Maquina_selecao_apr maquina_selecao  = new Maquina_selecao_apr();
-	//OS_selecao_apr OS_selecao = new OS_selecao_apr();
-	//Relatorio_selecao_apr relatorio_selecao = new Relatorio_selecao_apr();
+	Maquina_selecao_apr maquina_selecao  = new Maquina_selecao_apr();
+	OS_selecao_apr OS_selecao = new OS_selecao_apr();
+	Relatorio_selecao_apr relatorio_selecao = new Relatorio_selecao_apr();
 	menuButton botao_menu = new menuButton();
 	panelFunctions pnlFunc = new panelFunctions();
 	JPanel mainPanel;
@@ -39,8 +39,8 @@ public class main{
 	ActionListener abrirTelaMaquina = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-     //   	JPanel panelmaquina = maquina_selecao.render();
-       // 	pnlFunc.telaConstructor(mainPanel, panelmaquina);
+        	JPanel panelmaquina = maquina_selecao.render();
+        	pnlFunc.telaConstructor(mainPanel, panelmaquina);
         	
         }
 	};
@@ -48,16 +48,16 @@ public class main{
 	ActionListener abrirTelaOS = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-		//	JPanel panelOS = OS_selecao.render();
-	//		pnlFunc.telaConstructor(mainPanel, panelOS);		
+			JPanel panelOS = OS_selecao.render();
+			pnlFunc.telaConstructor(mainPanel, panelOS);		
 		}
 		
 	};
 	
 	ActionListener abrirTelaRelatorio = new ActionListener() {
 		public void actionPerformed(ActionEvent arg0) {
-		//	JPanel panelRelatorio = relatorio_selecao.render();	
-		//	pnlFunc.telaConstructor(mainPanel, panelRelatorio);
+			JPanel panelRelatorio = relatorio_selecao.render();	
+			pnlFunc.telaConstructor(mainPanel, panelRelatorio);
 		}
 	};
 	
