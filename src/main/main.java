@@ -1,6 +1,7 @@
 package main;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -62,20 +63,30 @@ public class main{
 	
 	private void construirMenu(JPanel menuPanel) {
 		menuPanel.setBorder(BorderFactory.createEmptyBorder(15,15,15,15));
-		menuPanel.setLayout(new GridLayout(5,1));
-		menuPanel.setBackground(Color.blue);
+
 		
+		menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
+
+		
+		menuPanel.setBackground(Color.white);
 		JButton botao_usuario = botao_menu.getButton("Usuário",abrirTelaUsuario);
+		menuPanel.add(Box.createRigidArea(new Dimension(0,50)));
+
 		menuPanel.add(botao_usuario);
-		
+		menuPanel.add(Box.createRigidArea(new Dimension(0,50)));
+
 		JButton botao_maquina = botao_menu.getButton("Máquina",abrirTelaMaquina);
 		menuPanel.add(botao_maquina);
-		
+		menuPanel.add(Box.createRigidArea(new Dimension(0,50)));
+
 		JButton botao_OS = botao_menu.getButton("OS", abrirTelaOS);
 		menuPanel.add(botao_OS);
-		
+		menuPanel.add(Box.createRigidArea(new Dimension(0,50)));
+
 		JButton botao_Relatorio = botao_menu.getButton("Relatórios", abrirTelaRelatorio);
 		menuPanel.add(botao_Relatorio);
+		menuPanel.add(Box.createRigidArea(new Dimension(0,50)));
+
 	}
 	
 	public main() {
@@ -86,6 +97,10 @@ public class main{
 		mainPanel = new JPanel();
 		mainPanel.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
 		mainPanel.setLayout(new GridLayout(0,1));
+		mainPanel.setBackground(Color.white);
+
+		Border blackline = BorderFactory.createLineBorder(Color.black);
+		mainPanel.setBorder(blackline);
 
 		frame.add(mainPanel, BorderLayout.CENTER);
 		frame.add(menuPanel, BorderLayout.WEST);

@@ -23,7 +23,8 @@ public class menuButton {
 	}
 
 	public void setButtonStyle() {
-		primaryButton.setPreferredSize(new Dimension(100,40));
+		primaryButton.setMaximumSize(new Dimension(655, 100));
+		primaryButton.setPreferredSize(new Dimension(100, 100));
 		primaryButton.setFont(new Font("Arial", Font.PLAIN, 16));
 		primaryButton.setBorder(new BordaArredondada(10));
 		primaryButton.setBackground(cor.getPretoPrincipal());
