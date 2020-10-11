@@ -19,11 +19,11 @@ import UIComponents.GoBackButton;
 import UIComponents.Header;
 import UIComponents.SelectionContainer;
 import UIComponents.primaryButton;
-import logica.usuario_logica;
+import logica.OrderServiceLogic;
 
 public class OS_selecao_apr {
 	
-	usuario_logica _usuario_logica;
+	OrderServiceLogic orderServiceLogica;
 	List<JButton> buttonList;
 	
 	JTable table;
@@ -36,9 +36,6 @@ public class OS_selecao_apr {
 	JButton btnDelete;
 	Method _a;
 	
-	
-	
-	
 	public JPanel render() {
 		JPanel tablePanel;
 		JPanel header = new Header().getHeader("Ordem de Serviço", backbutton);
@@ -47,7 +44,7 @@ public class OS_selecao_apr {
 		mainContainer = new JPanel();
 		
 		mainContainer.setLayout(new BoxLayout(mainContainer, BoxLayout.Y_AXIS));
-		model = _usuario_logica.getModelList();
+		model = orderServiceLogica.getModelList();
 		tablePanel = new JPanel();
 		tablePanel.setLayout(new GridLayout(1,1));
 		table = new JTable(model);
@@ -67,7 +64,7 @@ public class OS_selecao_apr {
 		btnInsert = new primaryButton().getButton("Inserir", newRegister);
 		btnEdit = new primaryButton().getButton("Editar", editRegister);
 		btnDelete = new primaryButton().getButton("Excluir", deleteRegister);
-		_usuario_logica = new usuario_logica();
+		orderServiceLogica = new OrderServiceLogic();
 		buttonList  = new ArrayList<>();
 		buttonList.add(btnInsert);
 		buttonList.add(btnEdit);

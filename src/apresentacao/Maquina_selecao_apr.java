@@ -12,7 +12,6 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import UIComponents.ButtonsContainer;
@@ -20,10 +19,8 @@ import UIComponents.GoBackButton;
 import UIComponents.Header;
 import UIComponents.SelectionContainer;
 import UIComponents.primaryButton;
-import UIComponents.primaryTextField;
 import UIFunctions.panelFunctions;
 import logica.MaquinaLogica;
-import logica.usuario_logica;
 
 public class Maquina_selecao_apr {
 	
