@@ -4,12 +4,12 @@ import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
+import businessInterface.IGenericBusiness;
 import connections.sqllConnection;
 import dados.usuario_dados;
-import logica_interface.IGenericLogica;
 import objetoAcessoDados.usuario_objAcessoDados;
 
-public class TechnicianBusiness implements IGenericLogica<usuario_objAcessoDados> {
+public class TechnicianBusiness implements IGenericBusiness<usuario_objAcessoDados> {
 
 	usuario_objAcessoDados technicianDAO;
 	usuario_dados technicianData = new usuario_dados(sqllConnection.dbConnector());
@@ -47,7 +47,7 @@ public class TechnicianBusiness implements IGenericLogica<usuario_objAcessoDados
 	}
 
 	@Override
-	public usuario_objAcessoDados get() {
+	public usuario_objAcessoDados get(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

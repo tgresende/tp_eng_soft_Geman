@@ -5,12 +5,12 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+import businessInterface.IGenericBusiness;
 import connections.sqllConnection;
 import dados.MaquinaDados;
-import logica_interface.IGenericLogica;
 import objetoAcessoDados.MaquinaObjAcessoDados;
 
-public class MaquinaLogica implements IGenericLogica<MaquinaObjAcessoDados>{
+public class MaquinaLogica implements IGenericBusiness<MaquinaObjAcessoDados>{
 
 	MaquinaObjAcessoDados maquina;
 	MaquinaDados dados = new MaquinaDados(sqllConnection.dbConnector());
@@ -52,7 +52,7 @@ public class MaquinaLogica implements IGenericLogica<MaquinaObjAcessoDados>{
 	}
 
 	@Override
-	public MaquinaObjAcessoDados get() {
+	public MaquinaObjAcessoDados get(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -3,12 +3,12 @@ package business;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
+import businessInterface.IGenericBusiness;
 import connections.sqllConnection;
 import dados.OrderServiceData;
-import logica_interface.IGenericLogica;
 import objetoAcessoDados.OrderServiceObjAccessData;
 
-public class OrderServiceLogic implements IGenericLogica<OrderServiceObjAccessData> {
+public class OrderServiceLogic implements IGenericBusiness<OrderServiceObjAccessData> {
 
 	OrderServiceObjAccessData orderService;
 	OrderServiceData dados = new OrderServiceData(sqllConnection.dbConnector());
@@ -74,7 +74,7 @@ public class OrderServiceLogic implements IGenericLogica<OrderServiceObjAccessDa
 	}
 
 	@Override
-	public OrderServiceObjAccessData get() {
+	public OrderServiceObjAccessData get(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
