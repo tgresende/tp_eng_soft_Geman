@@ -23,7 +23,7 @@ import UIComponents.Header;
 import UIComponents.primaryButton;
 import UIComponents.primaryTextField;
 import business.TechnicianBusiness;
-import objetoAcessoDados.usuario_objAcessoDados;
+import dataAccessObject.TechnicianDAO;
 
 public class TechnicianPresentation {
 
@@ -81,8 +81,8 @@ public class TechnicianPresentation {
 	ActionListener action = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-        	List<usuario_objAcessoDados> technicians = userBusiness.getList();
-        	for(usuario_objAcessoDados technician : technicians){
+        	List<TechnicianDAO> technicians = userBusiness.getList();
+        	for(TechnicianDAO technician : technicians){
         		JOptionPane.showMessageDialog(null, technician.getNome());
         	}
         	

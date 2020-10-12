@@ -1,4 +1,4 @@
-package dados;
+package data;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import dados_interface.IGenericDados;
-import objetoAcessoDados.OrderServiceObjAccessData;
+import dataAccessObject.OrderServiceObjAccessData;
+import dataInterface.IGenericDados;
 
 public class OrderServiceData implements IGenericDados<OrderServiceObjAccessData>{
 	
@@ -55,7 +55,7 @@ public class OrderServiceData implements IGenericDados<OrderServiceObjAccessData
 	}
 
 	@Override
-	public OrderServiceObjAccessData get() {
+	public OrderServiceObjAccessData get(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -1,12 +1,12 @@
-package dados_interface;
+package dataInterface;
 
 import java.util.List;
 
-import objetoAcessoDados.genericObjetoAcessoDados;
+import dataAccessObject.genericObjetoAcessoDados;
 
 public interface IGenericDados <T extends genericObjetoAcessoDados> {
 	public List<T> getList();
-	public T get();
+	public T get(int id);
 	public void save();
 	public void delete(int id);
 }

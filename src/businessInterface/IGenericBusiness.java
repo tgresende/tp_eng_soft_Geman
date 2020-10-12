@@ -2,7 +2,7 @@ package businessInterface;
 
 import java.util.List;
 
-import objetoAcessoDados.genericObjetoAcessoDados;
+import dataAccessObject.genericObjetoAcessoDados;
 
 public interface IGenericBusiness <T extends genericObjetoAcessoDados> {
 	public List<T> getList();

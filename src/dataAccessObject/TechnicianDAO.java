@@ -1,8 +1,8 @@
-package objetoAcessoDados;
+package dataAccessObject;
 
-public class usuario_objAcessoDados extends genericObjetoAcessoDados {
+public class TechnicianDAO extends genericObjetoAcessoDados {
 
-	public usuario_objAcessoDados(int id, int cargo, String nome) {
+	public TechnicianDAO(int id, int cargo, String nome) {
 		this.Id = id;
 		this.Cargo = cargo;
 		this.Nome = nome;

@@ -24,7 +24,7 @@ import UIComponents.SelectionContainer;
 import UIComponents.primaryButton;
 import UIFunctions.panelFunctions;
 import business.TechnicianBusiness;
-import objetoAcessoDados.usuario_objAcessoDados;
+import dataAccessObject.TechnicianDAO;
 
 public class Usuario_selecao_apr {
 
@@ -78,8 +78,8 @@ public class Usuario_selecao_apr {
 	ActionListener action = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-        	List<usuario_objAcessoDados> usuarios = _usuario_logica.getList();
-        	for(usuario_objAcessoDados usuario : usuarios){
+        	List<TechnicianDAO> usuarios = _usuario_logica.getList();
+        	for(TechnicianDAO usuario : usuarios){
         		JOptionPane.showMessageDialog(null, usuario.getNome());
         	}
         	
@@ -119,8 +119,8 @@ public class Usuario_selecao_apr {
 	ActionListener goBackAction = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-        	List<usuario_objAcessoDados> usuarios = _usuario_logica.getList();
-        	for(usuario_objAcessoDados usuario : usuarios){
+        	List<TechnicianDAO> usuarios = _usuario_logica.getList();
+        	for(TechnicianDAO usuario : usuarios){
         		JOptionPane.showMessageDialog(null, usuario.getNome());
         	}
         	

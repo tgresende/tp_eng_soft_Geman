@@ -6,20 +6,20 @@ import javax.swing.table.DefaultTableModel;
 
 import businessInterface.IGenericBusiness;
 import connections.sqllConnection;
-import dados.usuario_dados;
-import objetoAcessoDados.usuario_objAcessoDados;
+import data.TechnicianData;
+import dataAccessObject.TechnicianDAO;
 
-public class TechnicianBusiness implements IGenericBusiness<usuario_objAcessoDados> {
+public class TechnicianBusiness implements IGenericBusiness<TechnicianDAO> {
 
-	usuario_objAcessoDados technicianDAO;
-	usuario_dados technicianData = new usuario_dados(sqllConnection.dbConnector());
+	TechnicianDAO technicianDAO;
+	TechnicianData technicianData = new TechnicianData(sqllConnection.dbConnector());
 	
 	public TechnicianBusiness() {
 		
 	}
 	
 	public TechnicianBusiness(int id, int cargo, String nome) {
-		technicianDAO = new usuario_objAcessoDados(id, cargo, nome);
+		technicianDAO = new TechnicianDAO(id, cargo, nome);
 	}
 	
 	public DefaultTableModel getModelList() {
@@ -28,7 +28,7 @@ public class TechnicianBusiness implements IGenericBusiness<usuario_objAcessoDad
 		tableModel.addColumn("Nome");
 		tableModel.addColumn("Cargo");
 		
-		for (usuario_objAcessoDados usuario : technicianData.getList()) {
+		for (TechnicianDAO usuario : technicianData.getList()) {
 			tableModel.addRow(
 					new Object[]{
 							usuario.getId(), 
@@ -42,12 +42,12 @@ public class TechnicianBusiness implements IGenericBusiness<usuario_objAcessoDad
 	}
 	
 	@Override
-	public List<usuario_objAcessoDados> getList() {
+	public List<TechnicianDAO> getList() {
 		return technicianData.getList();
 	}
 
 	@Override
-	public usuario_objAcessoDados get(int id) {
+	public TechnicianDAO get(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

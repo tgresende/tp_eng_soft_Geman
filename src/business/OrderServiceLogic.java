@@ -5,8 +5,8 @@ import javax.swing.table.DefaultTableModel;
 
 import businessInterface.IGenericBusiness;
 import connections.sqllConnection;
-import dados.OrderServiceData;
-import objetoAcessoDados.OrderServiceObjAccessData;
+import data.OrderServiceData;
+import dataAccessObject.OrderServiceObjAccessData;
 
 public class OrderServiceLogic implements IGenericBusiness<OrderServiceObjAccessData> {
 

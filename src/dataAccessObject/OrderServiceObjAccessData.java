@@ -1,4 +1,4 @@
-package objetoAcessoDados;
+package dataAccessObject;
 
 public class OrderServiceObjAccessData extends genericObjetoAcessoDados{
 
