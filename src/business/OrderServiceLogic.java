@@ -6,7 +6,7 @@ import javax.swing.table.DefaultTableModel;
 import businessInterface.IGenericBusiness;
 import connections.sqllConnection;
 import data.OrderServiceData;
-import dataAccessObject.OrderServiceObjAccessData;
+import dataAccessObjectPresentationBusiness.OrderServiceObjAccessData;
 
 public class OrderServiceLogic implements IGenericBusiness<OrderServiceObjAccessData> {
 

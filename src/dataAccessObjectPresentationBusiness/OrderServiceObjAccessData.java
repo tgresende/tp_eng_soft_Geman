@@ -1,4 +1,6 @@
-package dataAccessObject;
+package dataAccessObjectPresentationBusiness;
+
+import genericDataAccessObject.GenericDataAccessObject;
 
 public class OrderServiceObjAccessData extends GenericDataAccessObject{
 

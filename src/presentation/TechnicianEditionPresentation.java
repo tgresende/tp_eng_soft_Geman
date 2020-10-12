@@ -23,12 +23,13 @@ import UIComponents.Header;
 import UIComponents.primaryButton;
 import UIComponents.primaryTextField;
 import business.TechnicianBusiness;
-import dataAccessObject.TechnicianDAO;
+import dataAccessObjectPresentationBusiness.TechnicianDAOPresentationBusiness;
 
-public class TechnicianPresentation {
+public class TechnicianEditionPresentation {
 
+	int id = 0;
 	
-	TechnicianBusiness userBusiness;
+	TechnicianBusiness technicianBusiness;
 	List<JButton> buttonList;
 	primaryTextField textprimary;
 	FieldLabel fieldlabel;
@@ -66,23 +67,22 @@ public class TechnicianPresentation {
         
 	};
 	
-	public TechnicianPresentation() {
+	public TechnicianEditionPresentation() {
 		backbutton = new GoBackButton().getButton(cancel);
 		btnSave = new primaryButton().getButton("Salvar", save);
 		btnCancel = new primaryButton().getButton("Cancelar", cancel);
-		userBusiness = new TechnicianBusiness();
+		technicianBusiness = new TechnicianBusiness();
 		buttonList = new ArrayList<>();
 		buttonList.add(btnSave);
 		buttonList.add(btnCancel);
-		fieldlabel = new FieldLabel();
-		
+		fieldlabel = new FieldLabel();		
 	}	
 
 	ActionListener action = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-        	List<TechnicianDAO> technicians = userBusiness.getList();
-        	for(TechnicianDAO technician : technicians){
+        	List<TechnicianDAOPresentationBusiness> technicians = technicianBusiness.getList();
+        	for(TechnicianDAOPresentationBusiness technician : technicians){
         		JOptionPane.showMessageDialog(null, technician.getName());
         	}
         	
@@ -127,7 +127,22 @@ public class TechnicianPresentation {
 		pnlRole.add(txtRole);
 	}
 	
-	public JPanel render() {
+	private void FillTechnicianProperties(int id) {
+		if (id ==0)
+			return;
+		
+		TechnicianDAOPresentationBusiness technician = technicianBusiness.get(id);
+		if (technician == null) {
+			JOptionPane.showMessageDialog(null, "Registro não encontrado.");
+			return;
+		}
+		
+		txtRole.setText(technician.getRole());
+		txtName.setText(technician.getName());
+		this.id = id;
+	}
+	
+	public JPanel render(int id) {
 		textprimary = new primaryTextField();
 		header = new Header().getHeader("Edição de Usuário",backbutton);
 		buttonContainer =  new ButtonsContainer().getContainer(buttonList);
@@ -135,6 +150,7 @@ public class TechnicianPresentation {
 		mountRolePanel();
 		mountFieldContainer();
 		mountMainPanel();
+		FillTechnicianProperties(id);
 		return mainPanel;
 	}
 }

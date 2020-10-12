@@ -8,7 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import businessInterface.IGenericBusiness;
 import connections.sqllConnection;
 import data.MaquinaDados;
-import dataAccessObject.MaquinaObjAcessoDados;
+import dataAccessObjectPresentationBusiness.MaquinaObjAcessoDados;
 
 public class MaquinaLogica implements IGenericBusiness<MaquinaObjAcessoDados>{
 

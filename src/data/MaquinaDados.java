@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import dataAccessObject.MaquinaObjAcessoDados;
+import dataAccessObjectPresentationBusiness.MaquinaObjAcessoDados;
 import dataInterface.IGenericDados;
 
 public class MaquinaDados implements IGenericDados<MaquinaObjAcessoDados> {

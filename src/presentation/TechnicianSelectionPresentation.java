@@ -24,13 +24,13 @@ import UIComponents.SelectionContainer;
 import UIComponents.primaryButton;
 import UIFunctions.panelFunctions;
 import business.TechnicianBusiness;
-import dataAccessObject.TechnicianDAO;
+import dataAccessObjectPresentationBusiness.TechnicianDAOPresentationBusiness;
 
-public class Usuario_selecao_apr {
+public class TechnicianSelectionPresentation {
 
 	
-	TechnicianBusiness _usuario_logica;
-	TechnicianPresentation usuarioEdicao;
+	TechnicianBusiness technicianBusiness;
+	TechnicianEditionPresentation usuarioEdicao;
 	panelFunctions pnlFunc = new panelFunctions();
 
 	List<JButton> buttonList;
@@ -44,6 +44,7 @@ public class Usuario_selecao_apr {
 	JButton btnEdit;
 	JButton btnDelete;
 	Method _a;
+	
 
 	public JPanel render() {
 		JPanel tablePanel;
@@ -54,7 +55,7 @@ public class Usuario_selecao_apr {
 		mainContainer.setOpaque(false);
 
 		mainContainer.setLayout(new BoxLayout(mainContainer, BoxLayout.Y_AXIS));
-		model = _usuario_logica.getModelList();
+		model = technicianBusiness.getModelList();
 		tablePanel = new JPanel();
 		tablePanel.setLayout(new GridLayout(1, 1));
 		table = new JTable(model);
@@ -78,8 +79,8 @@ public class Usuario_selecao_apr {
 	ActionListener action = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-        	List<TechnicianDAO> usuarios = _usuario_logica.getList();
-        	for(TechnicianDAO usuario : usuarios){
+        	List<TechnicianDAOPresentationBusiness> usuarios = technicianBusiness.getList();
+        	for(TechnicianDAOPresentationBusiness usuario : usuarios){
         		JOptionPane.showMessageDialog(null, usuario.getName());
         	}
         	
@@ -91,7 +92,7 @@ public class Usuario_selecao_apr {
         public void actionPerformed(ActionEvent e) {
         	if (table.getSelectedRow() == -1)
         		return;
-        	_usuario_logica.delete((int)table.getValueAt(table.getSelectedRow(), 0));
+        	technicianBusiness.delete((int)table.getValueAt(table.getSelectedRow(), 0));
         	model.removeRow(table.getSelectedRow());
         }
         
@@ -102,15 +103,18 @@ public class Usuario_selecao_apr {
         public void actionPerformed(ActionEvent e) {
         	if (table.getSelectedRow() == -1)
         		return;
-        	JOptionPane.showMessageDialog(null, table.getValueAt(table.getSelectedRow(), 0));
+        	int id = (int)table.getValueAt(table.getSelectedRow(), 0);
+        	usuarioEdicao = new TechnicianEditionPresentation();
+        	JPanel panelEdicao = usuarioEdicao.render(id);
+        	pnlFunc.telaConstructor(mainContainer, panelEdicao);
         }
 	};
 	
 	ActionListener newRegister = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-        	usuarioEdicao = new TechnicianPresentation();
-        	JPanel panelEdicao = usuarioEdicao.render();
+        	usuarioEdicao = new TechnicianEditionPresentation();
+        	JPanel panelEdicao = usuarioEdicao.render(0);
         	pnlFunc.telaConstructor(mainContainer, panelEdicao);
         	
         }
@@ -119,20 +123,20 @@ public class Usuario_selecao_apr {
 	ActionListener goBackAction = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-        	List<TechnicianDAO> usuarios = _usuario_logica.getList();
-        	for(TechnicianDAO usuario : usuarios){
+        	List<TechnicianDAOPresentationBusiness> usuarios = technicianBusiness.getList();
+        	for(TechnicianDAOPresentationBusiness usuario : usuarios){
         		JOptionPane.showMessageDialog(null, usuario.getName());
         	}
         	
         }
 	};
 	
-	public Usuario_selecao_apr() {
+	public TechnicianSelectionPresentation() {
 		backbutton = new GoBackButton().getButton(goBackAction);
 		btnInsert = new primaryButton().getButton("Inserir", newRegister);
 		btnEdit = new primaryButton().getButton("Editar", editRegister);
 		btnDelete = new primaryButton().getButton("Excluir", deleteRegister);
-		_usuario_logica = new TechnicianBusiness();
+		technicianBusiness = new TechnicianBusiness();
 		buttonList = new ArrayList<>();
 		buttonList.add(btnInsert);
 		buttonList.add(btnEdit);

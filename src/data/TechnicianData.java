@@ -6,10 +6,10 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import dataAccessObject.TechnicianDAO;
+import dataAccessObjectBusinessData.TechnicianDAOBusinessData;
 import dataInterface.IGenericDados;
 
-public class TechnicianData implements IGenericDados<TechnicianDAO>{
+public class TechnicianData implements IGenericDados<TechnicianDAOBusinessData>{
 
 	private Connection connection=null;
 	
@@ -18,17 +18,17 @@ public class TechnicianData implements IGenericDados<TechnicianDAO>{
 	}
 	
 	@Override
-	public List<TechnicianDAO> getList() {
+	public List<TechnicianDAOBusinessData> getList() {
 		String query = "Select * from Technician";
-		List<TechnicianDAO> technicians = new ArrayList<TechnicianDAO>();
+		List<TechnicianDAOBusinessData> technicians = new ArrayList<TechnicianDAOBusinessData>();
 		
 		try {
 			PreparedStatement pst = connection.prepareStatement(query);
 			ResultSet res = pst.executeQuery();
 			
 			while(res.next()){
-				TechnicianDAO technician = 
-						new TechnicianDAO(
+				TechnicianDAOBusinessData technician = 
+						new TechnicianDAOBusinessData(
 							res.getInt("id"), 
 							res.getInt("role"),
 							res.getString("name"),
@@ -45,16 +45,16 @@ public class TechnicianData implements IGenericDados<TechnicianDAO>{
 	}
 
 	@Override
-	public TechnicianDAO get(int id) {
+	public TechnicianDAOBusinessData get(int id) {
 		String query = "Select * from Technician where Id=?";
-		TechnicianDAO technician = null;
+		TechnicianDAOBusinessData technician = null;
 		try {
 			PreparedStatement pst = connection.prepareStatement(query);
 			pst.setInt(1, id);
 			ResultSet res = pst.executeQuery();
 			
 			while(res.next()){
-				technician = new TechnicianDAO(
+				technician = new TechnicianDAOBusinessData(
 								res.getInt("id"), 
 								res.getInt("role"),
 								res.getString("name"),

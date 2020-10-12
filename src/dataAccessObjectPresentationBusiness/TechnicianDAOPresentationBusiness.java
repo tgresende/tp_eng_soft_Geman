@@ -1,14 +1,14 @@
-package dataAccessObject;
+package dataAccessObjectPresentationBusiness;
 
-public class TechnicianDAO extends GenericDataAccessObject {
+import genericDataAccessObject.GenericDataAccessObject;
 
-	
-	
-	int role;
+public class TechnicianDAOPresentationBusiness extends GenericDataAccessObject {
+
+	String role;
 	String name;
 	double hourPrice;
 	
-	public TechnicianDAO(int id, int role, String name, Double hourPrice) {
+	public TechnicianDAOPresentationBusiness(int id, String role, String name, Double hourPrice) {
 		this.id = id;
 		this.role = role;
 		this.name = name;
@@ -24,7 +24,7 @@ public class TechnicianDAO extends GenericDataAccessObject {
 		return id;
 	}
 	
-	public int getRole() {
+	public String getRole() {
 		return role;
 	}
 	
@@ -36,7 +36,7 @@ public class TechnicianDAO extends GenericDataAccessObject {
 		this.id=id;
 	}
 	
-	public void setCargo(int role) {
+	public void setRole(String role) {
 		this.role = role;
 	}
 	

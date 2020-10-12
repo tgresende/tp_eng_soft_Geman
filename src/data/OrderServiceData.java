@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import dataAccessObject.OrderServiceObjAccessData;
+import dataAccessObjectPresentationBusiness.OrderServiceObjAccessData;
 import dataInterface.IGenericDados;
 
 public class OrderServiceData implements IGenericDados<OrderServiceObjAccessData>{

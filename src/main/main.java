@@ -15,11 +15,11 @@ import UIFunctions.panelFunctions;
 import presentation.Maquina_selecao_apr;
 import presentation.OS_selecao_apr;
 import presentation.Relatorio_selecao_apr;
-import presentation.Usuario_selecao_apr;
+import presentation.TechnicianSelectionPresentation;
 
 public class main{
 	
-	Usuario_selecao_apr usuario_selecao = new Usuario_selecao_apr();
+	TechnicianSelectionPresentation usuario_selecao = new TechnicianSelectionPresentation();
 	Maquina_selecao_apr maquina_selecao  = new Maquina_selecao_apr();
 	OS_selecao_apr OS_selecao = new OS_selecao_apr();
 	Relatorio_selecao_apr relatorio_selecao = new Relatorio_selecao_apr();
