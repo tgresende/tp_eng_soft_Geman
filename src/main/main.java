@@ -12,10 +12,10 @@ import java.awt.event.ActionListener;
 
 import UIComponents.menuButton;
 import UIFunctions.panelFunctions;
-import apresentacao.Maquina_selecao_apr;
-import apresentacao.OS_selecao_apr;
-import apresentacao.Relatorio_selecao_apr;
-import apresentacao.Usuario_selecao_apr;
+import presentation.Maquina_selecao_apr;
+import presentation.OS_selecao_apr;
+import presentation.Relatorio_selecao_apr;
+import presentation.Usuario_selecao_apr;
 
 public class main{
 	
