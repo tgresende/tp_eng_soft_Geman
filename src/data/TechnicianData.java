@@ -69,9 +69,38 @@ public class TechnicianData implements IGenericDados<TechnicianDAOBusinessData>{
 	}
 
 	@Override
-	public void save() {
-		// TODO Auto-generated method stub
+	public boolean save(TechnicianDAOBusinessData technician) {
+		String cmd;
+		if (technician.getId() == 0)
+			cmd = " insert into Technician ("
+					+ " name, "
+					+ " role, "
+					+ " hourPrice"
+					+ ") values ("
+					+ " ?, "
+					+ " ?,"
+					+ " ?)";
+		else
+			cmd = " update Technician set "
+					+ " name = ?, "
+					+ " role = ?,"
+					+ " hourPrice = ?"
+				  +" where Id=?";
+		try {
+			PreparedStatement pst = connection.prepareStatement(cmd);
+			pst.setString(1, technician.getName());
+			pst.setInt(2, technician.getRole());
+			pst.setDouble(3, technician.getHourPrice());
+			
+		if (technician.getId() != 0)
+			pst.setInt(4, technician.getId());
 		
+			pst.executeUpdate();
+			pst.close();
+		}catch(Exception e) {
+			throw new Error(e.getMessage());
+		}
+		return true;
 	}
 
 	@Override

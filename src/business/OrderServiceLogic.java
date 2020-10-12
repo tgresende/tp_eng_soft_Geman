@@ -43,7 +43,7 @@ public class OrderServiceLogic implements IGenericBusiness<OrderServiceObjAccess
 		model.addColumn("description");
 		model.addColumn("typeService");
 		
-		for (OrderServiceObjAccessData orderService : dados.getList()) {
+	/*	for (OrderServiceObjAccessData orderService : dados.getList()) {
 			model.addRow(
 					new Object[] {
 							orderService.getId(),
@@ -62,7 +62,7 @@ public class OrderServiceLogic implements IGenericBusiness<OrderServiceObjAccess
 			);
 			//JOptionPane.showMessageDialog(null, orderService.getId());
 		}
-		
+		*/
 		return model;
 	}
 	
@@ -70,7 +70,8 @@ public class OrderServiceLogic implements IGenericBusiness<OrderServiceObjAccess
 	
 	@Override
 	public List<OrderServiceObjAccessData> getList() {
-		return dados.getList();
+		//return dados.getList();
+		return null;
 	}
 
 	@Override
@@ -80,9 +81,10 @@ public class OrderServiceLogic implements IGenericBusiness<OrderServiceObjAccess
 	}
 
 	@Override
-	public void save() {
+	public boolean save(OrderServiceObjAccessData obj) {
 		// TODO Auto-generated method stub
-		
+		return false;
+
 	}
 
 	@Override

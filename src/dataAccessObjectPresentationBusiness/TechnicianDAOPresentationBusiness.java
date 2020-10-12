@@ -28,8 +28,18 @@ public class TechnicianDAOPresentationBusiness extends GenericDataAccessObject {
 		return role;
 	}
 	
+	public Double getHourPrice() {
+		return hourPrice;
+	}
+	
+	
+	
 	public void setName(String name) {
 		this.name=name ;
+	}
+	
+	public void setHourPrice(Double hourPrice) {
+		this.hourPrice=hourPrice ;
 	}
 	
 	public void setId(int id) {

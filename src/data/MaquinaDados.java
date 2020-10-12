@@ -6,10 +6,11 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import dataAccessObjectBusinessData.EquipmentDAOBusinessData;
 import dataAccessObjectPresentationBusiness.MaquinaObjAcessoDados;
 import dataInterface.IGenericDados;
 
-public class MaquinaDados implements IGenericDados<MaquinaObjAcessoDados> {
+public class MaquinaDados implements IGenericDados<EquipmentDAOBusinessData> {
 	
 	private Connection connection=null;
 	
@@ -19,19 +20,19 @@ public class MaquinaDados implements IGenericDados<MaquinaObjAcessoDados> {
 	
 	
 	@Override
-	public List<MaquinaObjAcessoDados> getList() {
+	public List<EquipmentDAOBusinessData> getList() {
 		String query = "Select * from MAQUINA";
 		PreparedStatement pst = null;
 		ResultSet res = null;
-		List<MaquinaObjAcessoDados> maquinas = new ArrayList<MaquinaObjAcessoDados>();
+		List<EquipmentDAOBusinessData> maquinas = new ArrayList<EquipmentDAOBusinessData>();
 		
 		try {
 			pst = connection.prepareStatement(query);
 			res = pst.executeQuery();
 			
 			while(res.next()) {
-				MaquinaObjAcessoDados maquina =
-						new MaquinaObjAcessoDados(
+				EquipmentDAOBusinessData maquina =
+						new EquipmentDAOBusinessData(
 								res.getInt("Id"),
 								res.getString("Nome"),
 								res.getString("Modelo"),
@@ -48,14 +49,15 @@ public class MaquinaDados implements IGenericDados<MaquinaObjAcessoDados> {
 	}
 
 	@Override
-	public MaquinaObjAcessoDados get(int id) {
+	public EquipmentDAOBusinessData get(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void save() {
+	public boolean save(EquipmentDAOBusinessData obj) {
 		// TODO Auto-generated method stub
+		return false;
 		
 	}
 

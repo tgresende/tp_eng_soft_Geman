@@ -30,7 +30,7 @@ public class MaquinaLogica implements IGenericBusiness<MaquinaObjAcessoDados>{
 		model.addColumn("Modelo");
 		model.addColumn("Fabricante");
 		
-		for (MaquinaObjAcessoDados maquina : dados.getList()) {
+		/*for (MaquinaObjAcessoDados maquina : dados.getList()) {
 			model.addRow(
 					new Object[] {
 							maquina.getId(),
@@ -41,14 +41,15 @@ public class MaquinaLogica implements IGenericBusiness<MaquinaObjAcessoDados>{
 			);
 			JOptionPane.showMessageDialog(null, maquina.getNome());
 		}
-		
+		*/		
 		return model;
 	}
 	
 	
 	@Override
 	public List<MaquinaObjAcessoDados> getList() {
-		return dados.getList();
+		//return dados.getList();
+		return  null;
 	}
 
 	@Override
@@ -58,9 +59,9 @@ public class MaquinaLogica implements IGenericBusiness<MaquinaObjAcessoDados>{
 	}
 
 	@Override
-	public void save() {
+	public boolean save(MaquinaObjAcessoDados obj) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 	@Override

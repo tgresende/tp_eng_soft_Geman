@@ -8,6 +8,6 @@ import genericDataAccessObject.GenericDataAccessObject;
 public interface IGenericDados <T extends GenericDataAccessObject> {
 	public List<T> getList();
 	public T get(int id);
-	public void save();
+	public boolean save(T obj);
 	public void delete(int id);
 }

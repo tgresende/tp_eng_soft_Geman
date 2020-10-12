@@ -40,9 +40,14 @@ public class TechnicianEditionPresentation {
 	
 	JTextField txtName;
 	JTextField txtRole;
+	JTextField txtHourPrice;
+
 
 	JLabel labelName;
+	JLabel HourPrice;
 	JLabel labelRole;
+	JLabel labelHourPrice;
+
 	
 	JPanel header;
 	JPanel mainPanel;
@@ -50,6 +55,7 @@ public class TechnicianEditionPresentation {
 	JPanel buttonContainer;
 	JPanel fieldContainer;
 	JPanel pnlRole;
+	JPanel pnlHourPrice;
 	
 
 
@@ -60,9 +66,44 @@ public class TechnicianEditionPresentation {
         
 	};
 	
+	private int getId() {
+		return this.id;
+	}
+	
+	private boolean HasBlankFields() {
+		String message = "";
+		
+		if (txtName.getText().length() == 0)
+			message = "Informar o nome do técnico.";
+		else if (txtRole.getText().length() == 0)
+			message = "Informar o cargo do técnico.";
+		else if (txtHourPrice.getText().length() == 0)
+			message = "Informar o valor da hora do técnico.";
+		
+		if (message.length() > 0) {
+    		JOptionPane.showMessageDialog(null, message);
+			return true;
+		}
+		return false;
+	}
+	
 	ActionListener save = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
+        	if (HasBlankFields()) { 
+        		return;
+        	}
+        	
+        	int id = getId();
+    		String role = txtRole.getText();
+    		Double hourPrice = Double.parseDouble(txtHourPrice.getText());
+    		String name = txtName.getText();
+    		TechnicianDAOPresentationBusiness DAOPresentBusiness = 
+    				new TechnicianDAOPresentationBusiness(id, role, name, hourPrice);
+    		
+        	if (technicianBusiness.save(DAOPresentBusiness))
+        		JOptionPane.showMessageDialog(null, "Salvo com sucesso");
+        	
         }
         
 	};
@@ -115,6 +156,9 @@ public class TechnicianEditionPresentation {
 		fieldContainer.add(pnlName);
 		fieldContainer.add(Box.createRigidArea(new Dimension(0,5)));
 		fieldContainer.add(pnlRole);
+		fieldContainer.add(Box.createRigidArea(new Dimension(0,5)));
+		fieldContainer.add(pnlHourPrice);
+		fieldContainer.add(Box.createRigidArea(new Dimension(0,5)));
 	}
 	
 	private void mountRolePanel() {
@@ -125,6 +169,16 @@ public class TechnicianEditionPresentation {
 		txtRole =  textprimary.getTextField("");
 		pnlRole.add(labelRole);
 		pnlRole.add(txtRole);
+	}
+	
+	private void mountHourPricePanel() {
+		pnlHourPrice   = new JPanel();
+		pnlHourPrice.setMaximumSize(new Dimension(655, 35));
+		pnlHourPrice.setOpaque(false);
+		labelHourPrice= fieldlabel.getLabel("Vr. Hora (R$):");
+		txtHourPrice =  textprimary.getTextField("");
+		pnlHourPrice.add(labelHourPrice);
+		pnlHourPrice.add(txtHourPrice);
 	}
 	
 	private void FillTechnicianProperties(int id) {
@@ -139,6 +193,7 @@ public class TechnicianEditionPresentation {
 		
 		txtRole.setText(technician.getRole());
 		txtName.setText(technician.getName());
+		txtHourPrice.setText(Double.toString(technician.getHourPrice()));
 		this.id = id;
 	}
 	
@@ -148,6 +203,7 @@ public class TechnicianEditionPresentation {
 		buttonContainer =  new ButtonsContainer().getContainer(buttonList);
 		mountNamePanel();
 		mountRolePanel();
+		mountHourPricePanel();
 		mountFieldContainer();
 		mountMainPanel();
 		FillTechnicianProperties(id);

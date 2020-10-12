@@ -3,6 +3,7 @@ package business;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import businessClass.BusinessGeneric;
@@ -21,6 +22,22 @@ public class TechnicianBusiness extends BusinessGeneric implements IGenericBusin
 		
 	}
 	
+	private boolean hasDependencies(TechnicianDAOPresentationBusiness technician) {
+		String message = "";
+		
+		if (technician.getHourPrice() <= 0) {
+			message = "Informar um valor de hora do técnico maior que zero.";
+			return true;
+		}
+		
+		if (message.length() > 0) {
+    		JOptionPane.showMessageDialog(null, message);
+			return true;
+		}
+		
+		return false;	
+	}
+	
 	private String convertRoleIdToName(int id){
 		if (id == 0)
 			return "Eletricista";
@@ -29,19 +46,30 @@ public class TechnicianBusiness extends BusinessGeneric implements IGenericBusin
 		return "";
 	}
 	
+	private int convertNameToRoleId(String roleName){
+		if (roleName.equals("Eletricista"))
+			return 0;
+		if (roleName.equals("Mecânico"))
+			return 1;
+		return -1;
+	}
 	
 	private TechnicianDAOPresentationBusiness convertDAOBusinessDataToPresentationBusiness(TechnicianDAOBusinessData DAOBusinessData) {
-		
 		int id = DAOBusinessData.getId();
 		String role = convertRoleIdToName(DAOBusinessData.getRole());
 		Double hourPrice = DAOBusinessData.getHourPrice();
 		String name = DAOBusinessData.getName();
-		
 		TechnicianDAOPresentationBusiness DAOPresentBusiness = new TechnicianDAOPresentationBusiness(id, role, name, hourPrice);
-		
-		
 		return DAOPresentBusiness;
-		
+	}
+	
+	private TechnicianDAOBusinessData convertDAOPresentationBusinessToBusinessData( TechnicianDAOPresentationBusiness DAOPresentation) {
+		int id = DAOPresentation.getId();
+		int role = convertNameToRoleId(DAOPresentation.getRole());
+		Double hourPrice = DAOPresentation.getHourPrice();
+		String name = DAOPresentation.getName();
+		TechnicianDAOBusinessData DAOData = new TechnicianDAOBusinessData(id, role, name, hourPrice);
+		return DAOData;
 	}
 	
 	
@@ -90,9 +118,18 @@ public class TechnicianBusiness extends BusinessGeneric implements IGenericBusin
 	}
 
 	@Override
-	public void save() {
-		// TODO Auto-generated method stub
+	public boolean save(TechnicianDAOPresentationBusiness technician) {
+		if (hasDependencies(technician))
+			return false;
 		
+		try {
+		technicianData.save(convertDAOPresentationBusinessToBusinessData(technician));
+		}catch(Exception e) {
+    		JOptionPane.showMessageDialog(null, e.getMessage());
+    		return false;
+		}
+		
+		return true;
 	}
 
 	@Override

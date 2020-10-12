@@ -6,10 +6,11 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import dataAccessObjectBusinessData.OrderServiceDAOBusinessData;
 import dataAccessObjectPresentationBusiness.OrderServiceObjAccessData;
 import dataInterface.IGenericDados;
 
-public class OrderServiceData implements IGenericDados<OrderServiceObjAccessData>{
+public class OrderServiceData implements IGenericDados<OrderServiceDAOBusinessData>{
 	
 	private Connection connection=null;
 	
@@ -18,18 +19,18 @@ public class OrderServiceData implements IGenericDados<OrderServiceObjAccessData
 	}
 
 	@Override
-	public List<OrderServiceObjAccessData> getList() {
+	public List<OrderServiceDAOBusinessData> getList() {
 		String query = "Select * from ORDERSERVICE";
 		PreparedStatement pst = null;
 		ResultSet res = null;
-		List<OrderServiceObjAccessData> orderServices = new ArrayList<OrderServiceObjAccessData>();
-		
+		List<OrderServiceDAOBusinessData> orderServices = new ArrayList<OrderServiceDAOBusinessData>();
+		/*	
 		try {
 			pst = connection.prepareStatement(query);
 			res = pst.executeQuery();
-			
+					
 			while(res.next()) {
-				OrderServiceObjAccessData orderService =
+			OrderServiceDAOBusinessData orderService =
 						new OrderServiceObjAccessData(
 								res.getInt("Id"),
 								res.getInt("day"),
@@ -50,19 +51,19 @@ public class OrderServiceData implements IGenericDados<OrderServiceObjAccessData
 			throw new Error(e.getMessage());
 			
 		}
-		
+		*/
 		return orderServices;
 	}
 
 	@Override
-	public OrderServiceObjAccessData get(int id) {
+	public OrderServiceDAOBusinessData get(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void save() {
-		// TODO Auto-generated method stub
+	public boolean save(OrderServiceDAOBusinessData obj) {
+		return false;
 		
 	}
 
