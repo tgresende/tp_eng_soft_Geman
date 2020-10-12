@@ -2,9 +2,9 @@ package dataInterface;
 
 import java.util.List;
 
-import dataAccessObject.genericObjetoAcessoDados;
+import dataAccessObject.GenericDataAccessObject;
 
-public interface IGenericDados <T extends genericObjetoAcessoDados> {
+public interface IGenericDados <T extends GenericDataAccessObject> {
 	public List<T> getList();
 	public T get(int id);
 	public void save();

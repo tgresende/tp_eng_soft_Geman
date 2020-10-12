@@ -1,13 +1,13 @@
 package dataAccessObject;
 
-public class MaquinaObjAcessoDados extends genericObjetoAcessoDados{
+public class MaquinaObjAcessoDados extends GenericDataAccessObject{
 	
 	String Nome;
 	String Modelo;
 	String Fabricante;
 	
 	public MaquinaObjAcessoDados(int id, String nome, String modelo, String fabricante) {
-		this.Id = id;
+		this.id = id;
 		this.Nome = nome;
 		this.Modelo = modelo;
 		this.Fabricante = fabricante;
@@ -15,7 +15,7 @@ public class MaquinaObjAcessoDados extends genericObjetoAcessoDados{
 	
 	
 	public int getId() {
-		return Id;
+		return id;
 	}
 	
 	public String getNome() {
@@ -31,7 +31,7 @@ public class MaquinaObjAcessoDados extends genericObjetoAcessoDados{
 	}
 	
 	public void setId(int id) {
-		Id=id;
+		this.id=id;
 	}
 	
 	public void setNome(String nome) {

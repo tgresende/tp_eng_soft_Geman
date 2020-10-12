@@ -83,7 +83,7 @@ public class TechnicianPresentation {
         public void actionPerformed(ActionEvent e) {
         	List<TechnicianDAO> technicians = userBusiness.getList();
         	for(TechnicianDAO technician : technicians){
-        		JOptionPane.showMessageDialog(null, technician.getNome());
+        		JOptionPane.showMessageDialog(null, technician.getName());
         	}
         	
         }

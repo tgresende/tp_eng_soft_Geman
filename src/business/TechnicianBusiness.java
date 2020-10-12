@@ -4,12 +4,13 @@ import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
+import businessClass.BusinessGeneric;
 import businessInterface.IGenericBusiness;
 import connections.sqllConnection;
 import data.TechnicianData;
 import dataAccessObject.TechnicianDAO;
 
-public class TechnicianBusiness implements IGenericBusiness<TechnicianDAO> {
+public class TechnicianBusiness extends BusinessGeneric implements IGenericBusiness<TechnicianDAO>  {
 
 	TechnicianDAO technicianDAO;
 	TechnicianData technicianData = new TechnicianData(sqllConnection.dbConnector());
@@ -18,8 +19,8 @@ public class TechnicianBusiness implements IGenericBusiness<TechnicianDAO> {
 		
 	}
 	
-	public TechnicianBusiness(int id, int cargo, String nome) {
-		technicianDAO = new TechnicianDAO(id, cargo, nome);
+	public TechnicianBusiness(int id, int role, String name, Double hourPrice) {
+		technicianDAO = new TechnicianDAO(id, role, name, hourPrice);
 	}
 	
 	public DefaultTableModel getModelList() {
@@ -32,8 +33,8 @@ public class TechnicianBusiness implements IGenericBusiness<TechnicianDAO> {
 			tableModel.addRow(
 					new Object[]{
 							usuario.getId(), 
-							usuario.getNome(),
-							usuario.getCargo()
+							usuario.getName(),
+							usuario.getRole()
 							}
 			);
 		}
@@ -48,8 +49,8 @@ public class TechnicianBusiness implements IGenericBusiness<TechnicianDAO> {
 
 	@Override
 	public TechnicianDAO get(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		super.verifyId(id, "Id inválido!");
+		return technicianData.get(id);
 	}
 
 	@Override

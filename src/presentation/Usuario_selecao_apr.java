@@ -80,7 +80,7 @@ public class Usuario_selecao_apr {
         public void actionPerformed(ActionEvent e) {
         	List<TechnicianDAO> usuarios = _usuario_logica.getList();
         	for(TechnicianDAO usuario : usuarios){
-        		JOptionPane.showMessageDialog(null, usuario.getNome());
+        		JOptionPane.showMessageDialog(null, usuario.getName());
         	}
         	
         }
@@ -121,7 +121,7 @@ public class Usuario_selecao_apr {
         public void actionPerformed(ActionEvent e) {
         	List<TechnicianDAO> usuarios = _usuario_logica.getList();
         	for(TechnicianDAO usuario : usuarios){
-        		JOptionPane.showMessageDialog(null, usuario.getNome());
+        		JOptionPane.showMessageDialog(null, usuario.getName());
         	}
         	
         }

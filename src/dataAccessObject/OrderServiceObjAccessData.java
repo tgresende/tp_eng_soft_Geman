@@ -1,6 +1,6 @@
 package dataAccessObject;
 
-public class OrderServiceObjAccessData extends genericObjetoAcessoDados{
+public class OrderServiceObjAccessData extends GenericDataAccessObject{
 
 	int day;
 	int month;
@@ -18,7 +18,7 @@ public class OrderServiceObjAccessData extends genericObjetoAcessoDados{
 									  int startMinuteP, int endHourP, int endMinuteP, 
 									  int idEquipmentP, int idTechinicanP, String descriptionP, 
 									  int typeServiceP) {
-		this.Id = idP;
+		this.id = idP;
 		this.day = dayP;
 		this.month = monthP;
 		this.year = yearP;
@@ -34,7 +34,7 @@ public class OrderServiceObjAccessData extends genericObjetoAcessoDados{
 	}
 	
 	public int getId() {
-		return Id;
+		return id;
 	}
 	
 	public int getDay(){
@@ -82,7 +82,7 @@ public class OrderServiceObjAccessData extends genericObjetoAcessoDados{
 	}
 	
 	public void setId(int idP) {
-		 Id = idP;
+		id = idP;
 	}
 	
 	public void setDay(int dayP){

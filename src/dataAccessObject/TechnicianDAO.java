@@ -1,39 +1,43 @@
 package dataAccessObject;
 
-public class TechnicianDAO extends genericObjetoAcessoDados {
+public class TechnicianDAO extends GenericDataAccessObject {
 
-	public TechnicianDAO(int id, int cargo, String nome) {
-		this.Id = id;
-		this.Cargo = cargo;
-		this.Nome = nome;
+	
+	
+	int role;
+	String name;
+	double hourPrice;
+	
+	public TechnicianDAO(int id, int role, String name, Double hourPrice) {
+		this.id = id;
+		this.role = role;
+		this.name = name;
+		this.hourPrice = hourPrice;
 	}
 	
-	int Cargo;
-	String Nome;
 	
-	
-	public String getNome() {
-		return Nome;
+	public String getName() {
+		return name;
 	}
 	
 	public int getId() {
-		return Id;
+		return id;
 	}
 	
-	public int getCargo() {
-		return Cargo;
+	public int getRole() {
+		return role;
 	}
 	
-	public void setNome(String nome) {
-		Nome=nome ;
+	public void setName(String name) {
+		this.name=name ;
 	}
 	
 	public void setId(int id) {
-		Id=id;
+		this.id=id;
 	}
 	
-	public void setCargo(int cargo) {
-		Cargo = cargo;
+	public void setCargo(int role) {
+		this.role = role;
 	}
 	
 	

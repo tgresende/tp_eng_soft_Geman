@@ -19,22 +19,21 @@ public class TechnicianData implements IGenericDados<TechnicianDAO>{
 	
 	@Override
 	public List<TechnicianDAO> getList() {
-		String query = "Select * from USUARIO";
-		PreparedStatement pst = null;
-		ResultSet res = null;
-		List<TechnicianDAO> usuarios = new ArrayList<TechnicianDAO>();
+		String query = "Select * from Technician";
+		List<TechnicianDAO> technicians = new ArrayList<TechnicianDAO>();
 		
 		try {
-			pst = connection.prepareStatement(query);
-			res = pst.executeQuery();
+			PreparedStatement pst = connection.prepareStatement(query);
+			ResultSet res = pst.executeQuery();
 			
 			while(res.next()){
-				TechnicianDAO usuario = 
+				TechnicianDAO technician = 
 						new TechnicianDAO(
-							res.getInt("Id"), 
-							res.getInt("Cargo"),
-							res.getString("Nome"));
-				usuarios.add(usuario);
+							res.getInt("id"), 
+							res.getInt("role"),
+							res.getString("name"),
+							res.getDouble("hourPrice"));
+				technicians.add(technician);
 			}
 			
 			res.close();
@@ -42,13 +41,31 @@ public class TechnicianData implements IGenericDados<TechnicianDAO>{
 			throw new Error(e.getMessage());
 		}
 
-		return usuarios;
+		return technicians;
 	}
 
 	@Override
 	public TechnicianDAO get(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "Select * from Technician where Id=?";
+		TechnicianDAO technician = null;
+		try {
+			PreparedStatement pst = connection.prepareStatement(query);
+			pst.setInt(1, id);
+			ResultSet res = pst.executeQuery();
+			
+			while(res.next()){
+				technician = new TechnicianDAO(
+								res.getInt("id"), 
+								res.getInt("role"),
+								res.getString("name"),
+								res.getDouble("hourPrice"));
+				
+			}
+			res.close();
+			return technician;
+		}catch(Exception e) {
+			throw new Error(e.getMessage());
+		}
 	}
 
 	@Override
@@ -59,7 +76,7 @@ public class TechnicianData implements IGenericDados<TechnicianDAO>{
 
 	@Override
 	public void delete(int id) {
-		String cmd = "delete from USUARIO where Id=?";
+		String cmd = "delete from Technician where Id=?";
 		try {
 			PreparedStatement pst = connection.prepareStatement(cmd);
 			pst.setInt(1, id);
