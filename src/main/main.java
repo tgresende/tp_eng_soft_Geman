@@ -12,14 +12,14 @@ import java.awt.event.ActionListener;
 
 import UIComponents.menuButton;
 import UIFunctions.panelFunctions;
-import apresentacao.Maquina_selecao_apr;
-import apresentacao.OS_selecao_apr;
-import apresentacao.Relatorio_selecao_apr;
-import apresentacao.Usuario_selecao_apr;
+import presentation.Maquina_selecao_apr;
+import presentation.OS_selecao_apr;
+import presentation.Relatorio_selecao_apr;
+import presentation.TechnicianSelectionPresentation;
 
 public class main{
 	
-	Usuario_selecao_apr usuario_selecao = new Usuario_selecao_apr();
+	TechnicianSelectionPresentation usuario_selecao = new TechnicianSelectionPresentation();
 	Maquina_selecao_apr maquina_selecao  = new Maquina_selecao_apr();
 	OS_selecao_apr OS_selecao = new OS_selecao_apr();
 	Relatorio_selecao_apr relatorio_selecao = new Relatorio_selecao_apr();
@@ -69,7 +69,7 @@ public class main{
 
 		
 		menuPanel.setBackground(Color.white);
-		JButton botao_usuario = botao_menu.getButton("Usuário",abrirTelaUsuario);
+		JButton botao_usuario = botao_menu.getButton("Técnico",abrirTelaUsuario);
 		menuPanel.add(Box.createRigidArea(new Dimension(0,50)));
 
 		menuPanel.add(botao_usuario);
