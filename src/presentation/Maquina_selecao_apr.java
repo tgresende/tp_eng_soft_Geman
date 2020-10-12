@@ -20,7 +20,7 @@ import UIComponents.Header;
 import UIComponents.SelectionContainer;
 import UIComponents.primaryButton;
 import UIFunctions.panelFunctions;
-import logica.MaquinaLogica;
+import business.MaquinaLogica;
 
 public class Maquina_selecao_apr {
 	

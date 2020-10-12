@@ -1,4 +1,4 @@
-package logica;
+package business;
 
 import java.util.List;
 import javax.swing.table.DefaultTableModel;

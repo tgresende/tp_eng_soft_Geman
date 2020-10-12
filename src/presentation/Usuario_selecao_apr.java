@@ -23,7 +23,7 @@ import UIComponents.Header;
 import UIComponents.SelectionContainer;
 import UIComponents.primaryButton;
 import UIFunctions.panelFunctions;
-import logica.usuario_logica;
+import business.usuario_logica;
 import objetoAcessoDados.usuario_objAcessoDados;
 
 public class Usuario_selecao_apr {

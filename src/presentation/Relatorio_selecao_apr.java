@@ -19,7 +19,7 @@ import UIComponents.GoBackButton;
 import UIComponents.Header;
 import UIComponents.SelectionContainer;
 import UIComponents.primaryButton;
-import logica.usuario_logica;
+import business.usuario_logica;
 
 public class Relatorio_selecao_apr {
 	

@@ -19,7 +19,7 @@ import UIComponents.GoBackButton;
 import UIComponents.Header;
 import UIComponents.SelectionContainer;
 import UIComponents.primaryButton;
-import logica.OrderServiceLogic;
+import business.OrderServiceLogic;
 
 public class OS_selecao_apr {
 	
