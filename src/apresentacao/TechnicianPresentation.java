@@ -25,10 +25,10 @@ import UIComponents.primaryTextField;
 import logica.usuario_logica;
 import objetoAcessoDados.usuario_objAcessoDados;
 
-public class Usuario_edicao_apr {
+public class TechnicianPresentation {
 
 	
-	usuario_logica _usuario_logica;
+	usuario_logica userBusiness;
 	List<JButton> buttonList;
 	primaryTextField textprimary;
 	FieldLabel fieldlabel;
@@ -59,18 +59,18 @@ public class Usuario_edicao_apr {
         
 	};
 	
-	ActionListener saveUser = new ActionListener() {
+	ActionListener save = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
         }
         
 	};
 	
-	public Usuario_edicao_apr() {
+	public TechnicianPresentation() {
 		backbutton = new GoBackButton().getButton(cancel);
-		btnSave = new primaryButton().getButton("Salvar", saveUser);
+		btnSave = new primaryButton().getButton("Salvar", save);
 		btnCancel = new primaryButton().getButton("Cancelar", cancel);
-		_usuario_logica = new usuario_logica();
+		userBusiness = new usuario_logica();
 		buttonList = new ArrayList<>();
 		buttonList.add(btnSave);
 		buttonList.add(btnCancel);
@@ -81,9 +81,9 @@ public class Usuario_edicao_apr {
 	ActionListener action = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-        	List<usuario_objAcessoDados> usuarios = _usuario_logica.getList();
-        	for(usuario_objAcessoDados usuario : usuarios){
-        		JOptionPane.showMessageDialog(null, usuario.getNome());
+        	List<usuario_objAcessoDados> technicians = userBusiness.getList();
+        	for(usuario_objAcessoDados technician : technicians){
+        		JOptionPane.showMessageDialog(null, technician.getNome());
         	}
         	
         }
@@ -94,7 +94,7 @@ public class Usuario_edicao_apr {
 		pnlName.setOpaque(false);
 		pnlName.setMaximumSize(new Dimension(655, 35));
 		labelName = fieldlabel.getLabel("Nome:");
-		txtName   =  textprimary.getTextField("");
+		txtName =  textprimary.getTextField("");
 		pnlName.add(labelName);
 		pnlName.add(txtName);
 	}
@@ -120,9 +120,7 @@ public class Usuario_edicao_apr {
 	private void mountRolePanel() {
 		pnlRole   = new JPanel();
 		pnlRole.setMaximumSize(new Dimension(655, 35));
-
 		pnlRole.setOpaque(false);
-
 		labelRole= fieldlabel.getLabel("Cargo:");
 		txtRole =  textprimary.getTextField("");
 		pnlRole.add(labelRole);
@@ -131,10 +129,8 @@ public class Usuario_edicao_apr {
 	
 	public JPanel render() {
 		textprimary = new primaryTextField();
-	
 		header = new Header().getHeader("Edição de Usuário",backbutton);
 		buttonContainer =  new ButtonsContainer().getContainer(buttonList);
-		
 		mountNamePanel();
 		mountRolePanel();
 		mountFieldContainer();

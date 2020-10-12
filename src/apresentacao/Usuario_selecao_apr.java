@@ -30,7 +30,7 @@ public class Usuario_selecao_apr {
 
 	
 	usuario_logica _usuario_logica;
-	Usuario_edicao_apr usuarioEdicao;
+	TechnicianPresentation usuarioEdicao;
 	panelFunctions pnlFunc = new panelFunctions();
 
 	List<JButton> buttonList;
@@ -109,7 +109,7 @@ public class Usuario_selecao_apr {
 	ActionListener newRegister = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-        	usuarioEdicao = new Usuario_edicao_apr();
+        	usuarioEdicao = new TechnicianPresentation();
         	JPanel panelEdicao = usuarioEdicao.render();
         	pnlFunc.telaConstructor(mainContainer, panelEdicao);
         	
