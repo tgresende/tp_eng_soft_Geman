@@ -19,11 +19,11 @@ import UIComponents.GoBackButton;
 import UIComponents.Header;
 import UIComponents.SelectionContainer;
 import UIComponents.primaryButton;
-import business.usuario_logica;
+import business.TechnicianBusiness;
 
 public class Relatorio_selecao_apr {
 	
-	usuario_logica _usuario_logica;
+	TechnicianBusiness _usuario_logica;
 	List<JButton> buttonList;
 	
 	JTable table;
@@ -65,7 +65,7 @@ public class Relatorio_selecao_apr {
 		btnInsert = new primaryButton().getButton("Inserir", newRegister);
 		btnEdit = new primaryButton().getButton("Editar", editRegister);
 		btnDelete = new primaryButton().getButton("Excluir", deleteRegister);
-		_usuario_logica = new usuario_logica();
+		_usuario_logica = new TechnicianBusiness();
 		buttonList  = new ArrayList<>();
 		buttonList.add(btnInsert);
 		buttonList.add(btnEdit);

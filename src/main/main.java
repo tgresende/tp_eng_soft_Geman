@@ -69,7 +69,7 @@ public class main{
 
 		
 		menuPanel.setBackground(Color.white);
-		JButton botao_usuario = botao_menu.getButton("Usuário",abrirTelaUsuario);
+		JButton botao_usuario = botao_menu.getButton("Técnico",abrirTelaUsuario);
 		menuPanel.add(Box.createRigidArea(new Dimension(0,50)));
 
 		menuPanel.add(botao_usuario);

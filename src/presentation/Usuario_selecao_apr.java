@@ -23,13 +23,13 @@ import UIComponents.Header;
 import UIComponents.SelectionContainer;
 import UIComponents.primaryButton;
 import UIFunctions.panelFunctions;
-import business.usuario_logica;
+import business.TechnicianBusiness;
 import objetoAcessoDados.usuario_objAcessoDados;
 
 public class Usuario_selecao_apr {
 
 	
-	usuario_logica _usuario_logica;
+	TechnicianBusiness _usuario_logica;
 	TechnicianPresentation usuarioEdicao;
 	panelFunctions pnlFunc = new panelFunctions();
 
@@ -132,7 +132,7 @@ public class Usuario_selecao_apr {
 		btnInsert = new primaryButton().getButton("Inserir", newRegister);
 		btnEdit = new primaryButton().getButton("Editar", editRegister);
 		btnDelete = new primaryButton().getButton("Excluir", deleteRegister);
-		_usuario_logica = new usuario_logica();
+		_usuario_logica = new TechnicianBusiness();
 		buttonList = new ArrayList<>();
 		buttonList.add(btnInsert);
 		buttonList.add(btnEdit);

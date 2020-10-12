@@ -22,13 +22,13 @@ import UIComponents.GoBackButton;
 import UIComponents.Header;
 import UIComponents.primaryButton;
 import UIComponents.primaryTextField;
-import business.usuario_logica;
+import business.TechnicianBusiness;
 import objetoAcessoDados.usuario_objAcessoDados;
 
 public class TechnicianPresentation {
 
 	
-	usuario_logica userBusiness;
+	TechnicianBusiness userBusiness;
 	List<JButton> buttonList;
 	primaryTextField textprimary;
 	FieldLabel fieldlabel;
@@ -70,7 +70,7 @@ public class TechnicianPresentation {
 		backbutton = new GoBackButton().getButton(cancel);
 		btnSave = new primaryButton().getButton("Salvar", save);
 		btnCancel = new primaryButton().getButton("Cancelar", cancel);
-		userBusiness = new usuario_logica();
+		userBusiness = new TechnicianBusiness();
 		buttonList = new ArrayList<>();
 		buttonList.add(btnSave);
 		buttonList.add(btnCancel);

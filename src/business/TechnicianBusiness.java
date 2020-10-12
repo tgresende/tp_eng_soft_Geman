@@ -2,7 +2,6 @@ package business;
 
 import java.util.List;
 
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import connections.sqllConnection;
@@ -10,43 +9,41 @@ import dados.usuario_dados;
 import logica_interface.IGenericLogica;
 import objetoAcessoDados.usuario_objAcessoDados;
 
-public class usuario_logica implements IGenericLogica<usuario_objAcessoDados> {
+public class TechnicianBusiness implements IGenericLogica<usuario_objAcessoDados> {
 
-	usuario_objAcessoDados usuario;
-	usuario_dados dados = new usuario_dados(sqllConnection.dbConnector());
+	usuario_objAcessoDados technicianDAO;
+	usuario_dados technicianData = new usuario_dados(sqllConnection.dbConnector());
 	
-	public usuario_logica() {
+	public TechnicianBusiness() {
 		
 	}
 	
-	public usuario_logica(int id, int cargo, String nome) {
-		usuario = new usuario_objAcessoDados(id, cargo, nome);
+	public TechnicianBusiness(int id, int cargo, String nome) {
+		technicianDAO = new usuario_objAcessoDados(id, cargo, nome);
 	}
 	
 	public DefaultTableModel getModelList() {
-		DefaultTableModel model = new DefaultTableModel();
-		model.addColumn("Id");
-		model.addColumn("Nome");
-		model.addColumn("Cargo");
+		DefaultTableModel tableModel = new DefaultTableModel();
+		tableModel.addColumn("Id");
+		tableModel.addColumn("Nome");
+		tableModel.addColumn("Cargo");
 		
-		for (usuario_objAcessoDados usuario : dados.getList()) {
-			model.addRow(
+		for (usuario_objAcessoDados usuario : technicianData.getList()) {
+			tableModel.addRow(
 					new Object[]{
 							usuario.getId(), 
 							usuario.getNome(),
 							usuario.getCargo()
 							}
 			);
-    		JOptionPane.showMessageDialog(null, usuario.getNome());
-
 		}
 		
-		return model;
+		return tableModel;
 	}
 	
 	@Override
 	public List<usuario_objAcessoDados> getList() {
-		return dados.getList();
+		return technicianData.getList();
 	}
 
 	@Override
@@ -63,7 +60,7 @@ public class usuario_logica implements IGenericLogica<usuario_objAcessoDados> {
 
 	@Override
 	public void delete(int id) {
-		dados.delete(id);
+		technicianData.delete(id);
 	}
 
 	
