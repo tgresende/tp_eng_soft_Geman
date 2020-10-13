@@ -1,14 +1,14 @@
-package dataAccessObjectBusinessData;
+package dataAccessObjectPresentationBusiness;
 
 import genericDataAccessObject.GenericDataAccessObject;
 
-public class EquipmentDAOBusinessData extends GenericDataAccessObject{
-
+public class EquipmentDAOPresentationBusiness extends GenericDataAccessObject{
+	
 	String name;
 	String model;
 	String manufacturer;
 	
-	public EquipmentDAOBusinessData(int id, String name, String model, String manufacturer) {
+	public EquipmentDAOPresentationBusiness(int id, String name, String model, String manufacturer) {
 		this.id = id;
 		this.name = name;
 		this.model = model;
@@ -44,7 +44,8 @@ public class EquipmentDAOBusinessData extends GenericDataAccessObject{
 		this.model=model;
 	}
 	
-	public void setManufacturer(String manufacturer) {
-		this.manufacturer=manufacturer ;
+	public void setFabricante(String manufacturer) {
+		this.manufacturer=manufacturer;
 	}
+
 }
