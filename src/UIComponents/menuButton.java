@@ -6,13 +6,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import UIClasses.BordaArredondada;
-import UIClasses.Cores;
+import UIClasses.RoundedBorder;
+import UIClasses.Colors;
 
 public class menuButton {
 
 	JButton primaryButton;
-	Cores cor = new Cores();
 
 	public JButton getButton(String label, ActionListener action) {
 		primaryButton = new JButton();
@@ -26,9 +25,9 @@ public class menuButton {
 		primaryButton.setMaximumSize(new Dimension(655, 100));
 		primaryButton.setPreferredSize(new Dimension(100, 100));
 		primaryButton.setFont(new Font("Arial", Font.PLAIN, 16));
-		primaryButton.setBorder(new BordaArredondada(10));
-		primaryButton.setBackground(cor.getPretoPrincipal());
-		primaryButton.setForeground(cor.getBrancoPrincipal());
+		primaryButton.setBorder(new RoundedBorder(10));
+		primaryButton.setBackground(Colors.getMainBlack());
+		primaryButton.setForeground(Colors.getMainWhite());
 	}
 	
 }

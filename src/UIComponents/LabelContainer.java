@@ -8,17 +8,14 @@ import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
-import UIClasses.Cores;
+import UIClasses.Colors;
 
-public class LabelContainer {
-	JPanel panel = new JPanel();;
-	JLabel text;
+	public class LabelContainer {
+		JPanel panel = new JPanel();;
+		JLabel text;
 		
-	Cores cor = new Cores();
-	
-public JPanel getContainer(List<JLabel> labels) {
+	public JPanel getContainer(List<JLabel> labels) {
 	
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		for (JLabel label : labels) {
@@ -31,7 +28,7 @@ public JPanel getContainer(List<JLabel> labels) {
 		panel.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
 		
 		panel.setLocation(0,0);
-		panel.setBackground(cor.getBrancoPrincipal());
+		panel.setBackground(Colors.getMainWhite());
 		
 		return panel;
 	}

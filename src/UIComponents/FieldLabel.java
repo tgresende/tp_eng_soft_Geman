@@ -6,12 +6,12 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import UIClasses.Cores;
+import UIClasses.Colors;
 
 public class FieldLabel {
 
 	JLabel label;
-	Cores cor = new Cores();
+	Colors cor = new Colors();
 
 	public JLabel getLabel(String labelText) {
 		label = new JLabel(labelText);
