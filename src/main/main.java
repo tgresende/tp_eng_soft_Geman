@@ -36,7 +36,7 @@ public class main{
         }
 	};
 	
-	ActionListener abrirTelaMaquina = new ActionListener() {
+	ActionListener openEquipmentScreen = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
         	JPanel pnlEquipment = equipmentSelection.render();
@@ -45,7 +45,7 @@ public class main{
         }
 	};
 	
-	ActionListener abrirTelaOS = new ActionListener() {
+	ActionListener openOrderServiceScreen = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			JPanel pnlOrderService = orderServiceSelection.render();
@@ -54,20 +54,16 @@ public class main{
 		
 	};
 	
-	ActionListener abrirTelaRelatorio = new ActionListener() {
+	ActionListener openReportScreen = new ActionListener() {
 		public void actionPerformed(ActionEvent arg0) {
 			JPanel pnlReport = reportSelection.render();	
 			pnlFunc.telaConstructor(mainPanel, pnlReport);
 		}
 	};
 	
-	private void construirMenu(JPanel menuPanel) {
+	private void buildMenu(JPanel menuPanel) {
 		menuPanel.setBorder(BorderFactory.createEmptyBorder(15,15,15,15));
-
-		
 		menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
-
-		
 		menuPanel.setBackground(Color.white);
 		JButton technicianButton = menuButton.getButton("Técnico",openTechnicianScreen);
 		menuPanel.add(Box.createRigidArea(new Dimension(0,50)));
@@ -75,15 +71,15 @@ public class main{
 		menuPanel.add(technicianButton);
 		menuPanel.add(Box.createRigidArea(new Dimension(0,50)));
 
-		JButton equipmentButton = menuButton.getButton("Máquinas",abrirTelaMaquina);
+		JButton equipmentButton = menuButton.getButton("Máquinas",openEquipmentScreen);
 		menuPanel.add(equipmentButton);
 		menuPanel.add(Box.createRigidArea(new Dimension(0,50)));
 
-		JButton orderServiceButton = menuButton.getButton("OS", abrirTelaOS);
+		JButton orderServiceButton = menuButton.getButton("OS", openOrderServiceScreen);
 		menuPanel.add(orderServiceButton);
 		menuPanel.add(Box.createRigidArea(new Dimension(0,50)));
 
-		JButton reportButton = menuButton.getButton("Relatórios", abrirTelaRelatorio);
+		JButton reportButton = menuButton.getButton("Relatórios", openReportScreen);
 		menuPanel.add(reportButton);
 		menuPanel.add(Box.createRigidArea(new Dimension(0,50)));
 
@@ -93,7 +89,7 @@ public class main{
 		JFrame frame = new JFrame();
 		JPanel menuPanel = new JPanel();
 		
-		construirMenu(menuPanel);		
+		buildMenu(menuPanel);		
 		mainPanel = new JPanel();
 		mainPanel.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
 		mainPanel.setLayout(new GridLayout(0,1));
