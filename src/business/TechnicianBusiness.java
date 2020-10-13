@@ -22,7 +22,7 @@ public class TechnicianBusiness extends BusinessGeneric implements IGenericBusin
 		
 	}
 	
-	private boolean hasDependencies(TechnicianDAOPresentationBusiness technician) {
+	private boolean hasPendencies(TechnicianDAOPresentationBusiness technician) {
 		String message = "";
 		
 		if (technician.getName().trim().length() == 0)
@@ -121,7 +121,7 @@ public class TechnicianBusiness extends BusinessGeneric implements IGenericBusin
 
 	@Override
 	public boolean save(TechnicianDAOPresentationBusiness technician) {
-		if (hasDependencies(technician))
+		if (hasPendencies(technician))
 			return false;
 		
 		try {
