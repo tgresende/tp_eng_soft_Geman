@@ -25,6 +25,7 @@ public class TechnicianBusiness extends BusinessGeneric implements IGenericBusin
 	private boolean hasPendencies(TechnicianDAOPresentationBusiness technician) {
 		String message = "";
 		
+		
 		if (technician.getName().trim().length() == 0)
 			message = "Informar o nome do técnico.";
 		else if (technician.getRole().trim().length() == 0)
@@ -36,6 +37,8 @@ public class TechnicianBusiness extends BusinessGeneric implements IGenericBusin
     		JOptionPane.showMessageDialog(null, message);
 			return true;
 		}
+		
+
 		
 		return false;	
 	}

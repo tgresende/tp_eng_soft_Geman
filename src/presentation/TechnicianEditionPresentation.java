@@ -76,7 +76,9 @@ public class TechnicianEditionPresentation {
         public void actionPerformed(ActionEvent e) {
         	int id = getId();
     		String role = txtRole.getText();
-    		Double hourPrice = Double.parseDouble(txtHourPrice.getText());
+    		String hourPriceAux = Utils.replaceCommaToDot(txtHourPrice.getText());
+    		Double hourPrice = Double.parseDouble(hourPriceAux);
+    		;
     		String name = txtName.getText();
     		TechnicianDAOPresentationBusiness DAOPresentBusiness = 
     				new TechnicianDAOPresentationBusiness(id, role, name, hourPrice);
