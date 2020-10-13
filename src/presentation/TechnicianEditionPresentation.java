@@ -71,30 +71,9 @@ public class TechnicianEditionPresentation {
 		return this.id;
 	}
 	
-	private boolean HasBlankFields() {
-		String message = "";
-		
-		if (txtName.getText().length() == 0)
-			message = "Informar o nome do técnico.";
-		else if (txtRole.getText().length() == 0)
-			message = "Informar o cargo do técnico.";
-		else if (txtHourPrice.getText().length() == 0)
-			message = "Informar o valor da hora do técnico.";
-		
-		if (message.length() > 0) {
-    		JOptionPane.showMessageDialog(null, message);
-			return true;
-		}
-		return false;
-	}
-	
 	ActionListener save = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-        	if (HasBlankFields()) { 
-        		return;
-        	}
-        	
         	int id = getId();
     		String role = txtRole.getText();
     		Double hourPrice = Double.parseDouble(txtHourPrice.getText());
