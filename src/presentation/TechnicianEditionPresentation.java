@@ -197,10 +197,11 @@ public class TechnicianEditionPresentation {
 		this.id = id;
 	}
 	
-	public JPanel render(int id) {
+	public JPanel render(int id, ActionListener goBackAction) {
 		textprimary = new primaryTextField();
 		header = new Header().getHeader("Edição de Usuário",backbutton);
 		buttonContainer =  new ButtonsContainer().getContainer(buttonList);
+		backbutton.addActionListener(goBackAction);
 		mountNamePanel();
 		mountRolePanel();
 		mountHourPricePanel();

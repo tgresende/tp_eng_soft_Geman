@@ -27,10 +27,10 @@ public class main{
 	panelFunctions pnlFunc = new panelFunctions();
 	JPanel mainPanel;
 	
-	ActionListener abrirTelaUsuario = new ActionListener() {
+	ActionListener openTechnicianScreen = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-        	JPanel pnlTechnician = technicianSelection.render();
+        	JPanel pnlTechnician = technicianSelection.render(openTechnicianScreen);
         	pnlFunc.telaConstructor(mainPanel, pnlTechnician);
         	
         }
@@ -69,7 +69,7 @@ public class main{
 
 		
 		menuPanel.setBackground(Color.white);
-		JButton technicianButton = menuButton.getButton("Técnico",abrirTelaUsuario);
+		JButton technicianButton = menuButton.getButton("Técnico",openTechnicianScreen);
 		menuPanel.add(Box.createRigidArea(new Dimension(0,50)));
 
 		menuPanel.add(technicianButton);
