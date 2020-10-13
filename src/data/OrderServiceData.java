@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dataAccessObjectBusinessData.OrderServiceDAOBusinessData;
-import dataAccessObjectPresentationBusiness.OrderServiceObjAccessData;
+import dataAccessObjectPresentationBusiness.OrderServiceDAOPresentationBusiness;
 import dataInterface.IGenericDados;
 
 public class OrderServiceData implements IGenericDados<OrderServiceDAOBusinessData>{
@@ -24,14 +24,14 @@ public class OrderServiceData implements IGenericDados<OrderServiceDAOBusinessDa
 		PreparedStatement pst = null;
 		ResultSet res = null;
 		List<OrderServiceDAOBusinessData> orderServices = new ArrayList<OrderServiceDAOBusinessData>();
-		/*	
+		
 		try {
 			pst = connection.prepareStatement(query);
 			res = pst.executeQuery();
 					
 			while(res.next()) {
 			OrderServiceDAOBusinessData orderService =
-						new OrderServiceObjAccessData(
+						new OrderServiceDAOBusinessData(
 								res.getInt("Id"),
 								res.getInt("day"),
 								res.getInt("month"),
@@ -41,7 +41,7 @@ public class OrderServiceData implements IGenericDados<OrderServiceDAOBusinessDa
 								res.getInt("endHour"),
 								res.getInt("endMinute"),
 								res.getInt("idEquipment"),
-								res.getInt("idTechinican"),
+								res.getInt("idTechnician"),
 								res.getString("description"),
 								res.getInt("typeService"));
 				orderServices.add(orderService);
@@ -51,7 +51,7 @@ public class OrderServiceData implements IGenericDados<OrderServiceDAOBusinessDa
 			throw new Error(e.getMessage());
 			
 		}
-		*/
+		
 		return orderServices;
 	}
 

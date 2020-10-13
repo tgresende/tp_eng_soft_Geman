@@ -22,6 +22,12 @@ public class TechnicianBusiness extends BusinessGeneric implements IGenericBusin
 		
 	}
 	
+	public TechnicianBusiness(int id, String role, String name, Double hourPrice) {
+		technicianDAO = new TechnicianDAOPresentationBusiness(id, role, name, hourPrice);
+	}
+	
+	
+	
 	private boolean hasPendencies(TechnicianDAOPresentationBusiness technician) {
 		String message = "";
 		
@@ -59,6 +65,16 @@ public class TechnicianBusiness extends BusinessGeneric implements IGenericBusin
 		return -1;
 	}
 	
+	public String[] getAvaliableRoles() {
+		List<String> rolesString = new ArrayList<String>();
+		
+		for (int role : technicianData.getAvaliableRoles()) {
+			rolesString.add(convertRoleIdToName(role));
+	    }
+		
+		return  rolesString.toArray(new String[0]); 
+	}
+	
 	private TechnicianDAOPresentationBusiness convertDAOBusinessDataToPresentationBusiness(TechnicianDAOBusinessData DAOBusinessData) {
 		int id = DAOBusinessData.getId();
 		String role = convertRoleIdToName(DAOBusinessData.getRole());
@@ -79,9 +95,7 @@ public class TechnicianBusiness extends BusinessGeneric implements IGenericBusin
 	
 	
 	
-	public TechnicianBusiness(int id, String role, String name, Double hourPrice) {
-		technicianDAO = new TechnicianDAOPresentationBusiness(id, role, name, hourPrice);
-	}
+	
 	
 	public DefaultTableModel getModelList() {
 		DefaultTableModel tableModel = new DefaultTableModel();
@@ -117,6 +131,7 @@ public class TechnicianBusiness extends BusinessGeneric implements IGenericBusin
 
 	@Override
 	public TechnicianDAOPresentationBusiness get(int id) {
+		
 		super.verifyId(id, "Id inválido!");
 		
 		return convertDAOBusinessDataToPresentationBusiness(technicianData.get(id));

@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 import UIComponents.menuButton;
 import UIFunctions.panelFunctions;
 import presentation.EquipmentSelectionPresentation;
-import presentation.OS_selecao_apr;
+import presentation.OrderServiceSelectionPresentation;
 import presentation.Relatorio_selecao_apr;
 import presentation.TechnicianSelectionPresentation;
 
@@ -21,7 +21,7 @@ public class main{
 	
 	TechnicianSelectionPresentation technicianSelection = new TechnicianSelectionPresentation();
 	EquipmentSelectionPresentation equipmentSelection  = new EquipmentSelectionPresentation();
-	OS_selecao_apr orderServiceSelection = new OS_selecao_apr();
+	OrderServiceSelectionPresentation orderServiceSelection = new OrderServiceSelectionPresentation();
 	Relatorio_selecao_apr reportSelection = new Relatorio_selecao_apr();
 	menuButton menuButton = new menuButton();
 	panelFunctions pnlFunc = new panelFunctions();

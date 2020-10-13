@@ -2,7 +2,7 @@ package dataAccessObjectPresentationBusiness;
 
 import genericDataAccessObject.GenericDataAccessObject;
 
-public class OrderServiceObjAccessData extends GenericDataAccessObject{
+public class OrderServiceDAOPresentationBusiness extends GenericDataAccessObject{
 
 	int day;
 	int month;
@@ -16,7 +16,7 @@ public class OrderServiceObjAccessData extends GenericDataAccessObject{
 	String description;
 	int typeService;
 	
-	public  OrderServiceObjAccessData(int idP, int dayP, int monthP, int yearP, int startHourP,
+	public  OrderServiceDAOPresentationBusiness(int idP, int dayP, int monthP, int yearP, int startHourP,
 									  int startMinuteP, int endHourP, int endMinuteP, 
 									  int idEquipmentP, int idTechinicanP, String descriptionP, 
 									  int typeServiceP) {

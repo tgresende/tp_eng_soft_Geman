@@ -11,12 +11,14 @@ import java.util.List;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import UIComponents.ButtonsContainer;
+import UIComponents.ComboBox;
 import UIComponents.FieldLabel;
 import UIComponents.GoBackButton;
 import UIComponents.Header;
@@ -33,6 +35,7 @@ public class TechnicianEditionPresentation {
 	List<JButton> buttonList;
 	primaryTextField textprimary;
 	FieldLabel fieldlabel;
+	ComboBox cmbBox;
 	
 	JButton btnSave;
 	JButton btnCancel;
@@ -57,8 +60,9 @@ public class TechnicianEditionPresentation {
 	JPanel pnlRole;
 	JPanel pnlHourPrice;
 	
-	ActionListener goBackAction;
+	JComboBox comboRole;
 	
+	ActionListener goBackAction;
 	
 	ActionListener cancel = new ActionListener() {
         @Override
@@ -74,8 +78,9 @@ public class TechnicianEditionPresentation {
 	ActionListener save = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
+        	
         	int id = getId();
-    		String role = txtRole.getText();
+    		String role = comboRole.getSelectedItem().toString();
     		String hourPriceAux = Utils.replaceCommaToDot(txtHourPrice.getText());
     		Double hourPrice = Double.parseDouble(hourPriceAux);
     		;
@@ -88,6 +93,7 @@ public class TechnicianEditionPresentation {
         		backbutton.doClick();
         	}
         	
+        	
         }
         
 	};
@@ -97,6 +103,7 @@ public class TechnicianEditionPresentation {
 		btnSave = new primaryButton().getButton("Salvar", save);
 		btnCancel = new primaryButton().getButton("Cancelar", cancel);
 		technicianBusiness = new TechnicianBusiness();
+		cmbBox = new ComboBox();
 		buttonList = new ArrayList<>();
 		buttonList.add(btnSave);
 		buttonList.add(btnCancel);
@@ -150,9 +157,12 @@ public class TechnicianEditionPresentation {
 		pnlRole.setMaximumSize(new Dimension(655, 35));
 		pnlRole.setOpaque(false);
 		labelRole= fieldlabel.getLabel("Cargo:");
-		txtRole =  textprimary.getTextField("");
+		
+		String[] roles = technicianBusiness.getAvaliableRoles();
+		comboRole = cmbBox.getComboBox(roles);
+		
 		pnlRole.add(labelRole);
-		pnlRole.add(txtRole);
+		pnlRole.add(comboRole);
 	}
 	
 	private void mountHourPricePanel() {
