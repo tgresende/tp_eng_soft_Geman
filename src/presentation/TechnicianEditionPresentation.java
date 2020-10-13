@@ -57,8 +57,9 @@ public class TechnicianEditionPresentation {
 	JPanel pnlRole;
 	JPanel pnlHourPrice;
 	
-
-
+	ActionListener goBackAction;
+	
+	
 	ActionListener cancel = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -101,8 +102,10 @@ public class TechnicianEditionPresentation {
     		TechnicianDAOPresentationBusiness DAOPresentBusiness = 
     				new TechnicianDAOPresentationBusiness(id, role, name, hourPrice);
     		
-        	if (technicianBusiness.save(DAOPresentBusiness))
+        	if (technicianBusiness.save(DAOPresentBusiness)) {
         		JOptionPane.showMessageDialog(null, "Salvo com sucesso");
+        		backbutton.doClick();
+        	}
         	
         }
         
@@ -198,10 +201,13 @@ public class TechnicianEditionPresentation {
 	}
 	
 	public JPanel render(int id, ActionListener goBackAction) {
+		this.goBackAction = goBackAction; 
 		textprimary = new primaryTextField();
 		header = new Header().getHeader("Edição de Usuário",backbutton);
 		buttonContainer =  new ButtonsContainer().getContainer(buttonList);
 		backbutton.addActionListener(goBackAction);
+		btnCancel.addActionListener(goBackAction);
+
 		mountNamePanel();
 		mountRolePanel();
 		mountHourPricePanel();
