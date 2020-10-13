@@ -19,19 +19,19 @@ import presentation.TechnicianSelectionPresentation;
 
 public class main{
 	
-	TechnicianSelectionPresentation usuario_selecao = new TechnicianSelectionPresentation();
-	EquipmentSelectionPresentation maquina_selecao  = new EquipmentSelectionPresentation();
-	OS_selecao_apr OS_selecao = new OS_selecao_apr();
-	Relatorio_selecao_apr relatorio_selecao = new Relatorio_selecao_apr();
-	menuButton botao_menu = new menuButton();
+	TechnicianSelectionPresentation technicianSelection = new TechnicianSelectionPresentation();
+	EquipmentSelectionPresentation equipmentSelection  = new EquipmentSelectionPresentation();
+	OS_selecao_apr orderServiceSelection = new OS_selecao_apr();
+	Relatorio_selecao_apr reportSelection = new Relatorio_selecao_apr();
+	menuButton menuButton = new menuButton();
 	panelFunctions pnlFunc = new panelFunctions();
 	JPanel mainPanel;
 	
 	ActionListener abrirTelaUsuario = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-        	JPanel panelusuario = usuario_selecao.render();
-        	pnlFunc.telaConstructor(mainPanel, panelusuario);
+        	JPanel pnlTechnician = technicianSelection.render();
+        	pnlFunc.telaConstructor(mainPanel, pnlTechnician);
         	
         }
 	};
@@ -39,8 +39,8 @@ public class main{
 	ActionListener abrirTelaMaquina = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-        	JPanel panelmaquina = maquina_selecao.render();
-        	pnlFunc.telaConstructor(mainPanel, panelmaquina);
+        	JPanel pnlEquipment = equipmentSelection.render();
+        	pnlFunc.telaConstructor(mainPanel, pnlEquipment);
         	
         }
 	};
@@ -48,16 +48,16 @@ public class main{
 	ActionListener abrirTelaOS = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			JPanel panelOS = OS_selecao.render();
-			pnlFunc.telaConstructor(mainPanel, panelOS);		
+			JPanel pnlOrderService = orderServiceSelection.render();
+			pnlFunc.telaConstructor(mainPanel, pnlOrderService);		
 		}
 		
 	};
 	
 	ActionListener abrirTelaRelatorio = new ActionListener() {
 		public void actionPerformed(ActionEvent arg0) {
-			JPanel panelRelatorio = relatorio_selecao.render();	
-			pnlFunc.telaConstructor(mainPanel, panelRelatorio);
+			JPanel pnlReport = reportSelection.render();	
+			pnlFunc.telaConstructor(mainPanel, pnlReport);
 		}
 	};
 	
@@ -69,22 +69,22 @@ public class main{
 
 		
 		menuPanel.setBackground(Color.white);
-		JButton botao_usuario = botao_menu.getButton("Técnico",abrirTelaUsuario);
+		JButton technicianButton = menuButton.getButton("Técnico",abrirTelaUsuario);
 		menuPanel.add(Box.createRigidArea(new Dimension(0,50)));
 
-		menuPanel.add(botao_usuario);
+		menuPanel.add(technicianButton);
 		menuPanel.add(Box.createRigidArea(new Dimension(0,50)));
 
-		JButton botao_maquina = botao_menu.getButton("Máquinas",abrirTelaMaquina);
-		menuPanel.add(botao_maquina);
+		JButton equipmentButton = menuButton.getButton("Máquinas",abrirTelaMaquina);
+		menuPanel.add(equipmentButton);
 		menuPanel.add(Box.createRigidArea(new Dimension(0,50)));
 
-		JButton botao_OS = botao_menu.getButton("OS", abrirTelaOS);
-		menuPanel.add(botao_OS);
+		JButton orderServiceButton = menuButton.getButton("OS", abrirTelaOS);
+		menuPanel.add(orderServiceButton);
 		menuPanel.add(Box.createRigidArea(new Dimension(0,50)));
 
-		JButton botao_Relatorio = botao_menu.getButton("Relatórios", abrirTelaRelatorio);
-		menuPanel.add(botao_Relatorio);
+		JButton reportButton = menuButton.getButton("Relatórios", abrirTelaRelatorio);
+		menuPanel.add(reportButton);
 		menuPanel.add(Box.createRigidArea(new Dimension(0,50)));
 
 	}
