@@ -6,16 +6,15 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-import UIClasses.Cores;
+import UIClasses.Colors;
 
 public class GoBackButton {
 
 	JButton goBackBtn =  new JButton();
-	Cores cor = new Cores();
 	
 	public JButton getButton(ActionListener action){
 		goBackBtn.setPreferredSize(new Dimension(30,30));
-		goBackBtn.setBackground(cor.getBrancoPrincipal());
+		goBackBtn.setBackground(Colors.getMainWhite());
 		goBackBtn.addActionListener(action);
 		try {
 			ImageIcon img = new ImageIcon(getClass().getResource("/assets/left-arrow.png"));

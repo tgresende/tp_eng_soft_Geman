@@ -57,8 +57,9 @@ public class TechnicianEditionPresentation {
 	JPanel pnlRole;
 	JPanel pnlHourPrice;
 	
-
-
+	ActionListener goBackAction;
+	
+	
 	ActionListener cancel = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -70,39 +71,22 @@ public class TechnicianEditionPresentation {
 		return this.id;
 	}
 	
-	private boolean HasBlankFields() {
-		String message = "";
-		
-		if (txtName.getText().length() == 0)
-			message = "Informar o nome do técnico.";
-		else if (txtRole.getText().length() == 0)
-			message = "Informar o cargo do técnico.";
-		else if (txtHourPrice.getText().length() == 0)
-			message = "Informar o valor da hora do técnico.";
-		
-		if (message.length() > 0) {
-    		JOptionPane.showMessageDialog(null, message);
-			return true;
-		}
-		return false;
-	}
-	
 	ActionListener save = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-        	if (HasBlankFields()) { 
-        		return;
-        	}
-        	
         	int id = getId();
     		String role = txtRole.getText();
-    		Double hourPrice = Double.parseDouble(txtHourPrice.getText());
+    		String hourPriceAux = Utils.replaceCommaToDot(txtHourPrice.getText());
+    		Double hourPrice = Double.parseDouble(hourPriceAux);
+    		;
     		String name = txtName.getText();
     		TechnicianDAOPresentationBusiness DAOPresentBusiness = 
     				new TechnicianDAOPresentationBusiness(id, role, name, hourPrice);
     		
-        	if (technicianBusiness.save(DAOPresentBusiness))
+        	if (technicianBusiness.save(DAOPresentBusiness)) {
         		JOptionPane.showMessageDialog(null, "Salvo com sucesso");
+        		backbutton.doClick();
+        	}
         	
         }
         
@@ -197,10 +181,14 @@ public class TechnicianEditionPresentation {
 		this.id = id;
 	}
 	
-	public JPanel render(int id) {
+	public JPanel render(int id, ActionListener goBackAction) {
+		this.goBackAction = goBackAction; 
 		textprimary = new primaryTextField();
 		header = new Header().getHeader("Edição de Usuário",backbutton);
 		buttonContainer =  new ButtonsContainer().getContainer(buttonList);
+		backbutton.addActionListener(goBackAction);
+		btnCancel.addActionListener(goBackAction);
+
 		mountNamePanel();
 		mountRolePanel();
 		mountHourPricePanel();

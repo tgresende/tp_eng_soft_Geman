@@ -1,24 +1,20 @@
 package UIComponents;
 
 
-import java.awt.Dimension;
 
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import UIClasses.Cores;
+import UIClasses.Colors;
 
 public class SelectionContainer {
 
-	Cores cor = new Cores();
-
 	public JScrollPane getPanel() {
 		JPanel contentPanel = new JPanel();
-		contentPanel.setBackground(cor.getBrancoPrincipal());
+		contentPanel.setBackground(Colors.getMainWhite());
 		JScrollPane scrollPane = new JScrollPane(contentPanel);
-	    scrollPane.setBackground(cor.getBrancoPrincipal());
+	    scrollPane.setBackground(Colors.getMainWhite());
 	    scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 	    scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
 

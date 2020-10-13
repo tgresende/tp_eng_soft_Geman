@@ -5,11 +5,11 @@ import java.awt.Font;
 
 import javax.swing.JLabel;
 
-import UIClasses.Cores;
+import UIClasses.Colors;
 
 public class primaryLabel {
 	JLabel JLabel;
-	Cores cor = new Cores();
+	Colors cor = new Colors();
 	
 	public JLabel getLabel(String label) {
 		JLabel = new JLabel();

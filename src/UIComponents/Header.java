@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-import UIClasses.Cores;
+import UIClasses.Colors;
 
 public class Header {
 	
@@ -18,7 +18,6 @@ public class Header {
 	JLabel text;
 	JButton button;
 	
-	Cores cor = new Cores();
 	
 	public JPanel getHeader(String label, JButton returnButton) {
 		text = new JLabel(label);
@@ -32,12 +31,12 @@ public class Header {
 
 		
 		text.setLocation(50, 50);
-		text.setBackground(cor.getPretoPrincipal());
+		text.setBackground(Colors.getMainBlack());
 		text.setFont(new Font("Arial", Font.BOLD, 24));
 		
 		panel.setMaximumSize(new Dimension(655, 50));
 		panel.setLocation(0,0);
-		panel.setBackground(cor.getBrancoPrincipal());
+		panel.setBackground(Colors.getMainWhite());
 		
 		panel.add(returnButton,BorderLayout.WEST);
 		panel.add(text,BorderLayout.CENTER);

@@ -5,11 +5,11 @@ import java.awt.Font;
 
 import javax.swing.JTextField;
 
-import UIClasses.Cores;
+import UIClasses.Colors;
 
 public class primaryTextField {
 	JTextField JTextField;
-	Cores cor = new Cores();
+	Colors cor = new Colors();
 
 	public JTextField getTextField(String label) {
 		JTextField = new JTextField();

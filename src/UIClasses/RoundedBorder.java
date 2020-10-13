@@ -6,12 +6,12 @@ import java.awt.Insets;
 
 import javax.swing.border.Border;
 
-public class BordaArredondada implements Border {
+public class RoundedBorder implements Border {
 
     private int radius;
 
 
-    public BordaArredondada(int radius) {
+    public RoundedBorder(int radius) {
         this.radius = radius;
     }
 

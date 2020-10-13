@@ -45,9 +45,12 @@ public class TechnicianSelectionPresentation {
 	JButton btnDelete;
 	Method _a;
 	
+	ActionListener goBackAction;
+	
 
-	public JPanel render() {
+	public JPanel render(ActionListener goBackAction) {
 		JPanel tablePanel;
+		this.goBackAction = goBackAction; 
 		JPanel header = new Header().getHeader("Usuários",backbutton);
 		JPanel buttonContainer =  new ButtonsContainer().getContainer(buttonList);
 		JScrollPane contentContainer = new SelectionContainer().getPanel();
@@ -90,8 +93,11 @@ public class TechnicianSelectionPresentation {
 	ActionListener deleteRegister = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-        	if (table.getSelectedRow() == -1)
+        	if (table.getSelectedRow() == -1) {
+        		JOptionPane.showMessageDialog(null, "Selecione um registro primeiro para deletar.");
         		return;
+        	}
+        	
         	technicianBusiness.delete((int)table.getValueAt(table.getSelectedRow(), 0));
         	model.removeRow(table.getSelectedRow());
         }
@@ -101,11 +107,13 @@ public class TechnicianSelectionPresentation {
 	ActionListener editRegister = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-        	if (table.getSelectedRow() == -1)
+        	if (table.getSelectedRow() == -1) {
+        		JOptionPane.showMessageDialog(null, "Selecione um registro primeiro para editar.");
         		return;
+        	}
         	int id = (int)table.getValueAt(table.getSelectedRow(), 0);
         	usuarioEdicao = new TechnicianEditionPresentation();
-        	JPanel panelEdicao = usuarioEdicao.render(id);
+        	JPanel panelEdicao = usuarioEdicao.render(id, goBackAction);
         	pnlFunc.telaConstructor(mainContainer, panelEdicao);
         }
 	};
@@ -114,23 +122,13 @@ public class TechnicianSelectionPresentation {
         @Override
         public void actionPerformed(ActionEvent e) {
         	usuarioEdicao = new TechnicianEditionPresentation();
-        	JPanel panelEdicao = usuarioEdicao.render(0);
+        	JPanel panelEdicao = usuarioEdicao.render(0, goBackAction);
         	pnlFunc.telaConstructor(mainContainer, panelEdicao);
         	
         }
 	};
 	
-	ActionListener goBackAction = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-        	List<TechnicianDAOPresentationBusiness> usuarios = technicianBusiness.getList();
-        	for(TechnicianDAOPresentationBusiness usuario : usuarios){
-        		JOptionPane.showMessageDialog(null, usuario.getName());
-        	}
-        	
-        }
-	};
-	
+		
 	public TechnicianSelectionPresentation() {
 		backbutton = new GoBackButton().getButton(goBackAction);
 		btnInsert = new primaryButton().getButton("Inserir", newRegister);

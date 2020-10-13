@@ -22,18 +22,23 @@ public class TechnicianBusiness extends BusinessGeneric implements IGenericBusin
 		
 	}
 	
-	private boolean hasDependencies(TechnicianDAOPresentationBusiness technician) {
+	private boolean hasPendencies(TechnicianDAOPresentationBusiness technician) {
 		String message = "";
 		
-		if (technician.getHourPrice() <= 0) {
+		
+		if (technician.getName().trim().length() == 0)
+			message = "Informar o nome do técnico.";
+		else if (technician.getRole().trim().length() == 0)
+			message = "Informar o cargo do técnico.";
+		else if (technician.getHourPrice() <= 0) 
 			message = "Informar um valor de hora do técnico maior que zero.";
-			return true;
-		}
 		
 		if (message.length() > 0) {
     		JOptionPane.showMessageDialog(null, message);
 			return true;
 		}
+		
+
 		
 		return false;	
 	}
@@ -119,7 +124,7 @@ public class TechnicianBusiness extends BusinessGeneric implements IGenericBusin
 
 	@Override
 	public boolean save(TechnicianDAOPresentationBusiness technician) {
-		if (hasDependencies(technician))
+		if (hasPendencies(technician))
 			return false;
 		
 		try {

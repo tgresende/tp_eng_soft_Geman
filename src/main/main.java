@@ -19,72 +19,68 @@ import presentation.TechnicianSelectionPresentation;
 
 public class main{
 	
-	TechnicianSelectionPresentation usuario_selecao = new TechnicianSelectionPresentation();
-	EquipmentSelectionPresentation maquina_selecao  = new EquipmentSelectionPresentation();
-	OS_selecao_apr OS_selecao = new OS_selecao_apr();
-	Relatorio_selecao_apr relatorio_selecao = new Relatorio_selecao_apr();
-	menuButton botao_menu = new menuButton();
+	TechnicianSelectionPresentation technicianSelection = new TechnicianSelectionPresentation();
+	EquipmentSelectionPresentation equipmentSelection  = new EquipmentSelectionPresentation();
+	OS_selecao_apr orderServiceSelection = new OS_selecao_apr();
+	Relatorio_selecao_apr reportSelection = new Relatorio_selecao_apr();
+	menuButton menuButton = new menuButton();
 	panelFunctions pnlFunc = new panelFunctions();
 	JPanel mainPanel;
 	
-	ActionListener abrirTelaUsuario = new ActionListener() {
+	ActionListener openTechnicianScreen = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-        	JPanel panelusuario = usuario_selecao.render();
-        	pnlFunc.telaConstructor(mainPanel, panelusuario);
+        	JPanel pnlTechnician = technicianSelection.render(openTechnicianScreen);
+        	pnlFunc.telaConstructor(mainPanel, pnlTechnician);
         	
         }
 	};
 	
-	ActionListener abrirTelaMaquina = new ActionListener() {
+	ActionListener openEquipmentScreen = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-        	JPanel panelmaquina = maquina_selecao.render();
-        	pnlFunc.telaConstructor(mainPanel, panelmaquina);
+        	JPanel pnlEquipment = equipmentSelection.render();
+        	pnlFunc.telaConstructor(mainPanel, pnlEquipment);
         	
         }
 	};
 	
-	ActionListener abrirTelaOS = new ActionListener() {
+	ActionListener openOrderServiceScreen = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			JPanel panelOS = OS_selecao.render();
-			pnlFunc.telaConstructor(mainPanel, panelOS);		
+			JPanel pnlOrderService = orderServiceSelection.render();
+			pnlFunc.telaConstructor(mainPanel, pnlOrderService);		
 		}
 		
 	};
 	
-	ActionListener abrirTelaRelatorio = new ActionListener() {
+	ActionListener openReportScreen = new ActionListener() {
 		public void actionPerformed(ActionEvent arg0) {
-			JPanel panelRelatorio = relatorio_selecao.render();	
-			pnlFunc.telaConstructor(mainPanel, panelRelatorio);
+			JPanel pnlReport = reportSelection.render();	
+			pnlFunc.telaConstructor(mainPanel, pnlReport);
 		}
 	};
 	
-	private void construirMenu(JPanel menuPanel) {
+	private void buildMenu(JPanel menuPanel) {
 		menuPanel.setBorder(BorderFactory.createEmptyBorder(15,15,15,15));
-
-		
 		menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
-
-		
 		menuPanel.setBackground(Color.white);
-		JButton botao_usuario = botao_menu.getButton("Técnico",abrirTelaUsuario);
+		JButton technicianButton = menuButton.getButton("Técnico",openTechnicianScreen);
 		menuPanel.add(Box.createRigidArea(new Dimension(0,50)));
 
-		menuPanel.add(botao_usuario);
+		menuPanel.add(technicianButton);
 		menuPanel.add(Box.createRigidArea(new Dimension(0,50)));
 
-		JButton botao_maquina = botao_menu.getButton("Máquinas",abrirTelaMaquina);
-		menuPanel.add(botao_maquina);
+		JButton equipmentButton = menuButton.getButton("Máquinas",openEquipmentScreen);
+		menuPanel.add(equipmentButton);
 		menuPanel.add(Box.createRigidArea(new Dimension(0,50)));
 
-		JButton botao_OS = botao_menu.getButton("OS", abrirTelaOS);
-		menuPanel.add(botao_OS);
+		JButton orderServiceButton = menuButton.getButton("OS", openOrderServiceScreen);
+		menuPanel.add(orderServiceButton);
 		menuPanel.add(Box.createRigidArea(new Dimension(0,50)));
 
-		JButton botao_Relatorio = botao_menu.getButton("Relatórios", abrirTelaRelatorio);
-		menuPanel.add(botao_Relatorio);
+		JButton reportButton = menuButton.getButton("Relatórios", openReportScreen);
+		menuPanel.add(reportButton);
 		menuPanel.add(Box.createRigidArea(new Dimension(0,50)));
 
 	}
@@ -93,7 +89,7 @@ public class main{
 		JFrame frame = new JFrame();
 		JPanel menuPanel = new JPanel();
 		
-		construirMenu(menuPanel);		
+		buildMenu(menuPanel);		
 		mainPanel = new JPanel();
 		mainPanel.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
 		mainPanel.setLayout(new GridLayout(0,1));
