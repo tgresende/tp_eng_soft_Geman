@@ -22,6 +22,8 @@ public class TechnicianBusiness extends BusinessGeneric implements IGenericBusin
 		
 	}
 	
+	
+	
 	private boolean hasPendencies(TechnicianDAOPresentationBusiness technician) {
 		String message = "";
 		
@@ -57,6 +59,16 @@ public class TechnicianBusiness extends BusinessGeneric implements IGenericBusin
 		if (roleName.equals("Mecânico"))
 			return 1;
 		return -1;
+	}
+	
+	public String[] getAvaliableRoles() {
+		List<String> rolesString = new ArrayList<String>();
+		
+		for (int role : technicianData.getAvaliableRoles()) {
+			rolesString.add(convertRoleIdToName(role));
+	    }
+		
+		return  rolesString.toArray(new String[0]); 
 	}
 	
 	private TechnicianDAOPresentationBusiness convertDAOBusinessDataToPresentationBusiness(TechnicianDAOBusinessData DAOBusinessData) {
