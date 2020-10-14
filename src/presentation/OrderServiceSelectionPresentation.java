@@ -19,32 +19,39 @@ import UIComponents.GoBackButton;
 import UIComponents.Header;
 import UIComponents.SelectionContainer;
 import UIComponents.primaryButton;
-import business.OrderServiceLogic;
+import business.OrderServiceBusiness;
 
-public class OS_selecao_apr {
+public class OrderServiceSelectionPresentation {
 	
-	OrderServiceLogic orderServiceLogica;
+	OrderServiceBusiness orderServiceBusiness;
 	List<JButton> buttonList;
 	
-	JTable table;
-	JScrollPane rollBar;
-	DefaultTableModel model;
 	JPanel mainContainer;
+
+	JTable table;
+
+	DefaultTableModel model;
+	
+	JScrollPane rollBar;
+	
 	JButton backbutton;
 	JButton btnInsert;
 	JButton btnEdit;
 	JButton btnDelete;
-	Method _a;
 	
 	public JPanel render() {
 		JPanel tablePanel;
+		
 		JPanel header = new Header().getHeader("Ordem de Serviço", backbutton);
+		
 		JPanel buttonContainer =  new ButtonsContainer().getContainer(buttonList);
+		
 		JScrollPane contentContainer = new SelectionContainer().getPanel();
+		
 		mainContainer = new JPanel();
 		
 		mainContainer.setLayout(new BoxLayout(mainContainer, BoxLayout.Y_AXIS));
-		model = orderServiceLogica.getModelList();
+		model = orderServiceBusiness.getModelList();
 		tablePanel = new JPanel();
 		tablePanel.setLayout(new GridLayout(1,1));
 		table = new JTable(model);
@@ -59,12 +66,12 @@ public class OS_selecao_apr {
 		return mainContainer;
 	}
 	
-	public OS_selecao_apr() {
+	public OrderServiceSelectionPresentation() {
 		backbutton = new GoBackButton().getButton(goBakAction);
 		btnInsert = new primaryButton().getButton("Inserir", newRegister);
 		btnEdit = new primaryButton().getButton("Editar", editRegister);
 		btnDelete = new primaryButton().getButton("Excluir", deleteRegister);
-		orderServiceLogica = new OrderServiceLogic();
+		orderServiceBusiness = new OrderServiceBusiness();
 		buttonList  = new ArrayList<>();
 		buttonList.add(btnInsert);
 		buttonList.add(btnEdit);

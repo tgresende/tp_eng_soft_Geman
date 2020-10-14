@@ -22,6 +22,10 @@ public class TechnicianBusiness extends BusinessGeneric implements IGenericBusin
 		
 	}
 	
+	public TechnicianBusiness(int id, String role, String name, Double hourPrice) {
+		technicianDAO = new TechnicianDAOPresentationBusiness(id, role, name, hourPrice);
+	}
+	
 	
 	
 	private boolean hasPendencies(TechnicianDAOPresentationBusiness technician) {
@@ -91,9 +95,7 @@ public class TechnicianBusiness extends BusinessGeneric implements IGenericBusin
 	
 	
 	
-	public TechnicianBusiness(int id, String role, String name, Double hourPrice) {
-		technicianDAO = new TechnicianDAOPresentationBusiness(id, role, name, hourPrice);
-	}
+	
 	
 	public DefaultTableModel getModelList() {
 		DefaultTableModel tableModel = new DefaultTableModel();
@@ -129,6 +131,7 @@ public class TechnicianBusiness extends BusinessGeneric implements IGenericBusin
 
 	@Override
 	public TechnicianDAOPresentationBusiness get(int id) {
+		
 		super.verifyId(id, "Id inválido!");
 		
 		return convertDAOBusinessDataToPresentationBusiness(technicianData.get(id));
