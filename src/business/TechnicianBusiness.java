@@ -12,35 +12,37 @@ import connections.sqllConnection;
 import data.TechnicianData;
 import dataAccessObjectBusinessData.TechnicianDAOBusinessData;
 import dataAccessObjectPresentationBusiness.TechnicianDAOPresentationBusiness;
+import dataInterface.IGenericDados;
 
 public class TechnicianBusiness extends BusinessGeneric implements IGenericBusiness<TechnicianDAOPresentationBusiness>  {
 
+	public String feebackMessage = "";
 	TechnicianDAOPresentationBusiness technicianDAO;
-	TechnicianData technicianData = new TechnicianData(sqllConnection.dbConnector());
+	TechnicianData technicianData;
 	
 	public TechnicianBusiness() {
-		
+		technicianData = new TechnicianData(sqllConnection.dbConnector());
 	}
 	
 	public TechnicianBusiness(int id, String role, String name, Double hourPrice) {
 		technicianDAO = new TechnicianDAOPresentationBusiness(id, role, name, hourPrice);
+		technicianData = new TechnicianData(sqllConnection.dbConnector());
 	}
 	
 	
 	
 	private boolean hasPendencies(TechnicianDAOPresentationBusiness technician) {
-		String message = "";
+		feebackMessage = "";
 		
 		
 		if (technician.getName().trim().length() == 0)
-			message = "Informar o nome do técnico.";
+			feebackMessage = "Informar o nome do técnico.";
 		else if (technician.getRole().trim().length() == 0)
-			message = "Informar o cargo do técnico.";
+			feebackMessage = "Informar o cargo do técnico.";
 		else if (technician.getHourPrice() <= 0) 
-			message = "Informar um valor de hora do técnico maior que zero.";
+			feebackMessage = "Informar um valor de hora do técnico maior que zero.";
 		
-		if (message.length() > 0) {
-    		JOptionPane.showMessageDialog(null, message);
+		if (feebackMessage.length() > 0) {
 			return true;
 		}
 		

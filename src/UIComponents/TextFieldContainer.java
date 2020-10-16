@@ -11,25 +11,21 @@ import javax.swing.JTextField;
 
 import UIClasses.Colors;
 
-public class TextFieldContainer {
-	JPanel panel;
-	JLabel text;
+public final class TextFieldContainer {
 	
-	public JPanel getContainer(List<JTextField> textFields, List<JLabel> labels) {
+	
+	public static JPanel getContainer(List<JTextField> textFields, List<JLabel> labels) {
+		JPanel panel;
 		panel = new JPanel();
 		int i = 0;
 		for (JTextField textField : textFields) {
 			panel.add(labels.get(i));
 			panel.add(textField);
 			i++;
-			
 		}
-		
 		panel.setMaximumSize(new Dimension(500, 200));
 		panel.setMinimumSize(new Dimension(500, 200));
-		
 		panel.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
-		
 		panel.setLocation(0,0);
 		panel.setBackground(Colors.getMainWhite());
 		

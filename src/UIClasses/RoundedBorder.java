@@ -6,18 +6,18 @@ import java.awt.Insets;
 
 import javax.swing.border.Border;
 
-public class RoundedBorder implements Border {
+public final class RoundedBorder implements Border {
 
-    private int radius;
+	static private int radius;
 
 
     public RoundedBorder(int radius) {
-        this.radius = radius;
+        RoundedBorder.radius = radius;
     }
 
 
     public Insets getBorderInsets(Component c) {
-        return new Insets(this.radius+1, this.radius+1, this.radius+2, this.radius);
+        return new Insets(radius+1, radius+1, radius+2, radius);
     }
 
 

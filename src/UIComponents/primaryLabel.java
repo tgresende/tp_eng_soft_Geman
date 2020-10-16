@@ -7,18 +7,18 @@ import javax.swing.JLabel;
 
 import UIClasses.Colors;
 
-public class primaryLabel {
-	JLabel JLabel;
-	Colors cor = new Colors();
+public final class primaryLabel {
+	static JLabel JLabel;
+	static Colors cor = new Colors();
 	
-	public JLabel getLabel(String label) {
+	public static JLabel getLabel(String label) {
 		JLabel = new JLabel();
 		JLabel.setText(label);
 		setlabelStyle();
 		return JLabel;
 	}
 
-	private void setlabelStyle() {
+	private static void setlabelStyle() {
 		JLabel.setPreferredSize(new Dimension(100,40));
 		JLabel.setFont(new Font("Arial", Font.BOLD, 16));
 	}

@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +29,6 @@ public class EquipmentSelectionPresentation {
 	
 	EquipmentBusiness equipmentBusiness;
 	EquipmentEditionPresentation equipmentEdition;
-	panelFunctions pnlFunc = new panelFunctions();
 	
 	List<JButton> buttonList;
 	
@@ -42,12 +40,11 @@ public class EquipmentSelectionPresentation {
 	JButton btnInsert;
 	JButton btnEdit;
 	JButton btnDelete;
-	Method _a;
 	
 	public JPanel render() {
 		JPanel tablePanel;
 		JPanel header = new Header().getHeader("Máquinas", backbutton);
-		JPanel buttonContainer = new ButtonsContainer().getContainer(buttonList);
+		JPanel buttonContainer = ButtonsContainer.getContainer(buttonList);
 		JScrollPane contentContainer = new SelectionContainer().getPanel();
 		mainContainer = new JPanel();
 		mainContainer.setOpaque(false);
@@ -103,7 +100,7 @@ public class EquipmentSelectionPresentation {
         	int id = (int)table.getValueAt(table.getSelectedRow(), 0);
         	equipmentEdition = new EquipmentEditionPresentation();
         	JPanel panelEdicao = equipmentEdition.render(id);
-        	pnlFunc.telaConstructor(mainContainer, panelEdicao);
+        	panelFunctions.panelConstructor(mainContainer, panelEdicao);
         }
 	};
 	
@@ -112,7 +109,7 @@ public class EquipmentSelectionPresentation {
 		public void actionPerformed(ActionEvent e) {
 			equipmentEdition = new EquipmentEditionPresentation();
         	JPanel panelEdicao = equipmentEdition.render(0);
-        	pnlFunc.telaConstructor(mainContainer, panelEdicao);
+        	panelFunctions.panelConstructor(mainContainer, panelEdicao);
         	
         }
 	};

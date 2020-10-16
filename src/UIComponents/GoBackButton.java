@@ -8,22 +8,32 @@ import javax.swing.JButton;
 
 import UIClasses.Colors;
 
-public class GoBackButton {
+public final class GoBackButton {
 
-	JButton goBackBtn =  new JButton();
+	static JButton goBackBtn =  new JButton();
 	
-	public JButton getButton(ActionListener action){
+	private void estilyzeButton() {
 		goBackBtn.setPreferredSize(new Dimension(30,30));
 		goBackBtn.setBackground(Colors.getMainWhite());
-		goBackBtn.addActionListener(action);
 		try {
 			ImageIcon img = new ImageIcon(getClass().getResource("/assets/left-arrow.png"));
 			goBackBtn.setIcon(img);
 		}catch (Exception ex) {
 		    System.out.println(ex);
 		}
-		
+	}
+	
+	public JButton getButton(ActionListener action){
+		estilyzeButton();
+		goBackBtn.addActionListener(action);		
 		return goBackBtn;
 	}
+	
+	public JButton getButton(){
+		estilyzeButton();
+		return goBackBtn;
+	}
+	
+	
 	
 }

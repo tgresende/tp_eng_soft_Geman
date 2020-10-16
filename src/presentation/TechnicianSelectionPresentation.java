@@ -1,7 +1,5 @@
 package presentation;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,7 +30,6 @@ public class TechnicianSelectionPresentation {
 	
 	TechnicianBusiness technicianBusiness;
 	TechnicianEditionPresentation usuarioEdicao;
-	panelFunctions pnlFunc = new panelFunctions();
 
 	List<JButton> buttonList;
 	
@@ -111,7 +108,7 @@ public class TechnicianSelectionPresentation {
         	int id = (int)table.getValueAt(table.getSelectedRow(), 0);
         	usuarioEdicao = new TechnicianEditionPresentation();
         	JPanel panelEdicao = usuarioEdicao.render(id, goBackAction);
-        	pnlFunc.telaConstructor(mainContainer, panelEdicao);
+        	panelFunctions.panelConstructor(mainContainer, panelEdicao);
         }
 	};
 	
@@ -120,7 +117,7 @@ public class TechnicianSelectionPresentation {
         public void actionPerformed(ActionEvent e) {
         	usuarioEdicao = new TechnicianEditionPresentation();
         	JPanel panelEdicao = usuarioEdicao.render(0, goBackAction);
-        	pnlFunc.telaConstructor(mainContainer, panelEdicao);
+        	panelFunctions.panelConstructor(mainContainer, panelEdicao);
         	
         }
 	};

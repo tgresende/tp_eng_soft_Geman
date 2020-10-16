@@ -10,15 +10,11 @@ import javax.swing.JPanel;
 
 import UIClasses.Colors;
 
-public class ButtonsContainer {
+public final class ButtonsContainer {
 
-	JPanel panel;
-	JLabel text;
-	
-	
-	public JPanel getContainer(List<JButton> buttons) {
+	public static JPanel getContainer(List<JButton> buttons) {
 		
-		panel = new JPanel();
+		JPanel panel = new JPanel();
 
 		for (JButton button : buttons) {
 			panel.add(button);

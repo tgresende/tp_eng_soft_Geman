@@ -83,7 +83,7 @@ public class OrderServiceBusiness extends BusinessGeneric implements IGenericBus
 		return model;
 	}
 	
-	public DefaultTableModel getMeanTimeRepairs() {
+	public DefaultTableModel getMeanTimeRepairModel() {
 		DefaultTableModel tableModel = new DefaultTableModel();
 		tableModel.addColumn("Id");
 		tableModel.addColumn("Nome");
@@ -96,10 +96,43 @@ public class OrderServiceBusiness extends BusinessGeneric implements IGenericBus
 					equipmentRepair.getHour()
 					});
 		}
-				
+		
 		return tableModel;
 	}
 	
+	public DefaultTableModel getStopTimeModel() {
+		DefaultTableModel tableModel = new DefaultTableModel();
+		tableModel.addColumn("Id");
+		tableModel.addColumn("Nome");
+		tableModel.addColumn("Tempo Total (horas)");
+		
+		for (MeanTimeRepairDAOBusinessData equipmentStopTime : orderServiceData.getStopTime()) {
+			tableModel.addRow(new Object[] {
+					equipmentStopTime.getId(), 
+					equipmentStopTime.getName(),
+					equipmentStopTime.getHour()
+					});
+		}
+		
+		return tableModel;
+	}
+	
+	public DefaultTableModel getCostRepairModel() {
+		DefaultTableModel tableModel = new DefaultTableModel();
+		tableModel.addColumn("Id");
+		tableModel.addColumn("Nome");
+		tableModel.addColumn("Custo Total (R$)");
+		
+		for (MeanTimeRepairDAOBusinessData equipmentCostRepair : orderServiceData.getCostRepair()) {
+			tableModel.addRow(new Object[] {
+					equipmentCostRepair.getId(), 
+					equipmentCostRepair.getName(),
+					equipmentCostRepair.getHour()
+					});
+		}
+		
+		return tableModel;
+	}
 	
 	@Override
 	public List<OrderServiceDAOPresentationBusiness> getList() {

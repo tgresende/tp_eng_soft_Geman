@@ -12,16 +12,14 @@ import javax.swing.border.Border;
 
 import UIClasses.Colors;
 
-public class Header {
+public final class Header {
 	
-	JPanel panel;
-	JLabel text;
-	JButton button;
+	static JPanel panel;
+	static JLabel text;
+	static JButton button;
 	
-	
-	public JPanel getHeader(String label, JButton returnButton) {
+	private void estilyzeButton(String label) {
 		text = new JLabel(label);
-		button = returnButton;
 		
 		panel = new JPanel();
 		panel.setLayout(new BorderLayout());
@@ -38,8 +36,19 @@ public class Header {
 		panel.setLocation(0,0);
 		panel.setBackground(Colors.getMainWhite());
 		
-		panel.add(returnButton,BorderLayout.WEST);
 		panel.add(text,BorderLayout.CENTER);
+	}
+	
+	public JPanel getHeader(String label) {
+		estilyzeButton(label);
+		return panel;
+	}
+	
+	
+	public JPanel getHeader(String label, JButton returnButton) {
+		estilyzeButton(label);
+		button = returnButton;
+		panel.add(button,BorderLayout.WEST);
 		
 		return panel;
 	}

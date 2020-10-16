@@ -17,6 +17,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import org.mockito.internal.verification.Only;
+
 import UIComponents.ButtonsContainer;
 import UIComponents.ComboBox;
 import UIComponents.FieldLabel;
@@ -82,8 +84,9 @@ public class TechnicianEditionPresentation {
         	int id = getId();
     		String role = comboRole.getSelectedItem().toString();
     		String hourPriceAux = Utils.replaceCommaToDot(txtHourPrice.getText());
-    		Double hourPrice = Double.parseDouble(hourPriceAux);
-    		;
+    		
+    		Double hourPrice = Double.parseDouble(Utils.onlyNumbers(hourPriceAux));
+    		
     		String name = txtName.getText();
     		TechnicianDAOPresentationBusiness DAOPresentBusiness = 
     				new TechnicianDAOPresentationBusiness(id, role, name, hourPrice);
@@ -91,6 +94,8 @@ public class TechnicianEditionPresentation {
         	if (technicianBusiness.save(DAOPresentBusiness)) {
         		JOptionPane.showMessageDialog(null, "Salvo com sucesso");
         		backbutton.doClick();
+        	}else {
+        		JOptionPane.showMessageDialog(null, technicianBusiness.feebackMessage);
         	}
         	
         	
@@ -99,9 +104,9 @@ public class TechnicianEditionPresentation {
 	};
 	
 	public TechnicianEditionPresentation() {
-		backbutton = new GoBackButton().getButton(cancel);
-		btnSave = new primaryButton().getButton("Salvar", save);
-		btnCancel = new primaryButton().getButton("Cancelar", cancel);
+		backbutton = new GoBackButton().getButton();
+		btnSave = primaryButton.getButton("Salvar", save);
+		btnCancel = primaryButton.getButton("Cancelar", cancel);
 		technicianBusiness = new TechnicianBusiness();
 		cmbBox = new ComboBox();
 		buttonList = new ArrayList<>();
@@ -195,7 +200,7 @@ public class TechnicianEditionPresentation {
 		this.goBackAction = goBackAction; 
 		textprimary = new primaryTextField();
 		header = new Header().getHeader("Edição de Usuário",backbutton);
-		buttonContainer =  new ButtonsContainer().getContainer(buttonList);
+		buttonContainer =  ButtonsContainer.getContainer(buttonList);
 		backbutton.addActionListener(goBackAction);
 		btnCancel.addActionListener(goBackAction);
 

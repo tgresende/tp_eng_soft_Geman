@@ -8,7 +8,6 @@ import java.util.List;
 
 import dataAccessObjectBusinessData.MeanTimeRepairDAOBusinessData;
 import dataAccessObjectBusinessData.OrderServiceDAOBusinessData;
-import dataAccessObjectPresentationBusiness.OrderServiceDAOPresentationBusiness;
 import dataInterface.IGenericDados;
 
 public class OrderServiceData implements IGenericDados<OrderServiceDAOBusinessData>{
@@ -65,6 +64,61 @@ public class OrderServiceData implements IGenericDados<OrderServiceDAOBusinessDa
 	public List<MeanTimeRepairDAOBusinessData>  getMeanTimeRepairs() {
 		String query = 
 				" select idEquipment, round(avg(hour),2) hour, Equipment.name name from ( "+
+						" Select idEquipment, round((round(endHour*60 + endMinute,2)  - round(startHour*60 + startMinute,2))/60,2) hour from OrderService "+
+						" ) orderService join Equipment on Equipment.id = orderService.idEquipment group by idEquipment"; 
+		
+		List<MeanTimeRepairDAOBusinessData> equipments = new ArrayList<MeanTimeRepairDAOBusinessData>();
+		try {
+			PreparedStatement pst = connection.prepareStatement(query);
+			ResultSet res = pst.executeQuery();
+			while(res.next()){
+				equipments.add( new MeanTimeRepairDAOBusinessData(
+								   res.getInt("idEquipment"), 
+								   res.getString("name"),
+								   res.getDouble("hour")
+								   )
+				);
+				
+			}
+			res.close();
+		}catch(Exception e) {
+			throw new Error(e.getMessage());
+		}
+		
+		return equipments;
+	}
+	
+	public List<MeanTimeRepairDAOBusinessData>  getCostRepair() {
+		String query = 
+				"select Equipment.id idEquipment, Equipment.name name, sum(costs.cost) totalCost from ( " + 
+				"Select idEquipment, idTechnician,round(Technician.hourPrice * round((round(endHour*60 + endMinute,2)  - round(startHour*60 + startMinute,2))/60,2),2) " +
+			    "cost from OrderService join Technician on Technician.id = OrderService.idTechnician" + 
+				")costs JOIN Equipment on Equipment.id = costs.idEquipment group by Equipment.id, Equipment.name";
+		
+		List<MeanTimeRepairDAOBusinessData> equipments = new ArrayList<MeanTimeRepairDAOBusinessData>();
+		try {
+			PreparedStatement pst = connection.prepareStatement(query);
+			ResultSet res = pst.executeQuery();
+			while(res.next()){
+				equipments.add( new MeanTimeRepairDAOBusinessData(
+								   res.getInt("idEquipment"), 
+								   res.getString("name"),
+								   res.getDouble("totalCost")
+								   )
+				);
+				
+			}
+			res.close();
+		}catch(Exception e) {
+			throw new Error(e.getMessage());
+		}
+		
+		return equipments;
+	}
+	
+	public List<MeanTimeRepairDAOBusinessData>  getStopTime() {
+		String query = 
+				" select idEquipment, round(sum(hour),2) hour, Equipment.name name from ( "+
 						" Select idEquipment, round((round(endHour*60 + endMinute,2)  - round(startHour*60 + startMinute,2))/60,2) hour from OrderService "+
 						" ) orderService join Equipment on Equipment.id = orderService.idEquipment group by idEquipment"; 
 		
