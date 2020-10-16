@@ -22,6 +22,8 @@ public class EquipmentBusiness extends BusinessGeneric implements IGenericBusine
 		
 	}
 	
+	
+	
 	private EquipmentDAOPresentationBusiness convertDAOBusinessDataToPresentationBusiness(EquipmentDAOBusinessData DAOBusinessData) {
 		int id = DAOBusinessData.getId();
 		String name = DAOBusinessData.getName();
@@ -68,6 +70,8 @@ public class EquipmentBusiness extends BusinessGeneric implements IGenericBusine
 				
 		return tableModel;
 	}
+	
+	
 	
 	
 	@Override

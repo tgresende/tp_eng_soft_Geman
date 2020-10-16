@@ -21,6 +21,7 @@ import UIComponents.ButtonsContainer;
 import UIComponents.GoBackButton;
 import UIComponents.Header;
 import UIComponents.SelectionContainer;
+import UIComponents.Table;
 import UIComponents.primaryButton;
 import UIFunctions.panelFunctions;
 import business.TechnicianBusiness;
@@ -61,11 +62,7 @@ public class TechnicianSelectionPresentation {
 		model = technicianBusiness.getModelList();
 		tablePanel = new JPanel();
 		tablePanel.setLayout(new GridLayout(1, 1));
-		table = new JTable(model);
-        table.setFont(new Font("", 1, 14));
-        table.setBackground(Color.white);
-        table.getTableHeader().setBackground(Color.white);
-        table.getTableHeader().setFont(new Font("Times New Roman", Font.BOLD, 16));
+		table = Table.getTable(model);
 
 		rollBar = new JScrollPane(table);
 		tablePanel.add(rollBar);

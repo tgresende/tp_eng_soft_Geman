@@ -8,6 +8,7 @@ import businessClass.BusinessGeneric;
 import businessInterface.IGenericBusiness;
 import connections.sqllConnection;
 import data.OrderServiceData;
+import dataAccessObjectBusinessData.MeanTimeRepairDAOBusinessData;
 import dataAccessObjectBusinessData.OrderServiceDAOBusinessData;
 import dataAccessObjectPresentationBusiness.OrderServiceDAOPresentationBusiness;
 
@@ -16,7 +17,7 @@ public class OrderServiceBusiness extends BusinessGeneric implements IGenericBus
 	OrderServiceDAOPresentationBusiness orderServiceDAO;
 	EquipmentBusiness equipmentBusiness;
 	TechnicianBusiness technicianBusiness;
-	OrderServiceData data = new OrderServiceData(sqllConnection.dbConnector());
+	OrderServiceData orderServiceData = new OrderServiceData(sqllConnection.dbConnector());
 	
 	private void createDependencies() {
 		technicianBusiness = new TechnicianBusiness();
@@ -67,7 +68,7 @@ public class OrderServiceBusiness extends BusinessGeneric implements IGenericBus
 		model.addColumn("Técnico");
 		model.addColumn("Tipo");
 		
-		for (OrderServiceDAOBusinessData orderService : data.getList()) {
+		for (OrderServiceDAOBusinessData orderService : orderServiceData.getList()) {
 			model.addRow(
 					new Object[] {
 							orderService.getId(),
@@ -82,6 +83,22 @@ public class OrderServiceBusiness extends BusinessGeneric implements IGenericBus
 		return model;
 	}
 	
+	public DefaultTableModel getMeanTimeRepairs() {
+		DefaultTableModel tableModel = new DefaultTableModel();
+		tableModel.addColumn("Id");
+		tableModel.addColumn("Nome");
+		tableModel.addColumn("Tempo Médio (horas)");
+		
+		for (MeanTimeRepairDAOBusinessData equipmentRepair : orderServiceData.getMeanTimeRepairs()) {
+			tableModel.addRow(new Object[] {
+					equipmentRepair.getId(), 
+					equipmentRepair.getName(),
+					equipmentRepair.getHour()
+					});
+		}
+				
+		return tableModel;
+	}
 	
 	
 	@Override
@@ -105,7 +122,7 @@ public class OrderServiceBusiness extends BusinessGeneric implements IGenericBus
 
 	@Override
 	public void delete(int id) {
-		data.delete(id);
+		orderServiceData.delete(id);
 		
 	}
 }

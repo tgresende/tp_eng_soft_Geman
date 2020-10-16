@@ -1,5 +1,6 @@
 package presentation;
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,12 +19,17 @@ import UIComponents.ButtonsContainer;
 import UIComponents.GoBackButton;
 import UIComponents.Header;
 import UIComponents.SelectionContainer;
+import UIComponents.Table;
 import UIComponents.primaryButton;
+import business.EquipmentBusiness;
+import business.OrderServiceBusiness;
 import business.TechnicianBusiness;
 
-public class Relatorio_selecao_apr {
+public class ReportSelectionPresentation {
 	
-	TechnicianBusiness _usuario_logica;
+	EquipmentBusiness equipmentBusiness;
+	OrderServiceBusiness orderServiceBusiness;
+
 	List<JButton> buttonList;
 	
 	JTable table;
@@ -31,9 +37,9 @@ public class Relatorio_selecao_apr {
 	DefaultTableModel model;
 	JPanel mainContainer;
 	JButton backbutton;
-	JButton btnInsert;
-	JButton btnEdit;
-	JButton btnDelete;
+	JButton btnCostMaintenance;
+	JButton btnMTRR;
+	JButton btnStopTime;
 	Method _a;
 
 
@@ -45,10 +51,10 @@ public class Relatorio_selecao_apr {
 		mainContainer = new JPanel();
 		
 		mainContainer.setLayout(new BoxLayout(mainContainer, BoxLayout.Y_AXIS));
-		model = _usuario_logica.getModelList();
+		model = orderServiceBusiness.getMeanTimeRepairs();
 		tablePanel = new JPanel();
 		tablePanel.setLayout(new GridLayout(1,1));
-		table = new JTable(model);
+		table = Table.getTable(model);
 		rollBar = new JScrollPane(table);
 		tablePanel.add(rollBar);
 		
@@ -60,16 +66,22 @@ public class Relatorio_selecao_apr {
 		return mainContainer;
 	}
 	
-	public Relatorio_selecao_apr() {
+	public ReportSelectionPresentation() {
 		backbutton = new GoBackButton().getButton(goBakAction);
-		btnInsert = new primaryButton().getButton("Inserir", newRegister);
-		btnEdit = new primaryButton().getButton("Editar", editRegister);
-		btnDelete = new primaryButton().getButton("Excluir", deleteRegister);
-		_usuario_logica = new TechnicianBusiness();
+		btnCostMaintenance = new primaryButton().getButton("Custo de Reparo", newRegister);
+		btnStopTime = new primaryButton().getButton("Tempo de Parada", editRegister);
+		btnMTRR = new primaryButton().getButton("T. Méd. de Reparos", deleteRegister);
+		
+		btnCostMaintenance.setPreferredSize(new Dimension(200,40));
+		btnStopTime.setPreferredSize(new Dimension(200,40));
+		btnMTRR.setPreferredSize(new Dimension(200,40));
+
+		equipmentBusiness = new EquipmentBusiness();
+		orderServiceBusiness = new OrderServiceBusiness();
 		buttonList  = new ArrayList<>();
-		buttonList.add(btnInsert);
-		buttonList.add(btnEdit);
-		buttonList.add(btnDelete);
+		buttonList.add(btnCostMaintenance);
+		buttonList.add(btnStopTime);
+		buttonList.add(btnMTRR);
 	}
 	
 	ActionListener goBakAction = new ActionListener() {

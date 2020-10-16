@@ -14,7 +14,7 @@ import UIComponents.menuButton;
 import UIFunctions.panelFunctions;
 import presentation.EquipmentSelectionPresentation;
 import presentation.OrderServiceSelectionPresentation;
-import presentation.Relatorio_selecao_apr;
+import presentation.ReportSelectionPresentation;
 import presentation.TechnicianSelectionPresentation;
 
 public class main{
@@ -22,7 +22,7 @@ public class main{
 	TechnicianSelectionPresentation technicianSelection = new TechnicianSelectionPresentation();
 	EquipmentSelectionPresentation equipmentSelection  = new EquipmentSelectionPresentation();
 	OrderServiceSelectionPresentation orderServiceSelection = new OrderServiceSelectionPresentation();
-	Relatorio_selecao_apr reportSelection = new Relatorio_selecao_apr();
+	ReportSelectionPresentation reportSelection = new ReportSelectionPresentation();
 	menuButton menuButton = new menuButton();
 	panelFunctions pnlFunc = new panelFunctions();
 	JPanel mainPanel;

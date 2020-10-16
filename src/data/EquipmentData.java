@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dataAccessObjectBusinessData.EquipmentDAOBusinessData;
+import dataAccessObjectBusinessData.MeanTimeRepairDAOBusinessData;
 import dataInterface.IGenericDados;
 
 public class EquipmentData implements IGenericDados<EquipmentDAOBusinessData> {
@@ -47,6 +48,8 @@ public class EquipmentData implements IGenericDados<EquipmentDAOBusinessData> {
 		return equipments;
 	}
 
+
+	
 	@Override
 	public EquipmentDAOBusinessData get(int id) {
 		String query = "Select * from EQUIPMENT where Id=?";

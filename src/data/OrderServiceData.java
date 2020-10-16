@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import dataAccessObjectBusinessData.MeanTimeRepairDAOBusinessData;
 import dataAccessObjectBusinessData.OrderServiceDAOBusinessData;
 import dataAccessObjectPresentationBusiness.OrderServiceDAOPresentationBusiness;
 import dataInterface.IGenericDados;
@@ -59,6 +60,33 @@ public class OrderServiceData implements IGenericDados<OrderServiceDAOBusinessDa
 	public OrderServiceDAOBusinessData get(int id) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public List<MeanTimeRepairDAOBusinessData>  getMeanTimeRepairs() {
+		String query = 
+				" select idEquipment, round(avg(hour),2) hour, Equipment.name name from ( "+
+						" Select idEquipment, round((round(endHour*60 + endMinute,2)  - round(startHour*60 + startMinute,2))/60,2) hour from OrderService "+
+						" ) orderService join Equipment on Equipment.id = orderService.idEquipment group by idEquipment"; 
+		
+		List<MeanTimeRepairDAOBusinessData> equipments = new ArrayList<MeanTimeRepairDAOBusinessData>();
+		try {
+			PreparedStatement pst = connection.prepareStatement(query);
+			ResultSet res = pst.executeQuery();
+			while(res.next()){
+				equipments.add( new MeanTimeRepairDAOBusinessData(
+								   res.getInt("idEquipment"), 
+								   res.getString("name"),
+								   res.getDouble("hour")
+								   )
+				);
+				
+			}
+			res.close();
+		}catch(Exception e) {
+			throw new Error(e.getMessage());
+		}
+		
+		return equipments;
 	}
 
 	@Override
