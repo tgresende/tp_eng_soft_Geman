@@ -10,7 +10,6 @@ public final class panelFunctions {
 		painelPai.removeAll();
 		painelPai.revalidate();
 		painelPai.repaint();
-		
 		painelPai.add(painelFilho);
 	}
 }

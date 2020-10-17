@@ -12,18 +12,20 @@ import connections.sqllConnection;
 import data.TechnicianData;
 import dataAccessObjectBusinessData.TechnicianDAOBusinessData;
 import dataAccessObjectPresentationBusiness.TechnicianDAOPresentationBusiness;
+import dataInterface.IGenericDados;
 
 public class TechnicianBusiness extends BusinessGeneric implements IGenericBusiness<TechnicianDAOPresentationBusiness>  {
 
 	TechnicianDAOPresentationBusiness technicianDAO;
-	TechnicianData technicianData = new TechnicianData(sqllConnection.dbConnector());
+	TechnicianData technicianData;
 	
 	public TechnicianBusiness() {
-		
+		technicianData = new TechnicianData(sqllConnection.dbConnector());
 	}
 	
 	public TechnicianBusiness(int id, String role, String name, Double hourPrice) {
 		technicianDAO = new TechnicianDAOPresentationBusiness(id, role, name, hourPrice);
+		technicianData = new TechnicianData(sqllConnection.dbConnector());
 	}
 	
 	
