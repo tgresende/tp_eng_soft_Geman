@@ -1,5 +1,6 @@
 package business;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
@@ -83,7 +84,7 @@ public class OrderServiceBusiness extends BusinessGeneric implements IGenericBus
 		return model;
 	}
 	
-	public DefaultTableModel getMeanTimeRepairs() {
+	public DefaultTableModel getMeanTimeRepairModel() {
 		DefaultTableModel tableModel = new DefaultTableModel();
 		tableModel.addColumn("Id");
 		tableModel.addColumn("Nome");
@@ -96,10 +97,9 @@ public class OrderServiceBusiness extends BusinessGeneric implements IGenericBus
 					equipmentRepair.getHour()
 					});
 		}
-				
+		
 		return tableModel;
 	}
-	
 	
 	@Override
 	public List<OrderServiceDAOPresentationBusiness> getList() {

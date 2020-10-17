@@ -30,7 +30,6 @@ public class EquipmentSelectionPresentation {
 	
 	EquipmentBusiness equipmentBusiness;
 	EquipmentEditionPresentation equipmentEdition;
-	panelFunctions pnlFunc = new panelFunctions();
 	
 	List<JButton> buttonList;
 	
@@ -42,7 +41,6 @@ public class EquipmentSelectionPresentation {
 	JButton btnInsert;
 	JButton btnEdit;
 	JButton btnDelete;
-	Method _a;
 	
 	public JPanel render() {
 		JPanel tablePanel;
@@ -103,7 +101,7 @@ public class EquipmentSelectionPresentation {
         	int id = (int)table.getValueAt(table.getSelectedRow(), 0);
         	equipmentEdition = new EquipmentEditionPresentation();
         	JPanel panelEdicao = equipmentEdition.render(id);
-        	pnlFunc.telaConstructor(mainContainer, panelEdicao);
+        	panelFunctions.panelConstructor(mainContainer, panelEdicao);
         }
 	};
 	
@@ -112,7 +110,7 @@ public class EquipmentSelectionPresentation {
 		public void actionPerformed(ActionEvent e) {
 			equipmentEdition = new EquipmentEditionPresentation();
         	JPanel panelEdicao = equipmentEdition.render(0);
-        	pnlFunc.telaConstructor(mainContainer, panelEdicao);
+        	panelFunctions.panelConstructor(mainContainer, panelEdicao);
         	
         }
 	};

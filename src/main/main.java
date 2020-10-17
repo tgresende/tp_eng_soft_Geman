@@ -24,14 +24,13 @@ public class main{
 	OrderServiceSelectionPresentation orderServiceSelection = new OrderServiceSelectionPresentation();
 	ReportSelectionPresentation reportSelection = new ReportSelectionPresentation();
 	menuButton menuButton = new menuButton();
-	panelFunctions pnlFunc = new panelFunctions();
 	JPanel mainPanel;
 	
 	ActionListener openTechnicianScreen = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
         	JPanel pnlTechnician = technicianSelection.render(openTechnicianScreen);
-        	pnlFunc.telaConstructor(mainPanel, pnlTechnician);
+        	panelFunctions.panelConstructor(mainPanel, pnlTechnician);
         	
         }
 	};
@@ -40,7 +39,7 @@ public class main{
         @Override
         public void actionPerformed(ActionEvent e) {
         	JPanel pnlEquipment = equipmentSelection.render();
-        	pnlFunc.telaConstructor(mainPanel, pnlEquipment);
+        	panelFunctions.panelConstructor(mainPanel, pnlEquipment);
         	
         }
 	};
@@ -49,15 +48,15 @@ public class main{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			JPanel pnlOrderService = orderServiceSelection.render();
-			pnlFunc.telaConstructor(mainPanel, pnlOrderService);		
+			panelFunctions.panelConstructor(mainPanel, pnlOrderService);		
 		}
 		
 	};
 	
 	ActionListener openReportScreen = new ActionListener() {
 		public void actionPerformed(ActionEvent arg0) {
-			JPanel pnlReport = reportSelection.render();	
-			pnlFunc.telaConstructor(mainPanel, pnlReport);
+			JPanel pnlReport = reportSelection.render(openReportScreen);	
+			panelFunctions.panelConstructor(mainPanel, pnlReport);
 		}
 	};
 	

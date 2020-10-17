@@ -18,6 +18,29 @@ public class Header {
 	JLabel text;
 	JButton button;
 	
+	public JPanel getHeader(String label) {
+		text = new JLabel(label);
+		
+		panel = new JPanel();
+		panel.setLayout(new BorderLayout());
+		
+		Border raisedbevel = BorderFactory.createRaisedBevelBorder();
+		panel.setBorder(raisedbevel);
+
+		
+		text.setLocation(50, 50);
+		text.setBackground(Colors.getMainBlack());
+		text.setFont(new Font("Arial", Font.BOLD, 24));
+		
+		panel.setMaximumSize(new Dimension(655, 50));
+		panel.setLocation(0,0);
+		panel.setBackground(Colors.getMainWhite());
+		
+		panel.add(text,BorderLayout.CENTER);
+		
+		return panel;
+	}
+	
 	
 	public JPanel getHeader(String label, JButton returnButton) {
 		text = new JLabel(label);

@@ -99,7 +99,7 @@ public class TechnicianEditionPresentation {
 	};
 	
 	public TechnicianEditionPresentation() {
-		backbutton = new GoBackButton().getButton(cancel);
+		backbutton = new GoBackButton().getButton();
 		btnSave = new primaryButton().getButton("Salvar", save);
 		btnCancel = new primaryButton().getButton("Cancelar", cancel);
 		technicianBusiness = new TechnicianBusiness();

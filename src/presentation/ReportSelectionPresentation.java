@@ -1,5 +1,6 @@
 package presentation;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -21,9 +22,11 @@ import UIComponents.Header;
 import UIComponents.SelectionContainer;
 import UIComponents.Table;
 import UIComponents.primaryButton;
+import UIFunctions.panelFunctions;
 import business.EquipmentBusiness;
 import business.OrderServiceBusiness;
 import business.TechnicianBusiness;
+import dataAccessObjectBusinessData.MeanTimeRepairDAOBusinessData;
 
 public class ReportSelectionPresentation {
 	
@@ -36,41 +39,33 @@ public class ReportSelectionPresentation {
 	JScrollPane rollBar;
 	DefaultTableModel model;
 	JPanel mainContainer;
-	JButton backbutton;
 	JButton btnCostMaintenance;
 	JButton btnMTRR;
 	JButton btnStopTime;
-	Method _a;
+	JPanel tablePanel;
+	
+	ActionListener goBackAction;
 
 
-	public JPanel render() {
-		JPanel tablePanel;
-		JPanel header = new Header().getHeader("Relatórios", backbutton);
+	public JPanel render( ActionListener goBackAction) {
+		this.goBackAction = goBackAction;
+		JPanel header = new Header().getHeader("Relatórios");
 		JPanel buttonContainer =  new ButtonsContainer().getContainer(buttonList);
 		JScrollPane contentContainer = new SelectionContainer().getPanel();
 		mainContainer = new JPanel();
-		
 		mainContainer.setLayout(new BoxLayout(mainContainer, BoxLayout.Y_AXIS));
-		model = orderServiceBusiness.getMeanTimeRepairs();
-		tablePanel = new JPanel();
-		tablePanel.setLayout(new GridLayout(1,1));
-		table = Table.getTable(model);
-		rollBar = new JScrollPane(table);
-		tablePanel.add(rollBar);
-		
 		mainContainer.add(header);
 		mainContainer.add(buttonContainer);
 		mainContainer.add(contentContainer);
-		mainContainer.add(tablePanel);
 		
 		return mainContainer;
 	}
 	
 	public ReportSelectionPresentation() {
-		backbutton = new GoBackButton().getButton(goBakAction);
-		btnCostMaintenance = new primaryButton().getButton("Custo de Reparo", newRegister);
-		btnStopTime = new primaryButton().getButton("Tempo de Parada", editRegister);
-		btnMTRR = new primaryButton().getButton("T. Méd. de Reparos", deleteRegister);
+		
+		btnCostMaintenance = new primaryButton().getButton("Custo de Reparo", RepairCost);
+		btnStopTime = new primaryButton().getButton("Tempo de Parada", stopTime);
+		btnMTRR = new primaryButton().getButton("T. Méd. de Reparos", meanTimetoRepair);
 		
 		btnCostMaintenance.setPreferredSize(new Dimension(200,40));
 		btnStopTime.setPreferredSize(new Dimension(200,40));
@@ -84,7 +79,18 @@ public class ReportSelectionPresentation {
 		buttonList.add(btnMTRR);
 	}
 	
-	ActionListener goBakAction = new ActionListener() {
+	ActionListener meanTimetoRepair = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			ReportMeanTimeRepairPresentation reportMeanTimeRepairPresentation = new ReportMeanTimeRepairPresentation();
+        	JPanel panelView = reportMeanTimeRepairPresentation.render(goBackAction);
+        	panelFunctions.panelConstructor(mainContainer, panelView);
+			
+		}
+		
+	};
+	
+	ActionListener stopTime = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
@@ -93,25 +99,7 @@ public class ReportSelectionPresentation {
 		
 	};
 	
-	ActionListener newRegister = new ActionListener() {
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-	};
-	
-	ActionListener editRegister = new ActionListener() {
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-	};
-	
-	ActionListener deleteRegister = new ActionListener() {
+	ActionListener RepairCost = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub

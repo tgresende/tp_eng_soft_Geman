@@ -3,10 +3,10 @@ package UIFunctions;
 
 import javax.swing.JPanel;
 
-public class panelFunctions {
+public final class panelFunctions {
 
 	
-	public void telaConstructor(JPanel painelPai, JPanel painelFilho ) {
+	public static void panelConstructor(JPanel painelPai, JPanel painelFilho ) {
 		painelPai.removeAll();
 		painelPai.revalidate();
 		painelPai.repaint();
