@@ -8,9 +8,9 @@ import javax.swing.JScrollPane;
 
 import UIClasses.Colors;
 
-public class SelectionContainer {
+public final class SelectionContainer {
 
-	public JScrollPane getPanel() {
+	public static JScrollPane getPanel() {
 		JPanel contentPanel = new JPanel();
 		contentPanel.setBackground(Colors.getMainWhite());
 		JScrollPane scrollPane = new JScrollPane(contentPanel);

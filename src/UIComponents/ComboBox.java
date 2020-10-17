@@ -7,8 +7,8 @@ import javax.swing.JComboBox;
 
 import UIClasses.Colors;
 
-public class ComboBox {
-	JComboBox comboBox;
+public final class ComboBox {
+	static JComboBox comboBox;
 	
 	private void estilyzeComboBox() {
 		comboBox.setPreferredSize(new Dimension(200,30));

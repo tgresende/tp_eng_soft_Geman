@@ -9,11 +9,11 @@ import javax.swing.JButton;
 import UIClasses.RoundedBorder;
 import UIClasses.Colors;
 
-public class menuButton {
+public final class menuButton {
 
-	JButton primaryButton;
+	static JButton primaryButton;
 
-	public JButton getButton(String label, ActionListener action) {
+	public static JButton getButton(String label, ActionListener action) {
 		primaryButton = new JButton();
 		primaryButton.setText(label);
 		setButtonStyle();
@@ -21,7 +21,7 @@ public class menuButton {
 		return primaryButton;
 	}
 
-	public void setButtonStyle() {
+	public static void setButtonStyle() {
 		primaryButton.setMaximumSize(new Dimension(655, 100));
 		primaryButton.setPreferredSize(new Dimension(100, 100));
 		primaryButton.setFont(new Font("Arial", Font.PLAIN, 16));

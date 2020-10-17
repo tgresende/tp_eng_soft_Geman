@@ -8,10 +8,10 @@ import javax.swing.SwingConstants;
 
 import UIClasses.Colors;
 
-public class FieldLabel {
+public final class FieldLabel {
 
-	JLabel label;
-	Colors cor = new Colors();
+	static JLabel label;
+	static Colors cor = new Colors();
 
 	public JLabel getLabel(String labelText) {
 		label = new JLabel(labelText);

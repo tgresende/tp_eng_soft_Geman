@@ -44,7 +44,7 @@ public class EquipmentSelectionPresentation {
 	public JPanel render() {
 		JPanel tablePanel;
 		JPanel header = new Header().getHeader("Máquinas", backbutton);
-		JPanel buttonContainer = new ButtonsContainer().getContainer(buttonList);
+		JPanel buttonContainer = ButtonsContainer.getContainer(buttonList);
 		JScrollPane contentContainer = new SelectionContainer().getPanel();
 		mainContainer = new JPanel();
 		mainContainer.setOpaque(false);

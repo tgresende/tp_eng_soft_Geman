@@ -11,12 +11,11 @@ import javax.swing.JPanel;
 
 import UIClasses.Colors;
 
-	public class LabelContainer {
-		JPanel panel = new JPanel();;
-		JLabel text;
+public final class LabelContainer {
 		
-	public JPanel getContainer(List<JLabel> labels) {
-	
+		
+	public static JPanel getContainer(List<JLabel> labels) {
+		JPanel panel = new JPanel();;
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		for (JLabel label : labels) {
 			panel.add(label);
@@ -24,9 +23,7 @@ import UIClasses.Colors;
 		
 		panel.setMaximumSize(new Dimension(500, 200));
 		panel.setMinimumSize(new Dimension(500, 200));
-		
 		panel.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
-		
 		panel.setLocation(0,0);
 		panel.setBackground(Colors.getMainWhite());
 		

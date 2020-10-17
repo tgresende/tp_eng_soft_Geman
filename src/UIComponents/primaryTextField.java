@@ -7,18 +7,18 @@ import javax.swing.JTextField;
 
 import UIClasses.Colors;
 
-public class primaryTextField {
-	JTextField JTextField;
-	Colors cor = new Colors();
+public final class primaryTextField {
+	static JTextField JTextField;
+	static Colors cor = new Colors();
 
-	public JTextField getTextField(String label) {
+	public static JTextField getTextField(String label) {
 		JTextField = new JTextField();
 		JTextField.setText(label);
 		setTextFieldStyle();
 		return JTextField;
 	}
 	
-	public void setTextFieldStyle() {
+	public static void setTextFieldStyle() {
 		JTextField.setPreferredSize(new Dimension(200,30));
 		JTextField.setFont(new Font("Arial", Font.PLAIN, 16));
 	}

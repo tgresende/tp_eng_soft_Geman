@@ -8,9 +8,9 @@ import javax.swing.JButton;
 
 import UIClasses.Colors;
 
-public class GoBackButton {
+public final class GoBackButton {
 
-	JButton goBackBtn =  new JButton();
+	static JButton goBackBtn =  new JButton();
 	
 	private void estilyzeButton() {
 		goBackBtn.setPreferredSize(new Dimension(30,30));
