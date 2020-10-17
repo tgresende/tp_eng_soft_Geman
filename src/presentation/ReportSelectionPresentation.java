@@ -1,11 +1,8 @@
 package presentation;
 
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,16 +14,12 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import UIComponents.ButtonsContainer;
-import UIComponents.GoBackButton;
 import UIComponents.Header;
 import UIComponents.SelectionContainer;
-import UIComponents.Table;
 import UIComponents.primaryButton;
 import UIFunctions.panelFunctions;
 import business.EquipmentBusiness;
 import business.OrderServiceBusiness;
-import business.TechnicianBusiness;
-import dataAccessObjectBusinessData.MeanTimeRepairDAOBusinessData;
 
 public class ReportSelectionPresentation {
 	
@@ -79,13 +72,16 @@ public class ReportSelectionPresentation {
 		buttonList.add(btnMTRR);
 	}
 	
+	private void renderReport(int reportType) {
+		ReportPresentation reportMeanTimeRepair = new ReportPresentation();
+    	JPanel panelView = reportMeanTimeRepair.render(goBackAction, reportType);
+    	panelFunctions.panelConstructor(mainContainer, panelView);
+	}
+	
 	ActionListener meanTimetoRepair = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			ReportMeanTimeRepairPresentation reportMeanTimeRepairPresentation = new ReportMeanTimeRepairPresentation();
-        	JPanel panelView = reportMeanTimeRepairPresentation.render(goBackAction);
-        	panelFunctions.panelConstructor(mainContainer, panelView);
-			
+			renderReport(2);
 		}
 		
 	};
@@ -93,7 +89,7 @@ public class ReportSelectionPresentation {
 	ActionListener stopTime = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
+			renderReport(1);
 			
 		}
 		
@@ -102,8 +98,7 @@ public class ReportSelectionPresentation {
 	ActionListener RepairCost = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
-			
+			renderReport(0);
 		}	
 	};
 

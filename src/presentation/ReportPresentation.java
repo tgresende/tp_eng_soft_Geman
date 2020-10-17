@@ -18,26 +18,37 @@ import UIComponents.Header;
 import UIComponents.SelectionContainer;
 import business.OrderServiceBusiness;
 
-public class ReportMeanTimeRepairPresentation {
+public class ReportPresentation {
 
 	OrderServiceBusiness orderServiceBusiness;
-	
-	List<JButton> buttonList;
 	
 	JTable table;
 	JScrollPane rollBar;
 	DefaultTableModel model;
 	JPanel mainContainer;
 	JButton backbutton;
-	
+	 
 	ActionListener goBackAction;
 	
-	public ReportMeanTimeRepairPresentation() {
+	public ReportPresentation( ) {
 		backbutton = new GoBackButton().getButton();
 		orderServiceBusiness = new OrderServiceBusiness();
-	}	
+	}
 	
-	public JPanel render(ActionListener goBackAction) {
+	private void getModel(int reportType) {
+		if (reportType == 0) {
+			model = orderServiceBusiness.getCostRepairModel();
+		} else if (reportType == 1) {
+			model = orderServiceBusiness.getStopTimeModel();
+		} else if (reportType == 2) {
+			model = orderServiceBusiness.getMeanTimeRepairModel();
+		}
+		
+		
+		
+	}
+	
+	public JPanel render(ActionListener goBackAction, int reportType) {
 		this.goBackAction = goBackAction;
 		JPanel tablePanel;
 		JPanel header = new Header().getHeader("Relatório de Tempo médio de Parada", backbutton);
@@ -47,7 +58,8 @@ public class ReportMeanTimeRepairPresentation {
 		mainContainer.setOpaque(false);
 		
 		mainContainer.setLayout(new BoxLayout(mainContainer, BoxLayout.Y_AXIS));
-		model = orderServiceBusiness.getMeanTimeRepairModel();
+		
+		getModel(reportType);
 		tablePanel =new JPanel();
 		tablePanel.setLayout(new GridLayout(1,1));
 		table = new JTable(model);

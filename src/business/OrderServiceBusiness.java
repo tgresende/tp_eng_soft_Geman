@@ -1,6 +1,5 @@
 package business;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
@@ -95,6 +94,40 @@ public class OrderServiceBusiness extends BusinessGeneric implements IGenericBus
 					equipmentRepair.getId(), 
 					equipmentRepair.getName(),
 					equipmentRepair.getHour()
+					});
+		}
+		
+		return tableModel;
+	}
+	
+	public DefaultTableModel getStopTimeModel() {
+		DefaultTableModel tableModel = new DefaultTableModel();
+		tableModel.addColumn("Id");
+		tableModel.addColumn("Nome");
+		tableModel.addColumn("Tempo Total (horas)");
+		
+		for (MeanTimeRepairDAOBusinessData equipmentStopTime : orderServiceData.getStopTime()) {
+			tableModel.addRow(new Object[] {
+					equipmentStopTime.getId(), 
+					equipmentStopTime.getName(),
+					equipmentStopTime.getHour()
+					});
+		}
+		
+		return tableModel;
+	}
+	
+	public DefaultTableModel getCostRepairModel() {
+		DefaultTableModel tableModel = new DefaultTableModel();
+		tableModel.addColumn("Id");
+		tableModel.addColumn("Nome");
+		tableModel.addColumn("Custo Total (R$)");
+		
+		for (MeanTimeRepairDAOBusinessData equipmentCostRepair : orderServiceData.getCostRepair()) {
+			tableModel.addRow(new Object[] {
+					equipmentCostRepair.getId(), 
+					equipmentCostRepair.getName(),
+					equipmentCostRepair.getHour()
 					});
 		}
 		
