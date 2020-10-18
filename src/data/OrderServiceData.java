@@ -20,7 +20,7 @@ public class OrderServiceData implements IGenericDados<OrderServiceDAOBusinessDa
 
 	@Override
 	public List<OrderServiceDAOBusinessData> getList() {
-		String query = "Select * from ORDERSERVICE";
+		String query = "Select * from OrderService";
 		PreparedStatement pst = null;
 		ResultSet res = null;
 		List<OrderServiceDAOBusinessData> orderServices = new ArrayList<OrderServiceDAOBusinessData>();
@@ -57,8 +57,37 @@ public class OrderServiceData implements IGenericDados<OrderServiceDAOBusinessDa
 
 	@Override
 	public OrderServiceDAOBusinessData get(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "Select * from OrderService where id =?";
+		OrderServiceDAOBusinessData orderService = null;
+		PreparedStatement pst = null;
+		ResultSet res = null;
+		try {
+			pst = connection.prepareStatement(query);
+			pst.setInt(1, id);
+			res = pst.executeQuery();
+					
+			while(res.next()) {
+			orderService = 	new OrderServiceDAOBusinessData(
+								res.getInt("Id"),
+								res.getInt("day"),
+								res.getInt("month"),
+								res.getInt("year"),
+								res.getInt("startHour"),
+								res.getInt("startMinute"),
+								res.getInt("endHour"),
+								res.getInt("endMinute"),
+								res.getInt("idEquipment"),
+								res.getInt("idTechnician"),
+								res.getString("description"),
+								res.getInt("typeService"));
+			}
+			res.close();
+		}catch(Exception e) {
+			throw new Error(e.getMessage());
+			
+		}
+		
+		return orderService;
 	}
 	
 	public List<MeanTimeRepairDAOBusinessData>  getMeanTimeRepairs() {
@@ -144,17 +173,81 @@ public class OrderServiceData implements IGenericDados<OrderServiceDAOBusinessDa
 	}
 
 	@Override
-	public boolean save(OrderServiceDAOBusinessData obj) {
-		return false;
+	public boolean save(OrderServiceDAOBusinessData orderService) {
+		String cmd;
+		if (orderService.getId() == 0)
+			cmd = " insert into OrderService ("
+					+ " day, "
+					+ " month, "
+					+ " year, "
+					+ " startHour,"
+					+ " startMinute,"
+					+ " endHour,"
+					+ " endMinute,"
+					+ " idEquipment,"
+					+ " idTechnician,"
+					+ " description,"
+					+ " typeService"
+					+ ") values ("
+					+ " ?,"
+					+ " ?,"
+					+ " ?,"
+					+ " ?,"
+					+ " ?,"
+					+ " ?,"
+					+ " ?,"
+					+ " ?,"
+					+ " ?,"
+					+ " ?,"
+					+ " ?)";
+		else
+			cmd = " update OrderService set "
+					+ " day = ?, "
+					+ " month = ?, "
+					+ " year = ?, "
+					+ " startHour = ?,"
+					+ " startMinute = ?,"
+					+ " endHour = ?,"
+					+ " endMinute = ?,"
+					+ " idEquipment = ?,"
+					+ " idTechnician = ?,"
+					+ " description = ?,"
+					+ " typeService = ?"
+				  +" where Id=?";
+		try {
+			PreparedStatement pst = connection.prepareStatement(cmd);
+			pst.setInt(1, orderService.getDay());
+			pst.setInt(2, orderService.getMonth());
+			pst.setInt(3, orderService.getYear());
+			pst.setInt(4, orderService.getStartHour());
+			pst.setInt(5, orderService.getStartMinute());
+			pst.setInt(6, orderService.getEndHour());
+			pst.setInt(7, orderService.getEndMinute());
+			pst.setInt(8, orderService.getEquipment());
+			pst.setInt(9, orderService.getTechnician());
+			pst.setString(10, orderService.getDescription());
+			pst.setInt(11, orderService.getTypeService());
+
+			
+		if (orderService.getId() != 0)
+			pst.setInt(12, orderService.getId());
+		
+			pst.executeUpdate();
+			pst.close();
+		}catch(Exception e) {
+			throw new Error(e.getMessage());
+		}
+		return true;
 		
 	}
 
 	@Override
 	public void delete(int id) {
-		String cmd = "delete from ORDERSERVICE where Id=?";
+		String cmd = "delete from OrderService where Id=?";
 		try {
 			PreparedStatement pst = connection.prepareStatement(cmd);
 			pst.setInt(1, id);
+			pst.executeUpdate();
 			pst.close();
 		}catch(Exception e) {
 			throw new Error(e.getMessage());

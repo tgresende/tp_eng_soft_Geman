@@ -3,7 +3,7 @@ package UIFunctions;
 
 import javax.swing.JPanel;
 
-public final class panelFunctions {
+public final class PanelFunctions {
 
 	
 	public static void panelConstructor(JPanel painelPai, JPanel painelFilho ) {

@@ -17,12 +17,14 @@ import UIComponents.ButtonsContainer;
 import UIComponents.GoBackButton;
 import UIComponents.Header;
 import UIComponents.SelectionContainer;
-import UIComponents.primaryButton;
+import UIComponents.PrimaryButton;
+import UIFunctions.PanelFunctions;
 import business.OrderServiceBusiness;
 
 public class OrderServiceSelectionPresentation {
 	
 	OrderServiceBusiness orderServiceBusiness;
+	OrderServiceEditionPresentation orderServiceEdition;
 	List<JButton> buttonList;
 	
 	JPanel mainContainer;
@@ -38,14 +40,18 @@ public class OrderServiceSelectionPresentation {
 	JButton btnEdit;
 	JButton btnDelete;
 	
-	public JPanel render() {
+	ActionListener goBackAction;
+
+	
+	public JPanel render(ActionListener goBackAction) {
+		this.goBackAction = goBackAction; 
 		JPanel tablePanel;
 		
-		JPanel header = new Header().getHeader("Ordem de Serviço", backbutton);
+		JPanel header = Header.getHeader("Ordem de Serviço", backbutton);
 		
-		JPanel buttonContainer =  new ButtonsContainer().getContainer(buttonList);
+		JPanel buttonContainer =  ButtonsContainer.getContainer(buttonList);
 		
-		JScrollPane contentContainer = new SelectionContainer().getPanel();
+		JScrollPane contentContainer = SelectionContainer.getPanel();
 		
 		mainContainer = new JPanel();
 		
@@ -66,10 +72,10 @@ public class OrderServiceSelectionPresentation {
 	}
 	
 	public OrderServiceSelectionPresentation() {
-		backbutton = new GoBackButton().getButton(goBakAction);
-		btnInsert = new primaryButton().getButton("Inserir", newRegister);
-		btnEdit = new primaryButton().getButton("Editar", editRegister);
-		btnDelete = new primaryButton().getButton("Excluir", deleteRegister);
+		backbutton = new GoBackButton().getButton();
+		btnInsert = PrimaryButton.getButton("Inserir", newRegister);
+		btnEdit = PrimaryButton.getButton("Editar", editRegister);
+		btnDelete = PrimaryButton.getButton("Excluir", deleteRegister);
 		orderServiceBusiness = new OrderServiceBusiness();
 		buttonList  = new ArrayList<>();
 		buttonList.add(btnInsert);
@@ -77,39 +83,40 @@ public class OrderServiceSelectionPresentation {
 		buttonList.add(btnDelete);
 	}
 	
-	ActionListener goBakAction = new ActionListener() {
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-	};
+
+	private void renderEditionPanel(int id){
+		orderServiceEdition = new OrderServiceEditionPresentation();
+    	JPanel editionPanel = orderServiceEdition.render(id, goBackAction);
+    	PanelFunctions.panelConstructor(mainContainer, editionPanel);
+	}
 	
 	ActionListener newRegister = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
-			
+			renderEditionPanel(0);
 		}
 		
 	};
 	
 	ActionListener editRegister = new ActionListener() {
 		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
-			
-		}
+		public void actionPerformed(ActionEvent e) {
+        	if (table.getSelectedRow() == -1)
+        		return;
+        	int id = (int)table.getValueAt(table.getSelectedRow(), 0);
+        	renderEditionPanel(id);
+        }
 		
 	};
 	
 	ActionListener deleteRegister = new ActionListener() {
 		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
-			
-		}
+		public void actionPerformed(ActionEvent e) {
+        	if (table.getSelectedRow() == -1)
+        		return;
+        	orderServiceBusiness.delete((int)table.getValueAt(table.getSelectedRow(), 0));
+        	model.removeRow(table.getSelectedRow());
+        }
 		
 	};
 }

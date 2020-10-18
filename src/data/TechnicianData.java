@@ -35,6 +35,23 @@ public class TechnicianData implements IGenericDados<TechnicianDAOBusinessData>{
 		return roles; 
 	}
 	
+	public List<String> getAvaliableTechnicians() {
+		List<String> roles = new ArrayList<String>();
+		
+		String query = "Select distinct name from Technician";
+		try {
+			PreparedStatement pst = connection.prepareStatement(query);
+			ResultSet res = pst.executeQuery();
+			while(res.next()){
+				roles.add(res.getString("name"));
+			}
+			res.close();
+		}catch(Exception e) {
+			throw new Error(e.getMessage());
+		}
+		return roles; 
+	}
+	
 	@Override
 	public List<TechnicianDAOBusinessData> getList() {
 		String query = "Select * from Technician";
@@ -69,6 +86,29 @@ public class TechnicianData implements IGenericDados<TechnicianDAOBusinessData>{
 		try {
 			PreparedStatement pst = connection.prepareStatement(query);
 			pst.setInt(1, id);
+			ResultSet res = pst.executeQuery();
+			
+			while(res.next()){
+				technician = new TechnicianDAOBusinessData(
+								res.getInt("id"), 
+								res.getInt("role"),
+								res.getString("name"),
+								res.getDouble("hourPrice"));
+				
+			}
+			res.close();
+			return technician;
+		}catch(Exception e) {
+			throw new Error(e.getMessage());
+		}
+	}
+	
+	public TechnicianDAOBusinessData getByName(String name) {
+		String query = "Select * from Technician where name=?";
+		TechnicianDAOBusinessData technician = null;
+		try {
+			PreparedStatement pst = connection.prepareStatement(query);
+			pst.setString(1, name);
 			ResultSet res = pst.executeQuery();
 			
 			while(res.next()){

@@ -18,6 +18,22 @@ public class EquipmentData implements IGenericDados<EquipmentDAOBusinessData> {
 		connection = conn;
 	}
 	
+	public List<String> getAvaliableEquipments() {
+		List<String> roles = new ArrayList<String>();
+		
+		String query = "Select distinct name from Equipment";
+		try {
+			PreparedStatement pst = connection.prepareStatement(query);
+			ResultSet res = pst.executeQuery();
+			while(res.next()){
+				roles.add(res.getString("name"));
+			}
+			res.close();
+		}catch(Exception e) {
+			throw new Error(e.getMessage());
+		}
+		return roles; 
+	}
 	
 	@Override
 	public List<EquipmentDAOBusinessData> getList() {
@@ -73,6 +89,30 @@ public class EquipmentData implements IGenericDados<EquipmentDAOBusinessData> {
 			throw new Error(e.getMessage());
 		}
 	}
+	
+	public EquipmentDAOBusinessData getByName(String name) {
+		String query = "Select * from EQUIPMENT where name=?";
+		EquipmentDAOBusinessData equipment = null;
+		try {
+			PreparedStatement pst = connection.prepareStatement(query);
+			pst.setString(1, name);
+			ResultSet res = pst.executeQuery();
+			
+			while(res.next()){
+				equipment = new EquipmentDAOBusinessData(
+								res.getInt("id"), 
+								res.getString("name"),
+								res.getString("model"),
+								res.getString("manufacturer"));
+				
+			}
+			res.close();
+			return equipment;
+		}catch(Exception e) {
+			throw new Error(e.getMessage());
+		}
+	}
+
 
 	@Override
 	public boolean save(EquipmentDAOBusinessData equipment) {

@@ -10,8 +10,8 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import UIComponents.menuButton;
-import UIFunctions.panelFunctions;
+import UIComponents.MenuButton;
+import UIFunctions.PanelFunctions;
 import presentation.EquipmentSelectionPresentation;
 import presentation.OrderServiceSelectionPresentation;
 import presentation.ReportSelectionPresentation;
@@ -23,14 +23,14 @@ public class main{
 	EquipmentSelectionPresentation equipmentSelection  = new EquipmentSelectionPresentation();
 	OrderServiceSelectionPresentation orderServiceSelection = new OrderServiceSelectionPresentation();
 	ReportSelectionPresentation reportSelection = new ReportSelectionPresentation();
-	menuButton menuButton = new menuButton();
+	MenuButton menuButton = new MenuButton();
 	JPanel mainPanel;
 	
 	ActionListener openTechnicianScreen = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
         	JPanel pnlTechnician = technicianSelection.render(openTechnicianScreen);
-        	panelFunctions.panelConstructor(mainPanel, pnlTechnician);
+        	PanelFunctions.panelConstructor(mainPanel, pnlTechnician);
         	
         }
 	};
@@ -38,8 +38,8 @@ public class main{
 	ActionListener openEquipmentScreen = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-        	JPanel pnlEquipment = equipmentSelection.render();
-        	panelFunctions.panelConstructor(mainPanel, pnlEquipment);
+        	JPanel pnlEquipment = equipmentSelection.render(openEquipmentScreen);
+        	PanelFunctions.panelConstructor(mainPanel, pnlEquipment);
         	
         }
 	};
@@ -47,8 +47,8 @@ public class main{
 	ActionListener openOrderServiceScreen = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			JPanel pnlOrderService = orderServiceSelection.render();
-			panelFunctions.panelConstructor(mainPanel, pnlOrderService);		
+			JPanel pnlOrderService = orderServiceSelection.render(openOrderServiceScreen);
+			PanelFunctions.panelConstructor(mainPanel, pnlOrderService);		
 		}
 		
 	};
@@ -56,7 +56,7 @@ public class main{
 	ActionListener openReportScreen = new ActionListener() {
 		public void actionPerformed(ActionEvent arg0) {
 			JPanel pnlReport = reportSelection.render(openReportScreen);	
-			panelFunctions.panelConstructor(mainPanel, pnlReport);
+			PanelFunctions.panelConstructor(mainPanel, pnlReport);
 		}
 	};
 	

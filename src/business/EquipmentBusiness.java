@@ -22,6 +22,16 @@ public class EquipmentBusiness extends BusinessGeneric implements IGenericBusine
 		
 	}
 	
+	public String[] getAvaliableEquipments() {
+		List<String> equipmentNames = new ArrayList<String>();
+		
+		for (String equipment : equipmentData.getAvaliableEquipments()) {
+			equipmentNames.add(equipment);
+	    }
+		
+		return  equipmentNames.toArray(new String[0]); 
+	}
+	
 	
 	
 	private EquipmentDAOPresentationBusiness convertDAOBusinessDataToPresentationBusiness(EquipmentDAOBusinessData DAOBusinessData) {
@@ -92,6 +102,10 @@ public class EquipmentBusiness extends BusinessGeneric implements IGenericBusine
 		super.verifyId(id, "Id inválido!");
 		
 		return convertDAOBusinessDataToPresentationBusiness(equipmentData.get(id));
+	}
+	
+	public EquipmentDAOPresentationBusiness getByName(String name) {
+		return convertDAOBusinessDataToPresentationBusiness(equipmentData.getByName(name));
 	}
 
 	@Override

@@ -24,18 +24,17 @@ import UIComponents.ComboBox;
 import UIComponents.FieldLabel;
 import UIComponents.GoBackButton;
 import UIComponents.Header;
-import UIComponents.primaryButton;
-import UIComponents.primaryTextField;
+import UIComponents.PrimaryButton;
+import UIComponents.PrimaryTextField;
 import business.TechnicianBusiness;
 import dataAccessObjectPresentationBusiness.TechnicianDAOPresentationBusiness;
 
 public class TechnicianEditionPresentation {
 
 	int id = 0;
-	
 	TechnicianBusiness technicianBusiness;
 	List<JButton> buttonList;
-	primaryTextField textprimary;
+	PrimaryTextField textprimary;
 	FieldLabel fieldlabel;
 	ComboBox cmbBox;
 	
@@ -44,15 +43,12 @@ public class TechnicianEditionPresentation {
 	JButton backbutton;
 	
 	JTextField txtName;
-	JTextField txtRole;
 	JTextField txtHourPrice;
-
 
 	JLabel labelName;
 	JLabel HourPrice;
 	JLabel labelRole;
 	JLabel labelHourPrice;
-
 	
 	JPanel header;
 	JPanel mainPanel;
@@ -105,8 +101,8 @@ public class TechnicianEditionPresentation {
 	
 	public TechnicianEditionPresentation() {
 		backbutton = new GoBackButton().getButton();
-		btnSave = primaryButton.getButton("Salvar", save);
-		btnCancel = primaryButton.getButton("Cancelar", cancel);
+		btnSave = PrimaryButton.getButton("Salvar", save);
+		btnCancel = PrimaryButton.getButton("Cancelar", cancel);
 		technicianBusiness = new TechnicianBusiness();
 		cmbBox = new ComboBox();
 		buttonList = new ArrayList<>();
@@ -131,7 +127,7 @@ public class TechnicianEditionPresentation {
 		pnlName.setOpaque(false);
 		pnlName.setMaximumSize(new Dimension(655, 35));
 		labelName = fieldlabel.getLabel("Nome:");
-		txtName =  textprimary.getTextField("");
+		txtName =  PrimaryTextField.getTextField("");
 		pnlName.add(labelName);
 		pnlName.add(txtName);
 	}
@@ -175,7 +171,7 @@ public class TechnicianEditionPresentation {
 		pnlHourPrice.setMaximumSize(new Dimension(655, 35));
 		pnlHourPrice.setOpaque(false);
 		labelHourPrice= fieldlabel.getLabel("Vr. Hora (R$):");
-		txtHourPrice =  textprimary.getTextField("");
+		txtHourPrice =  PrimaryTextField.getTextField("");
 		pnlHourPrice.add(labelHourPrice);
 		pnlHourPrice.add(txtHourPrice);
 	}
@@ -190,7 +186,7 @@ public class TechnicianEditionPresentation {
 			return;
 		}
 		
-		txtRole.setText(technician.getRole());
+		comboRole.setSelectedItem(technician.getRole());
 		txtName.setText(technician.getName());
 		txtHourPrice.setText(Double.toString(technician.getHourPrice()));
 		this.id = id;
@@ -198,8 +194,7 @@ public class TechnicianEditionPresentation {
 	
 	public JPanel render(int id, ActionListener goBackAction) {
 		this.goBackAction = goBackAction; 
-		textprimary = new primaryTextField();
-		header = new Header().getHeader("Edição de Usuário",backbutton);
+		header = Header.getHeader("Edição de Usuário",backbutton);
 		buttonContainer =  ButtonsContainer.getContainer(buttonList);
 		backbutton.addActionListener(goBackAction);
 		btnCancel.addActionListener(goBackAction);

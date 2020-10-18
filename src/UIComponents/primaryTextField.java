@@ -7,7 +7,7 @@ import javax.swing.JTextField;
 
 import UIClasses.Colors;
 
-public final class primaryTextField {
+public final class PrimaryTextField {
 	static JTextField JTextField;
 	static Colors cor = new Colors();
 

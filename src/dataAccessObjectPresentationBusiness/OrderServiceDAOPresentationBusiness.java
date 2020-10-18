@@ -4,131 +4,94 @@ import genericDataAccessObject.GenericDataAccessObject;
 
 public class OrderServiceDAOPresentationBusiness extends GenericDataAccessObject{
 
-	int day;
-	int month;
-	int year;
-	int startHour;
-	int startMinute;
-	int endHour;
-	int endMinute;
-	int idEquipment;
-	int idTechinican;
+	int id;
+	String date;
+	String startTime;
+	String endTime;
+	String equipment;
+	String techinician;
 	String description;
-	int typeService;
+	String typeService;
 	
-	public  OrderServiceDAOPresentationBusiness(int idP, int dayP, int monthP, int yearP, int startHourP,
-									  int startMinuteP, int endHourP, int endMinuteP, 
-									  int idEquipmentP, int idTechinicanP, String descriptionP, 
-									  int typeServiceP) {
-		this.id = idP;
-		this.day = dayP;
-		this.month = monthP;
-		this.year = yearP;
-		this.startHour = startHourP;
-		this.startMinute = startMinuteP;
-		this.endHour = endHourP;
-		this.endMinute = endMinuteP;
-		this.idEquipment = idEquipmentP;
-		this.idTechinican = idTechinicanP;
-		this.description = descriptionP;
-		this.typeService = typeServiceP;
+	public  OrderServiceDAOPresentationBusiness(int id, String date, String startTime,
+									  String endTime, String equipment, String techinician,
+									  String description,String typeService) {
+		this.id = id;
+		this.date = date;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.equipment = equipment;
+		this.techinician = techinician;
+		this.description = description;
+		this.typeService = typeService;
 
 	}
 	
+	public OrderServiceDAOPresentationBusiness() {
+	}
+
 	public int getId() {
 		return id;
 	}
 	
-	public int getDay(){
-		return day;
+	public String getDate(){
+		return date;
 	}
 	
-	public int getMonth() {
-		return month;
+	public String getEndTime() {
+		return endTime;
 	}
 	
-	public int getYear() {
-		return year;
+	public String getStartTime() {
+		return startTime;
 	}
 	
-	public int getStartHour() {
-		return startHour;
+	public String getEquipment() {
+		return equipment;
 	}
 	
-	public int getStartMinute() {
-		return startMinute;
-	}
-	
-	public int getEndHour() {
-		return endHour;
-	}
-	
-	public int getEndMinute() {
-		return endMinute;
-	}
-	
-	public int getIdEquipment() {
-		return idEquipment;
-	}
-	
-	public int getIdTechinican() {
-		return idTechinican;
+	public String getTechinician() {
+		return techinician;
 	}
 	
 	public String getDescription() {
 		return description;
 	}
 	
-	public int getTypeService() {
+	public String getTypeService() {
 		return typeService;
 	}
 	
-	public void setId(int idP) {
-		id = idP;
+	public void setId(int id) {
+		this.id = id;
 	}
 	
-	public void setDay(int dayP){
-		 day = dayP;
+	public void setDate(String date){
+		this.date = date;
 	}
 	
-	public void setMonth(int monthP) {
-		 month = monthP;
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
 	}
 	
-	public void setYear(int yearP) {
-		 year = yearP;
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
 	}
 	
-	public void setStartHour(int startHourP) {
-		 startHour = startHourP;
+	public void setEquipment(String equipment) {
+		 this.equipment = equipment;
 	}
 	
-	public void setStartMinute(int startMinuteP) {
-		 startMinute = startMinuteP;
+	public void setTechinician(String techinician) {
+		 this.techinician = techinician;
 	}
 	
-	public void setEndHour(int endHourP) {
-		 endHour = endHourP;
+	public void setDescription(String setDescription) {
+		this.description = setDescription;
 	}
 	
-	public void setEndMinute(int endMinuteP) {
-		 endMinute = endMinuteP;
-	}
-	
-	public void setIdEquipment(int idEquipmentP) {
-		 idEquipment = idEquipmentP;
-	}
-	
-	public void setIdTechinican(int  idTechinicanP) {
-		 idTechinican = idTechinicanP;
-	}
-	
-	public void setDescription(String setDescriptionP) {
-		 description = setDescriptionP;
-	}
-	
-	public void setTypeService(int typeServiceP) {
-		 typeService = typeServiceP;
+	public void setTypeService(String typeService) {
+		this.typeService = typeService;
 	}
 
 

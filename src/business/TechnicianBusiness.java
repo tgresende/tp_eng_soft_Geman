@@ -29,11 +29,8 @@ public class TechnicianBusiness extends BusinessGeneric implements IGenericBusin
 		technicianData = new TechnicianData(sqllConnection.dbConnector());
 	}
 	
-	
-	
 	private boolean hasPendencies(TechnicianDAOPresentationBusiness technician) {
 		feebackMessage = "";
-		
 		
 		if (technician.getName().trim().length() == 0)
 			feebackMessage = "Informar o nome do técnico.";
@@ -45,9 +42,6 @@ public class TechnicianBusiness extends BusinessGeneric implements IGenericBusin
 		if (feebackMessage.length() > 0) {
 			return true;
 		}
-		
-
-		
 		return false;	
 	}
 	
@@ -75,6 +69,16 @@ public class TechnicianBusiness extends BusinessGeneric implements IGenericBusin
 	    }
 		
 		return  rolesString.toArray(new String[0]); 
+	}
+	
+	public String[] getAvaliableTechnicians() {
+		List<String> names = new ArrayList<String>();
+		
+		for (String name : technicianData.getAvaliableTechnicians()) {
+			names.add(name);
+	    }
+		
+		return  names.toArray(new String[0]); 
 	}
 	
 	private TechnicianDAOPresentationBusiness convertDAOBusinessDataToPresentationBusiness(TechnicianDAOBusinessData DAOBusinessData) {
@@ -138,7 +142,13 @@ public class TechnicianBusiness extends BusinessGeneric implements IGenericBusin
 		
 		return convertDAOBusinessDataToPresentationBusiness(technicianData.get(id));
 	}
+	
+	public TechnicianDAOPresentationBusiness getByName(String name) {
+		return convertDAOBusinessDataToPresentationBusiness(technicianData.getByName(name));
+	}
 
+	
+	
 	@Override
 	public boolean save(TechnicianDAOPresentationBusiness technician) {
 		if (hasPendencies(technician))

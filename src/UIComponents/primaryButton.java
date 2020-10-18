@@ -9,7 +9,7 @@ import javax.swing.JButton;
 import UIClasses.RoundedBorder;
 import UIClasses.Colors;
 
-public final class primaryButton{
+public final class PrimaryButton{
 	
 	static JButton primaryButton;
 
