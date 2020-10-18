@@ -18,7 +18,7 @@ public final class Header {
 	static JLabel text;
 	static JButton button;
 	
-	private void estilyzeButton(String label) {
+	private static void estilyzeButton(String label) {
 		text = new JLabel(label);
 		
 		panel = new JPanel();
@@ -39,13 +39,13 @@ public final class Header {
 		panel.add(text,BorderLayout.CENTER);
 	}
 	
-	public JPanel getHeader(String label) {
+	public static JPanel getHeader(String label) {
 		estilyzeButton(label);
 		return panel;
 	}
 	
 	
-	public JPanel getHeader(String label, JButton returnButton) {
+	public static JPanel getHeader(String label, JButton returnButton) {
 		estilyzeButton(label);
 		button = returnButton;
 		panel.add(button,BorderLayout.WEST);

@@ -18,6 +18,22 @@ public class EquipmentData implements IGenericDados<EquipmentDAOBusinessData> {
 		connection = conn;
 	}
 	
+	public List<String> getAvaliableEquipments() {
+		List<String> roles = new ArrayList<String>();
+		
+		String query = "Select distinct name from Equipment";
+		try {
+			PreparedStatement pst = connection.prepareStatement(query);
+			ResultSet res = pst.executeQuery();
+			while(res.next()){
+				roles.add(res.getString("name"));
+			}
+			res.close();
+		}catch(Exception e) {
+			throw new Error(e.getMessage());
+		}
+		return roles; 
+	}
 	
 	@Override
 	public List<EquipmentDAOBusinessData> getList() {

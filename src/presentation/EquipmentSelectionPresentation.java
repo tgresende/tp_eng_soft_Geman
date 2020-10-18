@@ -20,8 +20,8 @@ import UIComponents.ButtonsContainer;
 import UIComponents.GoBackButton;
 import UIComponents.Header;
 import UIComponents.SelectionContainer;
-import UIComponents.primaryButton;
-import UIFunctions.panelFunctions;
+import UIComponents.PrimaryButton;
+import UIFunctions.PanelFunctions;
 import business.EquipmentBusiness;
 import dataAccessObjectPresentationBusiness.EquipmentDAOPresentationBusiness;
 
@@ -41,7 +41,11 @@ public class EquipmentSelectionPresentation {
 	JButton btnEdit;
 	JButton btnDelete;
 	
-	public JPanel render() {
+	ActionListener goBackAction;
+
+	
+	public JPanel render(ActionListener goBackAction) {
+		this.goBackAction = goBackAction; 
 		JPanel tablePanel;
 		JPanel header = new Header().getHeader("Máquinas", backbutton);
 		JPanel buttonContainer = ButtonsContainer.getContainer(buttonList);
@@ -92,43 +96,35 @@ public class EquipmentSelectionPresentation {
         }
 	};
 	
+	private void renderEditionPanel(int id){
+		equipmentEdition = new EquipmentEditionPresentation();
+    	JPanel panelEdicao = equipmentEdition.render(id, goBackAction);
+    	PanelFunctions.panelConstructor(mainContainer, panelEdicao);
+	}
+	
 	ActionListener editRegister = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
         	if (table.getSelectedRow() == -1)
         		return;
         	int id = (int)table.getValueAt(table.getSelectedRow(), 0);
-        	equipmentEdition = new EquipmentEditionPresentation();
-        	JPanel panelEdicao = equipmentEdition.render(id);
-        	panelFunctions.panelConstructor(mainContainer, panelEdicao);
+        	renderEditionPanel(id);
         }
 	};
 	
 	ActionListener newRegister = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			equipmentEdition = new EquipmentEditionPresentation();
-        	JPanel panelEdicao = equipmentEdition.render(0);
-        	panelFunctions.panelConstructor(mainContainer, panelEdicao);
+			renderEditionPanel(0);
         	
-        }
-	};
-	
-	ActionListener goBackAction = new ActionListener() {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-        	List<EquipmentDAOPresentationBusiness> equipments = equipmentBusiness.getList();
-        	for(EquipmentDAOPresentationBusiness equipment : equipments){
-        		JOptionPane.showMessageDialog(null, equipment.getName());
-        	}	
         }
 	};
 	
 	public EquipmentSelectionPresentation() {
 		backbutton = new GoBackButton().getButton(goBackAction);
-		btnInsert = new primaryButton().getButton("Inserir", newRegister);
-		btnEdit = new primaryButton().getButton("Editar", editRegister);
-		btnDelete = new primaryButton().getButton("Excluir", deleteRegister);
+		btnInsert = PrimaryButton.getButton("Inserir", newRegister);
+		btnEdit = PrimaryButton.getButton("Editar", editRegister);
+		btnDelete =  PrimaryButton.getButton("Excluir", deleteRegister);
 		equipmentBusiness = new EquipmentBusiness();
 		buttonList = new ArrayList<>();
 		buttonList.add(btnInsert);

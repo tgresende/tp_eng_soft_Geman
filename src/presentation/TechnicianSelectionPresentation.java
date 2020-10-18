@@ -20,13 +20,14 @@ import UIComponents.GoBackButton;
 import UIComponents.Header;
 import UIComponents.SelectionContainer;
 import UIComponents.Table;
-import UIComponents.primaryButton;
-import UIFunctions.panelFunctions;
+import UIComponents.PrimaryButton;
+import UIFunctions.PanelFunctions;
 import business.TechnicianBusiness;
 import dataAccessObjectPresentationBusiness.TechnicianDAOPresentationBusiness;
 
 public class TechnicianSelectionPresentation {
 
+	
 	
 	TechnicianBusiness technicianBusiness;
 	TechnicianEditionPresentation usuarioEdicao;
@@ -49,9 +50,9 @@ public class TechnicianSelectionPresentation {
 	public JPanel render(ActionListener goBackAction) {
 		JPanel tablePanel;
 		this.goBackAction = goBackAction; 
-		JPanel header = new Header().getHeader("Usuários",backbutton);
-		JPanel buttonContainer =  new ButtonsContainer().getContainer(buttonList);
-		JScrollPane contentContainer = new SelectionContainer().getPanel();
+		JPanel header = Header.getHeader("Usuários",backbutton);
+		JPanel buttonContainer =  ButtonsContainer.getContainer(buttonList);
+		JScrollPane contentContainer = SelectionContainer.getPanel();
 		mainContainer = new JPanel();
 		mainContainer.setOpaque(false);
 
@@ -108,7 +109,7 @@ public class TechnicianSelectionPresentation {
         	int id = (int)table.getValueAt(table.getSelectedRow(), 0);
         	usuarioEdicao = new TechnicianEditionPresentation();
         	JPanel panelEdicao = usuarioEdicao.render(id, goBackAction);
-        	panelFunctions.panelConstructor(mainContainer, panelEdicao);
+        	PanelFunctions.panelConstructor(mainContainer, panelEdicao);
         }
 	};
 	
@@ -117,7 +118,7 @@ public class TechnicianSelectionPresentation {
         public void actionPerformed(ActionEvent e) {
         	usuarioEdicao = new TechnicianEditionPresentation();
         	JPanel panelEdicao = usuarioEdicao.render(0, goBackAction);
-        	panelFunctions.panelConstructor(mainContainer, panelEdicao);
+        	PanelFunctions.panelConstructor(mainContainer, panelEdicao);
         	
         }
 	};
@@ -125,9 +126,9 @@ public class TechnicianSelectionPresentation {
 		
 	public TechnicianSelectionPresentation() {
 		backbutton = new GoBackButton().getButton(goBackAction);
-		btnInsert = new primaryButton().getButton("Inserir", newRegister);
-		btnEdit = new primaryButton().getButton("Editar", editRegister);
-		btnDelete = new primaryButton().getButton("Excluir", deleteRegister);
+		btnInsert = PrimaryButton.getButton("Inserir", newRegister);
+		btnEdit = PrimaryButton.getButton("Editar", editRegister);
+		btnDelete = PrimaryButton.getButton("Excluir", deleteRegister);
 		technicianBusiness = new TechnicianBusiness();
 		buttonList = new ArrayList<>();
 		buttonList.add(btnInsert);

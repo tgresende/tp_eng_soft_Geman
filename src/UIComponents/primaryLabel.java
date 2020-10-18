@@ -7,7 +7,7 @@ import javax.swing.JLabel;
 
 import UIClasses.Colors;
 
-public final class primaryLabel {
+public final class PrimaryLabel {
 	static JLabel JLabel;
 	static Colors cor = new Colors();
 	

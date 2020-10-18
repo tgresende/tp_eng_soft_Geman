@@ -16,8 +16,8 @@ import javax.swing.table.DefaultTableModel;
 import UIComponents.ButtonsContainer;
 import UIComponents.Header;
 import UIComponents.SelectionContainer;
-import UIComponents.primaryButton;
-import UIFunctions.panelFunctions;
+import UIComponents.PrimaryButton;
+import UIFunctions.PanelFunctions;
 import business.EquipmentBusiness;
 import business.OrderServiceBusiness;
 
@@ -56,9 +56,9 @@ public class ReportSelectionPresentation {
 	
 	public ReportSelectionPresentation() {
 		
-		btnCostMaintenance = new primaryButton().getButton("Custo de Reparo", RepairCost);
-		btnStopTime = new primaryButton().getButton("Tempo de Parada", stopTime);
-		btnMTRR = new primaryButton().getButton("T. Méd. de Reparos", meanTimetoRepair);
+		btnCostMaintenance = new PrimaryButton().getButton("Custo de Reparo", RepairCost);
+		btnStopTime = new PrimaryButton().getButton("Tempo de Parada", stopTime);
+		btnMTRR = new PrimaryButton().getButton("T. Méd. de Reparos", meanTimetoRepair);
 		
 		btnCostMaintenance.setPreferredSize(new Dimension(200,40));
 		btnStopTime.setPreferredSize(new Dimension(200,40));
@@ -75,7 +75,7 @@ public class ReportSelectionPresentation {
 	private void renderReport(int reportType) {
 		ReportPresentation reportMeanTimeRepair = new ReportPresentation();
     	JPanel panelView = reportMeanTimeRepair.render(goBackAction, reportType);
-    	panelFunctions.panelConstructor(mainContainer, panelView);
+    	PanelFunctions.panelConstructor(mainContainer, panelView);
 	}
 	
 	ActionListener meanTimetoRepair = new ActionListener() {

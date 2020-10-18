@@ -19,8 +19,8 @@ import UIComponents.ButtonsContainer;
 import UIComponents.FieldLabel;
 import UIComponents.GoBackButton;
 import UIComponents.Header;
-import UIComponents.primaryButton;
-import UIComponents.primaryTextField;
+import UIComponents.PrimaryButton;
+import UIComponents.PrimaryTextField;
 import business.EquipmentBusiness;
 import dataAccessObjectPresentationBusiness.EquipmentDAOPresentationBusiness;
 
@@ -29,7 +29,6 @@ public class EquipmentEditionPresentation {
 	int id = 0;
 	EquipmentBusiness equipmentBusiness;
 	List<JButton> buttonList;
-	primaryTextField textprimary;
 	FieldLabel fieldlabel;
 	
 	JButton btnSave;
@@ -54,6 +53,9 @@ public class EquipmentEditionPresentation {
 	JPanel fieldContainer;
 	JPanel pnlModel;
 	JPanel pnlManufacturer;
+	
+	ActionListener goBackAction;
+
 	
 	ActionListener cancel = new ActionListener() {
         @Override
@@ -105,9 +107,9 @@ public class EquipmentEditionPresentation {
 	};
 	
 	public EquipmentEditionPresentation() {
-		backbutton = new GoBackButton().getButton(cancel);
-		btnSave = new primaryButton().getButton("Salvar", save);
-		btnCancel = new primaryButton().getButton("Cancelar", cancel);
+		backbutton = new GoBackButton().getButton(goBackAction);
+		btnSave = PrimaryButton.getButton("Salvar", save);
+		btnCancel = PrimaryButton.getButton("Cancelar",goBackAction);
 		equipmentBusiness = new EquipmentBusiness();
 		buttonList = new ArrayList<>();
 		buttonList.add(btnSave);
@@ -131,7 +133,7 @@ public class EquipmentEditionPresentation {
 		pnlName.setOpaque(false);
 		pnlName.setMaximumSize(new Dimension(655, 35));
 		labelName = fieldlabel.getLabel("Nome:");
-		txtName =  textprimary.getTextField("");
+		txtName =  PrimaryTextField.getTextField("");
 		pnlName.add(labelName);
 		pnlName.add(txtName);
 	}
@@ -162,7 +164,7 @@ public class EquipmentEditionPresentation {
 		pnlModel.setMaximumSize(new Dimension(655, 35));
 		pnlModel.setOpaque(false);
 		labelModel= fieldlabel.getLabel("Modelo:");
-		txtModel =  textprimary.getTextField("");
+		txtModel =  PrimaryTextField.getTextField("");
 		pnlModel.add(labelModel);
 		pnlModel.add(txtModel);
 	}
@@ -172,7 +174,7 @@ public class EquipmentEditionPresentation {
 		pnlManufacturer.setMaximumSize(new Dimension(655, 35));
 		pnlManufacturer.setOpaque(false);
 		labelManufacturer= fieldlabel.getLabel("Fabricante:");
-		txtManufacturer =  textprimary.getTextField("");
+		txtManufacturer =  PrimaryTextField.getTextField("");
 		pnlManufacturer.add(labelManufacturer);
 		pnlManufacturer.add(txtManufacturer);
 	}
@@ -193,10 +195,10 @@ public class EquipmentEditionPresentation {
 		this.id = id;
 	}
 	
-	public JPanel render(int id) {
-		textprimary = new primaryTextField();
-		header = new Header().getHeader("Edição de Máquinas",backbutton);
-		buttonContainer =  new ButtonsContainer().getContainer(buttonList);
+	public JPanel render(int id, ActionListener goBackAction) {
+		this.goBackAction = goBackAction;
+		header = Header.getHeader("Edição de Máquinas",backbutton);
+		buttonContainer =  ButtonsContainer.getContainer(buttonList);
 		mountNamePanel();
 		mountModelPanel();
 		mountManufacturerPanel();

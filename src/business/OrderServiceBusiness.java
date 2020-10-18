@@ -1,5 +1,6 @@
 package business;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
@@ -40,6 +41,16 @@ public class OrderServiceBusiness extends BusinessGeneric implements IGenericBus
 		
 		createDependencies();
 	}
+	
+	public String[] getAvaliableTypeService() {
+		List<String> types = new ArrayList<String>();
+		
+		types.add("Preventiva");
+		types.add("Corretiva");
+		
+		return  types.toArray(new String[0]); 
+	}
+	
 	
 	
 	private String convertTypeServiceIdToName(int id){

@@ -12,7 +12,7 @@ public final class GoBackButton {
 
 	static JButton goBackBtn =  new JButton();
 	
-	private void estilyzeButton() {
+	private  void estilyzeButton() {
 		goBackBtn.setPreferredSize(new Dimension(30,30));
 		goBackBtn.setBackground(Colors.getMainWhite());
 		try {

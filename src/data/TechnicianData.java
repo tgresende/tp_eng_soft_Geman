@@ -35,6 +35,23 @@ public class TechnicianData implements IGenericDados<TechnicianDAOBusinessData>{
 		return roles; 
 	}
 	
+	public List<String> getAvaliableTechnicians() {
+		List<String> roles = new ArrayList<String>();
+		
+		String query = "Select distinct name from Technician";
+		try {
+			PreparedStatement pst = connection.prepareStatement(query);
+			ResultSet res = pst.executeQuery();
+			while(res.next()){
+				roles.add(res.getString("name"));
+			}
+			res.close();
+		}catch(Exception e) {
+			throw new Error(e.getMessage());
+		}
+		return roles; 
+	}
+	
 	@Override
 	public List<TechnicianDAOBusinessData> getList() {
 		String query = "Select * from Technician";
