@@ -29,6 +29,7 @@ import UIComponents.TimeField;
 import business.EquipmentBusiness;
 import business.OrderServiceBusiness;
 import business.TechnicianBusiness;
+import dataAccessObjectPresentationBusiness.OrderServiceDAOPresentationBusiness;
 import dataAccessObjectPresentationBusiness.TechnicianDAOPresentationBusiness;
 
 public class OrderServiceEditionPresentation {
@@ -90,30 +91,60 @@ public class OrderServiceEditionPresentation {
 		return this.id;
 	}
 	
+	private boolean validateTimeAndDate() {
+		if (!Utils.isValidDate(txtDate.getText())) {
+			JOptionPane.showMessageDialog(null, "Informar uma data válida.");
+			return false;
+		}
+		
+		if (!Utils.isValidTime(txtStartTime.getText())) {
+			JOptionPane.showMessageDialog(null, "Informar um horário de início válido.");
+			return false;
+		} 
+		
+		if (!Utils.isValidTime(txtEndTime.getText())) {
+			JOptionPane.showMessageDialog(null, "Informar um horário fim válido.");
+			return false;
+		}
+		
+		return true;
+		
+	}
+	
 	ActionListener save = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
         	
-        /*	int id = getId();
-    		String role = comboRole.getSelectedItem().toString();
-    		String hourPriceAux = Utils.replaceCommaToDot(txtHourPrice.getText());
-    		
-    		Double hourPrice = Double.parseDouble(Utils.onlyNumbers(hourPriceAux));
-    		
-    		String name = txtName.getText();
-    		TechnicianDAOPresentationBusiness DAOPresentBusiness = 
-    				new TechnicianDAOPresentationBusiness(id, role, name, hourPrice);
-    	/*	
-        	if (orderServiceBusiness.save(DAOPresentBusiness)) {
-        		JOptionPane.showMessageDialog(null, "Salvo com sucesso");
-        		backbutton.doClick();
-        	}else {
-        		JOptionPane.showMessageDialog(null, orderServiceBusiness.feebackMessage);
-        	}
-        	*/
+        if (!validateTimeAndDate())
+        	return;
         	
+        int id = getId();
+        String date = txtDate.getText();
+        String description = txtDescription.getText();
+        String endTime = txtEndTime.getText();
+        String startTime = txtStartTime.getText();
+    	String equipment = comboEquipment.getSelectedItem().toString();
+    	String typeService = comboTypeService.getSelectedItem().toString();
+    	String technician = comboTechnician.getSelectedItem().toString();
+
+    	OrderServiceDAOPresentationBusiness DAOOrderServicePresentation = 
+    				new OrderServiceDAOPresentationBusiness(id, 
+    														date, 
+    														startTime, 
+    														endTime, 
+    														equipment, 
+    														technician, 
+    														description, 
+    														typeService
+    				);
+    		
+       if (orderServiceBusiness.save(DAOOrderServicePresentation)) {
+        	JOptionPane.showMessageDialog(null, "Salvo com sucesso");
+        	backbutton.doClick();
+        }else {
+        	JOptionPane.showMessageDialog(null, orderServiceBusiness.feedbackMessage);
         }
-        
+      }
 	};
 	
 	public OrderServiceEditionPresentation() {
@@ -130,7 +161,6 @@ public class OrderServiceEditionPresentation {
 		fieldlabel = new FieldLabel();		
 	}	
 
-	
 	private void mountMainPanel() {
 		mainPanel = new JPanel();
 		mainPanel.setBackground(Color.white);
@@ -184,7 +214,7 @@ public class OrderServiceEditionPresentation {
 		pnlTechnician   = new JPanel();
 		pnlTechnician.setMaximumSize(new Dimension(655, 35));
 		pnlTechnician.setOpaque(false);
-		labelTechnician= fieldlabel.getLabel("Cargo:");
+		labelTechnician= fieldlabel.getLabel("Técnico:");
 		
 		String[] technicians = technicianBusiness.getAvaliableTechnicians();
 		comboTechnician = cmbBox.getComboBox(technicians);
@@ -240,6 +270,28 @@ public class OrderServiceEditionPresentation {
 		fieldContainer.add(Box.createRigidArea(new Dimension(0,5)));
 	}
 	
+	private void FillOrderServiceProperties(int id) {
+		if (id ==0)
+			return;
+		
+		OrderServiceDAOPresentationBusiness orderService = orderServiceBusiness.get(id);
+		if (orderService == null) {
+			JOptionPane.showMessageDialog(null, "Registro não encontrado.");
+			return;
+		}
+		
+		txtDate.setText(orderService.getDate());
+		txtDescription.setText(orderService.getDescription());
+		txtEndTime.setText(orderService.getEndTime());
+		txtStartTime.setText(orderService.getStartTime());
+		
+		comboEquipment.setSelectedItem(orderService.getEquipment());
+		comboTechnician.setSelectedItem(orderService.getTechinician());
+		comboTypeService.setSelectedItem(orderService.getTypeService());
+		
+		this.id = id;
+	}
+	
 	public JPanel render(int id, ActionListener goBackAction) {
 		this.goBackAction = goBackAction; 
 		header = Header.getHeader("Edição de Ordem de Serviço",backbutton);
@@ -256,7 +308,7 @@ public class OrderServiceEditionPresentation {
 		mountDescriptionPanel();
 		mountFieldContainer();
 		mountMainPanel();
-		//FillOrderServiceProperties(id);
+		FillOrderServiceProperties(id);
 		return mainPanel;
 	}
 }

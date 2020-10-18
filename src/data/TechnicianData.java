@@ -102,6 +102,29 @@ public class TechnicianData implements IGenericDados<TechnicianDAOBusinessData>{
 			throw new Error(e.getMessage());
 		}
 	}
+	
+	public TechnicianDAOBusinessData getByName(String name) {
+		String query = "Select * from Technician where name=?";
+		TechnicianDAOBusinessData technician = null;
+		try {
+			PreparedStatement pst = connection.prepareStatement(query);
+			pst.setString(1, name);
+			ResultSet res = pst.executeQuery();
+			
+			while(res.next()){
+				technician = new TechnicianDAOBusinessData(
+								res.getInt("id"), 
+								res.getInt("role"),
+								res.getString("name"),
+								res.getDouble("hourPrice"));
+				
+			}
+			res.close();
+			return technician;
+		}catch(Exception e) {
+			throw new Error(e.getMessage());
+		}
+	}
 
 	@Override
 	public boolean save(TechnicianDAOBusinessData technician) {

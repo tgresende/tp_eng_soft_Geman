@@ -103,6 +103,10 @@ public class EquipmentBusiness extends BusinessGeneric implements IGenericBusine
 		
 		return convertDAOBusinessDataToPresentationBusiness(equipmentData.get(id));
 	}
+	
+	public EquipmentDAOPresentationBusiness getByName(String name) {
+		return convertDAOBusinessDataToPresentationBusiness(equipmentData.getByName(name));
+	}
 
 	@Override
 	public boolean save(EquipmentDAOPresentationBusiness equipment) {

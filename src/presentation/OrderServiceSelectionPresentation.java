@@ -8,7 +8,6 @@ import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -21,7 +20,6 @@ import UIComponents.SelectionContainer;
 import UIComponents.PrimaryButton;
 import UIFunctions.PanelFunctions;
 import business.OrderServiceBusiness;
-import dataAccessObjectPresentationBusiness.EquipmentDAOPresentationBusiness;
 
 public class OrderServiceSelectionPresentation {
 	
@@ -49,7 +47,7 @@ public class OrderServiceSelectionPresentation {
 		this.goBackAction = goBackAction; 
 		JPanel tablePanel;
 		
-		JPanel header = new Header().getHeader("Ordem de Serviço", backbutton);
+		JPanel header = Header.getHeader("Ordem de Serviço", backbutton);
 		
 		JPanel buttonContainer =  ButtonsContainer.getContainer(buttonList);
 		

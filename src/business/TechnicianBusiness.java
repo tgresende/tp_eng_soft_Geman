@@ -142,7 +142,13 @@ public class TechnicianBusiness extends BusinessGeneric implements IGenericBusin
 		
 		return convertDAOBusinessDataToPresentationBusiness(technicianData.get(id));
 	}
+	
+	public TechnicianDAOPresentationBusiness getByName(String name) {
+		return convertDAOBusinessDataToPresentationBusiness(technicianData.getByName(name));
+	}
 
+	
+	
 	@Override
 	public boolean save(TechnicianDAOPresentationBusiness technician) {
 		if (hasPendencies(technician))

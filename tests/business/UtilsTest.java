@@ -14,7 +14,7 @@ public class UtilsTest {
 		int year = 2020;
 
 		// when I do...
-		String date  = Utils.convertDayMonthYearToDateString(day, month, year);
+		String date  = Utils.convertDayMonthYearToDateString(day, month, year, true);
 
 		// I expect.
 		assertEquals(date,"20/10/2020");
@@ -28,7 +28,7 @@ public class UtilsTest {
 		int year = 2020;
 
 		// when I do...
-		String date  = Utils.convertDayMonthYearToDateString(day, month, year);
+		String date  = Utils.convertDayMonthYearToDateString(day, month, year, true);
 
 		// I expect.
 		assertEquals(date,"");
@@ -42,7 +42,7 @@ public class UtilsTest {
 		int year = 2020;
 
 		// when I do...
-		String date  = Utils.convertDayMonthYearToDateString(day, month, year);
+		String date  = Utils.convertDayMonthYearToDateString(day, month, year, true);
 
 		// I expect.
 		assertEquals(date,"");
@@ -56,9 +56,52 @@ public class UtilsTest {
 		int year = 200;
 
 		// when I do...
-		String date  = Utils.convertDayMonthYearToDateString(day, month, year);
+		String date  = Utils.convertDayMonthYearToDateString(day, month, year, true);
 
 		// I expect.
 		assertEquals(date,"");
 	}
+	
+	@Test
+	public void isTime1GreaterThanTime2ReturningTrue(){
+		// when I have...
+		String time1 = "08:00";
+		String time2 = "07:59";
+
+		// when I do...
+		boolean result = Utils.isTime1GreaterThanTime2(time1, time2);
+
+		// I expect.
+		assertEquals(result,true);
+	}
+	
+	@Test
+	public void isTime1GreaterThanTime2ReturningFalseEqualTime(){
+		// when I have...
+		String time1 = "08:00";
+		String time2 = "08:00";
+
+		// when I do...
+		boolean result = Utils.isTime1GreaterThanTime2(time1, time2);
+
+		// I expect.
+		assertEquals(result,false);
+	}
+	
+	@Test
+	public void isTime1GreaterThanTime2ReturningFalse(){
+		// when I have...
+		String time1 = "08:00";
+		String time2 = "08:01";
+
+		// when I do...
+		boolean result = Utils.isTime1GreaterThanTime2(time1, time2);
+
+		// I expect.
+		assertEquals(result,false);
+	}
+	
+	
+	
+	
 }

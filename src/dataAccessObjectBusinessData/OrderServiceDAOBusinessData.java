@@ -12,27 +12,27 @@ public class OrderServiceDAOBusinessData extends GenericDataAccessObject{
 	int startMinute;
 	int endHour;
 	int endMinute;
-	int idEquipment;
-	int idTechinican;
+	int equipment;
+	int technician;
 	String description;
 	int typeService;
 	
-	public  OrderServiceDAOBusinessData(int idP, int dayP, int monthP, int yearP, int startHourP,
-									  int startMinuteP, int endHourP, int endMinuteP, 
-									  int idEquipmentP, int idTechinicanP, String descriptionP, 
-									  int typeServiceP) {
-		this.id = idP;
-		this.day = dayP;
-		this.month = monthP;
-		this.year = yearP;
-		this.startHour = startHourP;
-		this.startMinute = startMinuteP;
-		this.endHour = endHourP;
-		this.endMinute = endMinuteP;
-		this.idEquipment = idEquipmentP;
-		this.idTechinican = idTechinicanP;
-		this.description = descriptionP;
-		this.typeService = typeServiceP;
+	public  OrderServiceDAOBusinessData(int id, int day, int month, int year, int startHour,
+									  int startMinute, int endHour, int endMinute, 
+									  int equipment, int technician, String description, 
+									  int typeService) {
+		this.id = id;
+		this.day = day;
+		this.month = month;
+		this.year = year;
+		this.startHour = startHour;
+		this.startMinute = startMinute;
+		this.endHour = endHour;
+		this.endMinute = endMinute;
+		this.equipment = equipment;
+		this.technician = technician;
+		this.description = description;
+		this.typeService = typeService;
 
 	}
 	
@@ -68,12 +68,12 @@ public class OrderServiceDAOBusinessData extends GenericDataAccessObject{
 		return endMinute;
 	}
 	
-	public int getIdEquipment() {
-		return idEquipment;
+	public int getEquipment() {
+		return equipment;
 	}
 	
-	public int getIdTechinican() {
-		return idTechinican;
+	public int getTechnician() {
+		return technician;
 	}
 	
 	public String getDescription() {
@@ -84,52 +84,52 @@ public class OrderServiceDAOBusinessData extends GenericDataAccessObject{
 		return typeService;
 	}
 	
-	public void setId(int idP) {
-		id = idP;
+	public void setId(int id) {
+		this.id = id;
 	}
 	
-	public void setDay(int dayP){
-		 day = dayP;
+	public void setDay(int day){
+		this.day = day;
 	}
 	
-	public void setMonth(int monthP) {
-		 month = monthP;
+	public void setMonth(int month) {
+		this.month = month;
 	}
 	
-	public void setYear(int yearP) {
-		 year = yearP;
+	public void setYear(int year) {
+		this.year = year;
 	}
 	
-	public void setStartHour(int startHourP) {
-		 startHour = startHourP;
+	public void setStartHour(int startHour) {
+		this.startHour = startHour;
 	}
 	
-	public void setStartMinute(int startMinuteP) {
-		 startMinute = startMinuteP;
+	public void setStartMinute(int startMinute) {
+		this.startMinute = startMinute;
 	}
 	
-	public void setEndHour(int endHourP) {
-		 endHour = endHourP;
+	public void setEndHour(int endHour) {
+		this.endHour = endHour;
 	}
 	
-	public void setEndMinute(int endMinuteP) {
-		 endMinute = endMinuteP;
+	public void setEndMinute(int endMinute) {
+		this.endMinute = endMinute;
 	}
 	
-	public void setIdEquipment(int idEquipmentP) {
-		 idEquipment = idEquipmentP;
+	public void setIdEquipment(int equipment) {
+		this.equipment = equipment;
 	}
 	
-	public void setIdTechinican(int  idTechinicanP) {
-		 idTechinican = idTechinicanP;
+	public void setIdTechinican(int  technician) {
+		this.technician = technician;
 	}
 	
-	public void setDescription(String setDescriptionP) {
-		 description = setDescriptionP;
+	public void setDescription(String setDescription) {
+		 description = setDescription;
 	}
 	
-	public void setTypeService(int typeServiceP) {
-		 typeService = typeServiceP;
+	public void setTypeService(int typeService) {
+		this.typeService = typeService;
 	}
 
 

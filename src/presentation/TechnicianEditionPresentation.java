@@ -43,7 +43,6 @@ public class TechnicianEditionPresentation {
 	JButton backbutton;
 	
 	JTextField txtName;
-	JTextField txtRole;
 	JTextField txtHourPrice;
 
 	JLabel labelName;
@@ -187,7 +186,7 @@ public class TechnicianEditionPresentation {
 			return;
 		}
 		
-		txtRole.setText(technician.getRole());
+		comboRole.setSelectedItem(technician.getRole());
 		txtName.setText(technician.getName());
 		txtHourPrice.setText(Double.toString(technician.getHourPrice()));
 		this.id = id;

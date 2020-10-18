@@ -89,6 +89,30 @@ public class EquipmentData implements IGenericDados<EquipmentDAOBusinessData> {
 			throw new Error(e.getMessage());
 		}
 	}
+	
+	public EquipmentDAOBusinessData getByName(String name) {
+		String query = "Select * from EQUIPMENT where name=?";
+		EquipmentDAOBusinessData equipment = null;
+		try {
+			PreparedStatement pst = connection.prepareStatement(query);
+			pst.setString(1, name);
+			ResultSet res = pst.executeQuery();
+			
+			while(res.next()){
+				equipment = new EquipmentDAOBusinessData(
+								res.getInt("id"), 
+								res.getString("name"),
+								res.getString("model"),
+								res.getString("manufacturer"));
+				
+			}
+			res.close();
+			return equipment;
+		}catch(Exception e) {
+			throw new Error(e.getMessage());
+		}
+	}
+
 
 	@Override
 	public boolean save(EquipmentDAOBusinessData equipment) {

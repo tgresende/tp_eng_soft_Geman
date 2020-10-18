@@ -3,6 +3,7 @@ package business;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import businessClass.BusinessGeneric;
@@ -11,10 +12,12 @@ import connections.sqllConnection;
 import data.OrderServiceData;
 import dataAccessObjectBusinessData.MeanTimeRepairDAOBusinessData;
 import dataAccessObjectBusinessData.OrderServiceDAOBusinessData;
+import dataAccessObjectBusinessData.TechnicianDAOBusinessData;
 import dataAccessObjectPresentationBusiness.OrderServiceDAOPresentationBusiness;
 
 public class OrderServiceBusiness extends BusinessGeneric implements IGenericBusiness<OrderServiceDAOPresentationBusiness> {
 
+	public String feedbackMessage;
 	OrderServiceDAOPresentationBusiness orderServiceDAO;
 	EquipmentBusiness equipmentBusiness;
 	TechnicianBusiness technicianBusiness;
@@ -26,19 +29,6 @@ public class OrderServiceBusiness extends BusinessGeneric implements IGenericBus
 	}
 	
 	public OrderServiceBusiness() {
-		createDependencies();
-			
-	}
-	
-	public OrderServiceBusiness(int idP, int dayP, int monthP, int yearP, int startHourP,
-			  				 int startMinuteP, int endHourP, int endMinuteP, 
-			  				 int idEquipmentP, int idTechinicanP, String descriptionP, 
-			  				 int typeServiceP) {
-		orderServiceDAO = new OrderServiceDAOPresentationBusiness( idP,  dayP,  monthP,  yearP, 
-											 startHourP, startMinuteP,  endHourP, 
-											 endMinuteP, idEquipmentP,  idTechinicanP, 
-											 descriptionP,  typeServiceP);
-		
 		createDependencies();
 	}
 	
@@ -83,9 +73,9 @@ public class OrderServiceBusiness extends BusinessGeneric implements IGenericBus
 			model.addRow(
 					new Object[] {
 							orderService.getId(),
-							Utils.convertDayMonthYearToDateString(orderService.getDay(), orderService.getMonth(), orderService.getYear()),
-							equipmentBusiness.get(orderService.getIdEquipment()).getName(),
-							technicianBusiness.get(orderService.getIdTechinican()).getRole(),
+							Utils.convertDayMonthYearToDateString(orderService.getDay(), orderService.getMonth(), orderService.getYear(), true),
+							equipmentBusiness.get(orderService.getEquipment()).getName(),
+							technicianBusiness.get(orderService.getTechnician()).getName(),
 							convertTypeServiceIdToName(orderService.getTypeService())
 					}
 			);
@@ -150,18 +140,132 @@ public class OrderServiceBusiness extends BusinessGeneric implements IGenericBus
 		//return dados.getList();
 		return null;
 	}
-
-	@Override
-	public OrderServiceDAOPresentationBusiness get(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	private OrderServiceDAOPresentationBusiness convertDAOOrderServiceDataToPresentation(OrderServiceDAOBusinessData data) {
+		orderServiceDAO = new OrderServiceDAOPresentationBusiness();
+		
+		String date = Utils.convertDayMonthYearToDateString(data.getDay(), data.getMonth(),data.getYear(), false);
+		String startTime = Utils.ConvertToTimeStringWithoutMask(data.getStartHour(), data.getStartMinute());
+		String endTime = Utils.ConvertToTimeStringWithoutMask(data.getEndHour(),data.getEndMinute());
+		
+		
+		orderServiceDAO.setDate(date);
+		orderServiceDAO.setDescription(data.getDescription());
+		orderServiceDAO.setEndTime(endTime);
+		orderServiceDAO.setStartTime(startTime);
+		orderServiceDAO.setId(data.getId());
+		orderServiceDAO.setEquipment(equipmentBusiness.get(data.getEquipment()).getName());
+		orderServiceDAO.setTechinician(technicianBusiness.get(data.getTechnician()).getName());
+		orderServiceDAO.setTypeService(convertTypeServiceIdToName(data.getTypeService()));
+		
+		return orderServiceDAO;
 	}
 
 	@Override
-	public boolean save(OrderServiceDAOPresentationBusiness obj) {
-		// TODO Auto-generated method stub
-		return false;
+	public OrderServiceDAOPresentationBusiness get(int id) {
+		super.verifyId(id, "Id inválido!");
+		return convertDAOOrderServiceDataToPresentation(orderServiceData.get(id));
+	}
+	
+	private int getDay(String date) {
+		return Integer.parseInt(date.substring(0,2));
+	}
+	
+	private int getMonth(String date) {
+		return Integer.parseInt(date.substring(3,5));
+	}
+	
+	private int getYear(String date) {
+		return Integer.parseInt(date.substring(6,10));
+	}
+	
+	private int getMinute(String time) {
+		return Integer.parseInt(time.substring(3,5));
+	}
+	
+	private int getHour(String time) {
+		return Integer.parseInt(time.substring(0,2));
+	}
+	
+	
+	
+	private OrderServiceDAOBusinessData convertDAOPresentationToDAOData(OrderServiceDAOPresentationBusiness orderServiceBusiness) {
+		int id = orderServiceBusiness.getId();
+		
+		
+		int day = getDay(orderServiceBusiness.getDate());
+		int month = getMonth(orderServiceBusiness.getDate());
+		int year = getYear(orderServiceBusiness.getDate());
+		
+		int startHour = getHour(orderServiceBusiness.getStartTime());
+		int startMinute = getMinute(orderServiceBusiness.getStartTime());
+		int endHour = getHour(orderServiceBusiness.getEndTime());
+		int endMinute = getMinute(orderServiceBusiness.getEndTime());
+		int equipment = equipmentBusiness.getByName(orderServiceBusiness.getEquipment()).getId();
+		int technician = technicianBusiness.getByName(orderServiceBusiness.getTechinician()).getId();
+		String description = orderServiceBusiness.getDescription();
+		int idtypeService = convertTypeServiceToId(orderServiceBusiness.getTypeService());
+		
+		OrderServiceDAOBusinessData DAOData = 
+				new OrderServiceDAOBusinessData(
+						id, 
+						day,
+						month,
+						year,
+						startHour,
+						startMinute,
+						endHour,
+						endMinute,
+						equipment,
+						technician, 
+						description, 
+						idtypeService);
+		return DAOData;
+		
+		
+	}
+	
+	private boolean hasPendencies(OrderServiceDAOPresentationBusiness orderService) {
+		feedbackMessage = "";
+		
+		if (orderService.getDate().trim().length() == 0)
+			feedbackMessage = "Informar a data da ordem de serviço.";
+		else if (orderService.getStartTime().trim().length() <= 0) 
+			feedbackMessage = "Informar o horário de início.";
+		else if (orderService.getEndTime().trim().length() <= 0) 
+			feedbackMessage = "Informar o horário fim.";
+		else if (orderService.getEquipment().trim().length() <= 0) 
+			feedbackMessage = "Informar a máquina.";
+		else if (orderService.getTechinician().trim().length() <= 0) 
+			feedbackMessage = "Informar o técnico.";
+		else if (orderService.getTypeService().trim().length() <= 0) 
+			feedbackMessage = "Informar o tipo de serviço.";
+		else if (orderService.getDescription().trim().length() == 0)
+			feedbackMessage = "Informar a descrição do serviço.";
+		else if (Utils.isTime1GreaterThanTime2(orderService.getStartTime(),orderService.getEndTime()))
+			feedbackMessage = "Informar o horário fim deve ser posterior ao horário de início.";
+		
+		
+		if (feedbackMessage.length() > 0) {
+			return true;
+		}
+		
+		return false;	
+	}
 
+	@Override
+	public boolean save(OrderServiceDAOPresentationBusiness orderService) {
+		if (hasPendencies(orderService)) {
+			return false;
+		}
+		
+		try {
+			orderServiceData.save(convertDAOPresentationToDAOData(orderService));
+		}catch(Exception e) {
+			feedbackMessage = e.getMessage();
+    		return false;
+		}
+		return true;
 	}
 
 	@Override
