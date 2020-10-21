@@ -12,7 +12,6 @@ import connections.sqllConnection;
 import data.TechnicianData;
 import dataAccessObjectBusinessData.TechnicianDAOBusinessData;
 import dataAccessObjectPresentationBusiness.TechnicianDAOPresentationBusiness;
-import dataInterface.IGenericDados;
 
 public class TechnicianBusiness extends BusinessGeneric implements IGenericBusiness<TechnicianDAOPresentationBusiness>  {
 
@@ -22,6 +21,10 @@ public class TechnicianBusiness extends BusinessGeneric implements IGenericBusin
 	
 	public TechnicianBusiness() {
 		technicianData = new TechnicianData(sqllConnection.dbConnector());
+	}
+	
+	public TechnicianBusiness(TechnicianData technicianData){
+		this.technicianData = technicianData;
 	}
 	
 	public TechnicianBusiness(int id, String role, String name, Double hourPrice) {
