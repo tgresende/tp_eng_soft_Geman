@@ -91,7 +91,7 @@ public class TechnicianEditionPresentation {
         		JOptionPane.showMessageDialog(null, "Salvo com sucesso");
         		backbutton.doClick();
         	}else {
-        		JOptionPane.showMessageDialog(null, technicianBusiness.feebackMessage);
+        		JOptionPane.showMessageDialog(null, technicianBusiness.feedbackMessage);
         	}
         	
         	

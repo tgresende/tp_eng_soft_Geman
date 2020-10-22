@@ -18,11 +18,11 @@ public class EquipmentBusiness extends BusinessGeneric implements IGenericBusine
 
 	public EquipmentDAOPresentationBusiness equipmentDAO;
 	EquipmentData equipmentData = new EquipmentData(sqllConnection.dbConnector());
-	String feebackMessage = "";
+	String feedbackMessage = "";
 	
 	
 	public String getFeedbackMessage(){
-		return feebackMessage;
+		return feedbackMessage;
 	}
 	
 	
@@ -111,7 +111,10 @@ public class EquipmentBusiness extends BusinessGeneric implements IGenericBusine
 
 	@Override
 	public EquipmentDAOPresentationBusiness get(int id) {
-		super.verifyId(id, "Id inválido!");
+		if(!super.isValidId(id)) {
+			feedbackMessage = "Id inválido";
+			return null;
+		}
 		
 		return convertDAOBusinessDataToPresentationBusiness(equipmentData.get(id));
 	}
@@ -121,16 +124,16 @@ public class EquipmentBusiness extends BusinessGeneric implements IGenericBusine
 	}
 	
 	private boolean hasPendencies(EquipmentDAOPresentationBusiness equipment) {
-		feebackMessage = "";
+		feedbackMessage = "";
 		
 		if (equipment.getName().trim().length() == 0)
-			feebackMessage = "Informar o nome do equipamento.";
+			feedbackMessage = "Informar o nome do equipamento.";
 		else if (equipment.getManufacturer().trim().length() == 0)
-			feebackMessage = "Informar o fabricante do equipamento.";
+			feedbackMessage = "Informar o fabricante do equipamento.";
 		else if (equipment.getModel().trim().length() == 0) 
-			feebackMessage = "Informar o modelo do equipamento.";
+			feedbackMessage = "Informar o modelo do equipamento.";
 		
-		if (feebackMessage.length() > 0) {
+		if (feedbackMessage.length() > 0) {
 			return true;
 		}
 		return false;	
@@ -144,7 +147,7 @@ public class EquipmentBusiness extends BusinessGeneric implements IGenericBusine
 		if (equipmentData.save(convertDAOPresentationBusinessToBusinessData(equipment))) {
 			return true;
 		}
-		feebackMessage = equipmentData.getFeedbackMessage();
+		feedbackMessage = equipmentData.getFeedbackMessage();
 		return false;
 	}
 		

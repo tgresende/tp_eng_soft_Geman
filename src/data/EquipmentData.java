@@ -35,7 +35,7 @@ public class EquipmentData implements IGenericDados<EquipmentDAOBusinessData> {
 			}
 			res.close();
 		}catch(Exception e) {
-			throw new Error(e.getMessage());
+			feedbackMessage = "Erro no banco de Dados";
 		}
 		return roles; 
 	}
@@ -62,8 +62,7 @@ public class EquipmentData implements IGenericDados<EquipmentDAOBusinessData> {
 			}
 			res.close();
 		}catch(Exception e) {
-			throw new Error(e.getMessage());
-			
+			feedbackMessage = "Erro no banco de Dados";
 		}
 		
 		return equipments;
@@ -89,10 +88,11 @@ public class EquipmentData implements IGenericDados<EquipmentDAOBusinessData> {
 				
 			}
 			res.close();
-			return equipment;
+			
 		}catch(Exception e) {
-			throw new Error(e.getMessage());
+			feedbackMessage = "Erro no banco de Dados";
 		}
+		return equipment;
 	}
 	
 	public EquipmentDAOBusinessData getByName(String name) {
@@ -112,10 +112,11 @@ public class EquipmentData implements IGenericDados<EquipmentDAOBusinessData> {
 				
 			}
 			res.close();
-			return equipment;
+			
 		}catch(Exception e) {
-			throw new Error(e.getMessage());
+			feedbackMessage = "Erro no banco de Dados";
 		}
+		return equipment;
 	}
 
 
@@ -149,7 +150,7 @@ public class EquipmentData implements IGenericDados<EquipmentDAOBusinessData> {
 			pst.executeUpdate();
 			pst.close();
 		}catch(Exception e) {
-			feedbackMessage = "erro ao salvar no banco de dados: ";
+			feedbackMessage = "Erro no banco de Dados";
 			return false;
 		}
 		return true;
@@ -164,7 +165,7 @@ public class EquipmentData implements IGenericDados<EquipmentDAOBusinessData> {
 			pst.executeUpdate();
 			pst.close();
 		}catch(Exception e) {
-			throw new Error(e.getMessage());
+			feedbackMessage = "Erro no banco de Dados";
 		}	
 	}
 }

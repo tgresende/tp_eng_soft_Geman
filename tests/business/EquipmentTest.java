@@ -137,6 +137,22 @@ public class EquipmentTest {
 	}
 	
 	@Test
+	public void testGetInvalidId(){
+		EquipmentData dataMock = Mockito.mock(EquipmentData.class);
+		Mockito.when(dataMock.get(0)).thenReturn(null);
+		EquipmentBusiness equipmentBuss = new EquipmentBusiness(dataMock);
+		
+		EquipmentDAOPresentationBusiness DAOpresentation = new EquipmentDAOPresentationBusiness(1,"forno","modelo x","fabricnte 2");
+		
+		// When I do...
+		EquipmentDAOPresentationBusiness returnFromBusiness = equipmentBuss.get(0);
+		
+		// I Expect...
+		assertEquals(returnFromBusiness, null);
+		assertEquals(equipmentBuss.getFeedbackMessage(), "Id inválido");
+	}
+	
+	@Test
 	public void testGetByName(){
 		EquipmentData dataMock = Mockito.mock(EquipmentData.class);
 		EquipmentDAOBusinessData returnDAO = new EquipmentDAOBusinessData(1,"forno","modelo x","fabricnte 2");
@@ -186,7 +202,7 @@ public class EquipmentTest {
 		
 		// I Expect...
 		assertEquals(result, false);
-		assertEquals(equipBuss.feebackMessage, "Informar o nome do equipamento.");
+		assertEquals(equipBuss.feedbackMessage, "Informar o nome do equipamento.");
 	}
 	
 	@Test
@@ -202,7 +218,7 @@ public class EquipmentTest {
 		
 		// I Expect...
 		assertEquals(result, false);
-		assertEquals(equipBuss.feebackMessage, "Informar o modelo do equipamento.");
+		assertEquals(equipBuss.feedbackMessage, "Informar o modelo do equipamento.");
 	}
 	
 	@Test
@@ -218,7 +234,7 @@ public class EquipmentTest {
 		
 		// I Expect...
 		assertEquals(result, false);
-		assertEquals(equipBuss.feebackMessage, "Informar o fabricante do equipamento.");
+		assertEquals(equipBuss.feedbackMessage, "Informar o fabricante do equipamento.");
 	}
 	
 	@Test
@@ -235,6 +251,6 @@ public class EquipmentTest {
 		
 		// I Expect...
 		assertEquals(result, false);
-		assertEquals(equipBuss.feebackMessage, "erro de banco de dados");
+		assertEquals(equipBuss.feedbackMessage, "erro de banco de dados");
 	}
 }

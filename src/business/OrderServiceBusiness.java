@@ -168,7 +168,11 @@ public class OrderServiceBusiness extends BusinessGeneric implements IGenericBus
 
 	@Override
 	public OrderServiceDAOPresentationBusiness get(int id) {
-		super.verifyId(id, "Id inválido!");
+		if(!super.isValidId(id)) {
+			feedbackMessage = "Id inválido";
+			return null;
+		}
+			
 		return convertDAOOrderServiceDataToPresentation(orderServiceData.get(id));
 	}
 	

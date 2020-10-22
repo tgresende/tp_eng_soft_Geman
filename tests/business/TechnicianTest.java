@@ -34,9 +34,10 @@ public class TechnicianTest {
 		
 		// I Expect...
 		assertEquals(result, true);
-		assertEquals(techBuss.feebackMessage, "");
+		assertEquals(techBuss.feedbackMessage, "");
 	}
 	
+	@Test
 	public void testhasPendenciesWithoutPendenciesMechanicist(){
 		TechnicianData dataMock = Mockito.mock(TechnicianData.class);
 		Mockito.when(dataMock.save(data)).thenReturn(true);
@@ -49,7 +50,7 @@ public class TechnicianTest {
 		
 		// I Expect...
 		assertEquals(result, true);
-		assertEquals(techBuss.feebackMessage, "");
+		assertEquals(techBuss.feedbackMessage, "");
 	}
 	
 	@Test
@@ -65,7 +66,7 @@ public class TechnicianTest {
 		
 		// I Expect...
 		assertEquals(result, true);
-		assertEquals(techBuss.feebackMessage, "");
+		assertEquals(techBuss.feedbackMessage, "");
 	}
 	
 	@Test
@@ -109,7 +110,7 @@ public class TechnicianTest {
 		
 		// I Expect...
 		assertEquals(result, false);
-		assertEquals(techBuss.feebackMessage, "Informar o cargo do técnico.");
+		assertEquals(techBuss.feedbackMessage, "Informar o cargo do técnico.");
 	}
 	
 	@Test
@@ -125,7 +126,7 @@ public class TechnicianTest {
 		
 		// I Expect...
 		assertEquals(result, false);
-		assertEquals(techBuss.feebackMessage, "Informar o nome do técnico.");
+		assertEquals(techBuss.feedbackMessage, "Informar o nome do técnico.");
 	}
 	
 	@Test
@@ -141,7 +142,7 @@ public class TechnicianTest {
 		
 		// I Expect...
 		assertEquals(result, false);
-		assertEquals(techBuss.feebackMessage, "Informar um valor de hora do técnico maior que zero.");
+		assertEquals(techBuss.feedbackMessage, "Informar um valor de hora do técnico maior que zero.");
 	}
 	
 	@Test
@@ -157,7 +158,7 @@ public class TechnicianTest {
 		
 		// I Expect...
 		assertEquals(result, false);
-		assertEquals(techBuss.feebackMessage, "Informar um valor de hora do técnico maior que zero.");
+		assertEquals(techBuss.feedbackMessage, "Informar um valor de hora do técnico maior que zero.");
 	}
 	
 	@Test
