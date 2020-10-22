@@ -26,16 +26,4 @@ public class MeanTimeRepairDAOBusinessData extends GenericDataAccessObject{
 		return hour;
 	}
 	
-	public void setId(int id) {
-		this.id=id;
-	}
-	
-	public void setName(String name) {
-		this.name=name ;
-	}
-	
-	public void setHour(Double hour) {
-		this.hour=hour;
-	}
-	
 }

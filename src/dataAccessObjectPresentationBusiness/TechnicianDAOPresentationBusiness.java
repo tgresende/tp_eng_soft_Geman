@@ -15,7 +15,6 @@ public class TechnicianDAOPresentationBusiness extends GenericDataAccessObject {
 		this.hourPrice = hourPrice;
 	}
 	
-	
 	public String getName() {
 		return name;
 	}
@@ -31,24 +30,4 @@ public class TechnicianDAOPresentationBusiness extends GenericDataAccessObject {
 	public Double getHourPrice() {
 		return hourPrice;
 	}
-	
-	
-	
-	public void setName(String name) {
-		this.name=name ;
-	}
-	
-	public void setHourPrice(Double hourPrice) {
-		this.hourPrice=hourPrice ;
-	}
-	
-	public void setId(int id) {
-		this.id=id;
-	}
-	
-	public void setRole(String role) {
-		this.role = role;
-	}
-	
-	
 }

@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dataAccessObjectBusinessData.EquipmentDAOBusinessData;
-import dataAccessObjectBusinessData.MeanTimeRepairDAOBusinessData;
 import dataInterface.IGenericDados;
 
 public class EquipmentData implements IGenericDados<EquipmentDAOBusinessData> {
@@ -16,6 +15,12 @@ public class EquipmentData implements IGenericDados<EquipmentDAOBusinessData> {
 	
 	public EquipmentData(Connection conn) {
 		connection = conn;
+	}
+	
+	String feedbackMessage;
+	
+	public String getFeedbackMessage() {
+		return feedbackMessage;
 	}
 	
 	public List<String> getAvaliableEquipments() {
@@ -144,7 +149,8 @@ public class EquipmentData implements IGenericDados<EquipmentDAOBusinessData> {
 			pst.executeUpdate();
 			pst.close();
 		}catch(Exception e) {
-			throw new Error(e.getMessage());
+			feedbackMessage = "erro ao salvar no banco de dados: ";
+			return false;
 		}
 		return true;
 	}

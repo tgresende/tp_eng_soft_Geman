@@ -11,10 +11,8 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import data.OrderServiceData;
-import data.TechnicianData;
 import dataAccessObjectBusinessData.MeanTimeRepairDAOBusinessData;
 import dataAccessObjectBusinessData.OrderServiceDAOBusinessData;
-import dataAccessObjectBusinessData.TechnicianDAOBusinessData;
 import dataAccessObjectPresentationBusiness.EquipmentDAOPresentationBusiness;
 import dataAccessObjectPresentationBusiness.OrderServiceDAOPresentationBusiness;
 import dataAccessObjectPresentationBusiness.TechnicianDAOPresentationBusiness;

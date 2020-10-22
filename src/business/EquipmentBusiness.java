@@ -12,14 +12,26 @@ import connections.sqllConnection;
 import data.EquipmentData;
 import dataAccessObjectBusinessData.EquipmentDAOBusinessData;
 import dataAccessObjectPresentationBusiness.EquipmentDAOPresentationBusiness;
+import dataAccessObjectPresentationBusiness.TechnicianDAOPresentationBusiness;
 
 public class EquipmentBusiness extends BusinessGeneric implements IGenericBusiness<EquipmentDAOPresentationBusiness>{
 
-	EquipmentDAOPresentationBusiness equipmentDAO;
+	public EquipmentDAOPresentationBusiness equipmentDAO;
 	EquipmentData equipmentData = new EquipmentData(sqllConnection.dbConnector());
+	String feebackMessage = "";
+	
+	
+	public String getFeedbackMessage(){
+		return feebackMessage;
+	}
+	
 	
 	public EquipmentBusiness() {
 		
+	}
+	
+	public EquipmentBusiness(EquipmentData equipmentData){
+		this.equipmentData = equipmentData;
 	}
 	
 	public String[] getAvaliableEquipments() {
@@ -107,18 +119,36 @@ public class EquipmentBusiness extends BusinessGeneric implements IGenericBusine
 	public EquipmentDAOPresentationBusiness getByName(String name) {
 		return convertDAOBusinessDataToPresentationBusiness(equipmentData.getByName(name));
 	}
+	
+	private boolean hasPendencies(EquipmentDAOPresentationBusiness equipment) {
+		feebackMessage = "";
+		
+		if (equipment.getName().trim().length() == 0)
+			feebackMessage = "Informar o nome do equipamento.";
+		else if (equipment.getManufacturer().trim().length() == 0)
+			feebackMessage = "Informar o fabricante do equipamento.";
+		else if (equipment.getModel().trim().length() == 0) 
+			feebackMessage = "Informar o modelo do equipamento.";
+		
+		if (feebackMessage.length() > 0) {
+			return true;
+		}
+		return false;	
+	}
 
 	@Override
 	public boolean save(EquipmentDAOPresentationBusiness equipment) {
-		try {
-			equipmentData.save(convertDAOPresentationBusinessToBusinessData(equipment));
-			}catch(Exception e) {
-	    		JOptionPane.showMessageDialog(null, e.getMessage());
-	    		return false;
-			}
-			
+		if (hasPendencies(equipment))
+			return false;
+		
+		if (equipmentData.save(convertDAOPresentationBusinessToBusinessData(equipment))) {
 			return true;
+		}
+		feebackMessage = equipmentData.getFeedbackMessage();
+		return false;
 	}
+		
+		
 
 	@Override
 	public void delete(int id) {
