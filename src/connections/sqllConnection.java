@@ -2,6 +2,8 @@ package connections;
 
 import java.sql.*;
 
+import javax.swing.JOptionPane;
+
 public class sqllConnection {
 	Connection conn = null;
 	
@@ -9,7 +11,8 @@ public class sqllConnection {
 	public static Connection dbConnector() {
 		try {
 			Class.forName("org.sqlite.JDBC");
-			Connection conn = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\Tulio\\Desktop\\Eng Software\\test_proj.db");
+			String path = System.getProperty("user.dir");
+			Connection conn = DriverManager.getConnection("jdbc:sqlite:"+path+"\\bancoDadosGeman.db");
 			return conn;
 		}catch(Exception e) {
 			return null;

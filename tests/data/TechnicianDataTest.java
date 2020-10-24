@@ -2,6 +2,7 @@ package data;
 
 import static org.junit.Assert.assertEquals;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,8 @@ public class TechnicianDataTest {
 	public static java.sql.Connection dbConnector() {
 		try {
 			Class.forName("org.sqlite.JDBC");
-			java.sql.Connection conn = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\Tulio\\Desktop\\Eng Software\\tests_environment.db");
+			String path = System.getProperty("user.dir");
+			Connection conn = DriverManager.getConnection("jdbc:sqlite:"+path+"\\tests_environment.db");
 			return conn;
 		}catch(Exception e) {
 			JOptionPane.showMessageDialog(null, e);
