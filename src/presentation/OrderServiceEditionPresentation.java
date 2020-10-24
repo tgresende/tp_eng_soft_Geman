@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +31,6 @@ import business.EquipmentBusiness;
 import business.OrderServiceBusiness;
 import business.TechnicianBusiness;
 import dataAccessObjectPresentationBusiness.OrderServiceDAOPresentationBusiness;
-import dataAccessObjectPresentationBusiness.TechnicianDAOPresentationBusiness;
 
 public class OrderServiceEditionPresentation {
 
@@ -41,8 +41,6 @@ public class OrderServiceEditionPresentation {
 	
 	List<JButton> buttonList;
 	PrimaryTextField textprimary;
-	FieldLabel fieldlabel;
-	ComboBox cmbBox;
 	
 	JButton btnSave;
 	JButton btnCancel;
@@ -154,11 +152,9 @@ public class OrderServiceEditionPresentation {
 		orderServiceBusiness = new OrderServiceBusiness();
 		technicianBusiness = new TechnicianBusiness();
 		equipmentBusiness = new EquipmentBusiness();
-		cmbBox = new ComboBox();
 		buttonList = new ArrayList<>();
 		buttonList.add(btnSave);
 		buttonList.add(btnCancel);
-		fieldlabel = new FieldLabel();		
 	}	
 
 	private void mountMainPanel() {
@@ -174,8 +170,12 @@ public class OrderServiceEditionPresentation {
 		pnlDate   = new JPanel();
 		pnlDate.setOpaque(false);
 		pnlDate.setMaximumSize(new Dimension(655, 35));
-		labelDate = fieldlabel.getLabel("Data:");
-		txtDate =  DateField.getDateField("");
+		labelDate = FieldLabel.getLabel("Data:");
+		try {
+			txtDate =  DateField.getDateField("");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		pnlDate.add(labelDate);
 		pnlDate.add(txtDate);
 	}
@@ -184,27 +184,27 @@ public class OrderServiceEditionPresentation {
 		pnlDescription   = new JPanel();
 		pnlDescription.setOpaque(false);
 		pnlDescription.setMaximumSize(new Dimension(655, 35));
-		labelDescription = fieldlabel.getLabel("Serviço:");
+		labelDescription = FieldLabel.getLabel("Serviço:");
 		txtDescription =  PrimaryTextField.getTextField("");
 		pnlDescription.add(labelDescription);
 		pnlDescription.add(txtDescription);
 	}
 	
-	private void mountStartTimePanel() {
+	private void mountStartTimePanel() throws ParseException {
 		pnlStartTime   = new JPanel();
 		pnlStartTime.setOpaque(false);
 		pnlStartTime.setMaximumSize(new Dimension(655, 35));
-		labelStartTime = fieldlabel.getLabel("Hora Início:");
+		labelStartTime = FieldLabel.getLabel("Hora Início:");
 		txtStartTime =  TimeField.getTimeField("");
 		pnlStartTime.add(labelStartTime);
 		pnlStartTime.add(txtStartTime);
 	}
 	
-	private void mountEndTimePanel() {
+	private void mountEndTimePanel() throws ParseException {
 		pnlEndTime   = new JPanel();
 		pnlEndTime.setOpaque(false);
 		pnlEndTime.setMaximumSize(new Dimension(655, 35));
-		labelEndTime = fieldlabel.getLabel("Hora Fim:");
+		labelEndTime = FieldLabel.getLabel("Hora Fim:");
 		txtEndTime =  TimeField.getTimeField("");
 		pnlEndTime.add(labelEndTime);
 		pnlEndTime.add(txtEndTime);
@@ -214,10 +214,10 @@ public class OrderServiceEditionPresentation {
 		pnlTechnician   = new JPanel();
 		pnlTechnician.setMaximumSize(new Dimension(655, 35));
 		pnlTechnician.setOpaque(false);
-		labelTechnician= fieldlabel.getLabel("Técnico:");
+		labelTechnician= FieldLabel.getLabel("Técnico:");
 		
 		String[] technicians = technicianBusiness.getAvaliableTechnicians();
-		comboTechnician = cmbBox.getComboBox(technicians);
+		comboTechnician = ComboBox.getComboBox(technicians);
 		
 		pnlTechnician.add(labelTechnician);
 		pnlTechnician.add(comboTechnician);
@@ -227,11 +227,11 @@ public class OrderServiceEditionPresentation {
 		pnlTypeService   = new JPanel();
 		pnlTypeService.setMaximumSize(new Dimension(655, 35));
 		pnlTypeService.setOpaque(false);
-		labelTypeService = fieldlabel.getLabel("Tipo Serviço:");
+		labelTypeService = FieldLabel.getLabel("Tipo Serviço:");
 		
 		String[] typeServices = orderServiceBusiness.getAvaliableTypeService();
 		
-		comboTypeService = cmbBox.getComboBox(typeServices);
+		comboTypeService = ComboBox.getComboBox(typeServices);
 		
 		pnlTypeService.add(labelTypeService);
 		pnlTypeService.add(comboTypeService);
@@ -241,10 +241,10 @@ public class OrderServiceEditionPresentation {
 		pnlEquipment   = new JPanel();
 		pnlEquipment.setMaximumSize(new Dimension(655, 35));
 		pnlEquipment.setOpaque(false);
-		labelEquipment= fieldlabel.getLabel("Máquina:");
+		labelEquipment= FieldLabel.getLabel("Máquina:");
 		
 		String[] Equipments = equipmentBusiness.getAvaliableEquipments();
-		comboEquipment = cmbBox.getComboBox(Equipments);
+		comboEquipment = ComboBox.getComboBox(Equipments);
 		
 		pnlEquipment.add(labelEquipment);
 		pnlEquipment.add(comboEquipment);
@@ -292,7 +292,7 @@ public class OrderServiceEditionPresentation {
 		this.id = id;
 	}
 	
-	public JPanel render(int id, ActionListener goBackAction) {
+	public JPanel render(int id, ActionListener goBackAction) throws ParseException {
 		this.goBackAction = goBackAction; 
 		header = Header.getHeader("Edição de Ordem de Serviço",backbutton);
 		buttonContainer =  ButtonsContainer.getContainer(buttonList);

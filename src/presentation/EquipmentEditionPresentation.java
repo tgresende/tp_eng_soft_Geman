@@ -29,7 +29,6 @@ public class EquipmentEditionPresentation {
 	int id = 0;
 	EquipmentBusiness equipmentBusiness;
 	List<JButton> buttonList;
-	FieldLabel fieldlabel;
 	
 	JButton btnSave;
 	JButton btnCancel;
@@ -114,7 +113,6 @@ public class EquipmentEditionPresentation {
 		buttonList = new ArrayList<>();
 		buttonList.add(btnSave);
 		buttonList.add(btnCancel);
-		fieldlabel = new FieldLabel();		
 	}	
 
 	ActionListener action = new ActionListener() {
@@ -132,7 +130,7 @@ public class EquipmentEditionPresentation {
 		pnlName   = new JPanel();
 		pnlName.setOpaque(false);
 		pnlName.setMaximumSize(new Dimension(655, 35));
-		labelName = fieldlabel.getLabel("Nome:");
+		labelName = FieldLabel.getLabel("Nome:");
 		txtName =  PrimaryTextField.getTextField("");
 		pnlName.add(labelName);
 		pnlName.add(txtName);
@@ -163,7 +161,7 @@ public class EquipmentEditionPresentation {
 		pnlModel   = new JPanel();
 		pnlModel.setMaximumSize(new Dimension(655, 35));
 		pnlModel.setOpaque(false);
-		labelModel= fieldlabel.getLabel("Modelo:");
+		labelModel= FieldLabel.getLabel("Modelo:");
 		txtModel =  PrimaryTextField.getTextField("");
 		pnlModel.add(labelModel);
 		pnlModel.add(txtModel);
@@ -173,7 +171,7 @@ public class EquipmentEditionPresentation {
 		pnlManufacturer   = new JPanel();
 		pnlManufacturer.setMaximumSize(new Dimension(655, 35));
 		pnlManufacturer.setOpaque(false);
-		labelManufacturer= fieldlabel.getLabel("Fabricante:");
+		labelManufacturer= FieldLabel.getLabel("Fabricante:");
 		txtManufacturer =  PrimaryTextField.getTextField("");
 		pnlManufacturer.add(labelManufacturer);
 		pnlManufacturer.add(txtManufacturer);

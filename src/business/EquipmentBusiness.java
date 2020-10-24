@@ -3,7 +3,6 @@ package business;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import businessClass.BusinessGeneric;
@@ -12,7 +11,6 @@ import connections.sqllConnection;
 import data.EquipmentData;
 import dataAccessObjectBusinessData.EquipmentDAOBusinessData;
 import dataAccessObjectPresentationBusiness.EquipmentDAOPresentationBusiness;
-import dataAccessObjectPresentationBusiness.TechnicianDAOPresentationBusiness;
 
 public class EquipmentBusiness extends BusinessGeneric implements IGenericBusiness<EquipmentDAOPresentationBusiness>{
 

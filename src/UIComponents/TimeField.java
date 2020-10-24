@@ -13,13 +13,9 @@ public final class TimeField {
 	static JFormattedTextField textField;
 	static Colors cor = new Colors();
 
-	public static JFormattedTextField getTimeField(String time) {
+	public static JFormattedTextField getTimeField(String time) throws ParseException {
 		MaskFormatter mask = new MaskFormatter();
-      	try {
-			mask.setMask("##:##");
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		mask.setMask("##:##");
         mask.setPlaceholderCharacter('_'); 
 		textField = new JFormattedTextField(mask);
 		setTextFieldStyle();

@@ -17,8 +17,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import org.mockito.internal.verification.Only;
-
 import UIComponents.ButtonsContainer;
 import UIComponents.ComboBox;
 import UIComponents.FieldLabel;
@@ -35,7 +33,6 @@ public class TechnicianEditionPresentation {
 	TechnicianBusiness technicianBusiness;
 	List<JButton> buttonList;
 	PrimaryTextField textprimary;
-	FieldLabel fieldlabel;
 	ComboBox cmbBox;
 	
 	JButton btnSave;
@@ -108,7 +105,6 @@ public class TechnicianEditionPresentation {
 		buttonList = new ArrayList<>();
 		buttonList.add(btnSave);
 		buttonList.add(btnCancel);
-		fieldlabel = new FieldLabel();		
 	}	
 
 	ActionListener action = new ActionListener() {
@@ -126,7 +122,7 @@ public class TechnicianEditionPresentation {
 		pnlName   = new JPanel();
 		pnlName.setOpaque(false);
 		pnlName.setMaximumSize(new Dimension(655, 35));
-		labelName = fieldlabel.getLabel("Nome:");
+		labelName = FieldLabel.getLabel("Nome:");
 		txtName =  PrimaryTextField.getTextField("");
 		pnlName.add(labelName);
 		pnlName.add(txtName);
@@ -157,10 +153,10 @@ public class TechnicianEditionPresentation {
 		pnlRole   = new JPanel();
 		pnlRole.setMaximumSize(new Dimension(655, 35));
 		pnlRole.setOpaque(false);
-		labelRole= fieldlabel.getLabel("Cargo:");
+		labelRole= FieldLabel.getLabel("Cargo:");
 		
 		String[] roles = technicianBusiness.getAvaliableRoles();
-		comboRole = cmbBox.getComboBox(roles);
+		comboRole = ComboBox.getComboBox(roles);
 		
 		pnlRole.add(labelRole);
 		pnlRole.add(comboRole);
@@ -170,7 +166,7 @@ public class TechnicianEditionPresentation {
 		pnlHourPrice   = new JPanel();
 		pnlHourPrice.setMaximumSize(new Dimension(655, 35));
 		pnlHourPrice.setOpaque(false);
-		labelHourPrice= fieldlabel.getLabel("Vr. Hora (R$):");
+		labelHourPrice= FieldLabel.getLabel("Vr. Hora (R$):");
 		txtHourPrice =  PrimaryTextField.getTextField("");
 		pnlHourPrice.add(labelHourPrice);
 		pnlHourPrice.add(txtHourPrice);

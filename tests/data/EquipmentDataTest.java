@@ -3,7 +3,6 @@ package data;
 import static org.junit.Assert.assertEquals;
 
 import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +11,6 @@ import javax.swing.JOptionPane;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import business.TechnicianBusiness;
 import dataAccessObjectBusinessData.EquipmentDAOBusinessData;
 
 

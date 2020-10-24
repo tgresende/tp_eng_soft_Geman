@@ -13,13 +13,13 @@ public final class FieldLabel {
 	static JLabel label;
 	static Colors cor = new Colors();
 
-	public JLabel getLabel(String labelText) {
+	public static JLabel getLabel(String labelText) {
 		label = new JLabel(labelText);
 		setLabelStyle();
 		return label;
 	}
 
-	public void setLabelStyle() {
+	public static void setLabelStyle() {
 		label.setPreferredSize(new Dimension(100,40));
 		label.setFont(new Font("Arial", Font.PLAIN, 16));
 		label.setHorizontalAlignment(SwingConstants.RIGHT);

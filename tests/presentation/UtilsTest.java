@@ -115,4 +115,64 @@ public class UtilsTest {
 		assertEquals(result,false);
 	}
 	
+	@Test
+	public void testReplaceCommaToDot(){
+		// when I have...
+		String text = "abc";
+
+		// when I do...
+		String result = Utils.replaceCommaToDot(text);
+
+		// I expect.
+		assertEquals(result,text);
+	}
+	
+	@Test
+	public void testReplaceCommaToDotWithDot(){
+		// when I have...
+		String text = "abc.";
+
+		// when I do...
+		String result = Utils.replaceCommaToDot(text);
+
+		// I expect.
+		assertEquals(result,text);
+	}
+	
+	@Test
+	public void testReplaceCommaToDotWithComma(){
+		// when I have...
+		String text = "abc,";
+
+		// when I do...
+		String result = Utils.replaceCommaToDot(text);
+
+		// I expect.
+		assertEquals(result,"abc.");
+	}
+	
+	@Test
+	public void testOnlyNumbers(){
+		// when I have...
+		String text = "abc8";
+
+		// when I do...
+		String result = Utils.onlyNumbers(text);
+
+		// I expect.
+		assertEquals(result,"8");
+	}
+	
+	@Test
+	public void testOnlyNumbersWithoutNumbers(){
+		// when I have...
+		String text = "abc";
+
+		// when I do...
+		String result = Utils.onlyNumbers(text);
+
+		// I expect.
+		assertEquals(result,"0");
+	}
+	
 }
