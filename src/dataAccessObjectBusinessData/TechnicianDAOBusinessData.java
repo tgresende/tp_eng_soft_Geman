@@ -32,19 +32,4 @@ public class TechnicianDAOBusinessData extends GenericDataAccessObject{
 		return hourPrice;
 	}
 	
-	public void setName(String name) {
-		this.name=name ;
-	}
-	
-	public void setId(int id) {
-		this.id=id;
-	}
-	
-	public void setRole(int role) {
-		this.role = role;
-	}
-	
-	public void setHourPrice(int hourPrice) {
-		this.hourPrice = hourPrice;
-	}
 }

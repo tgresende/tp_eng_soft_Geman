@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dataAccessObjectBusinessData.EquipmentDAOBusinessData;
-import dataAccessObjectBusinessData.MeanTimeRepairDAOBusinessData;
 import dataInterface.IGenericDados;
 
 public class EquipmentData implements IGenericDados<EquipmentDAOBusinessData> {
@@ -16,6 +15,12 @@ public class EquipmentData implements IGenericDados<EquipmentDAOBusinessData> {
 	
 	public EquipmentData(Connection conn) {
 		connection = conn;
+	}
+	
+	String feedbackMessage;
+	
+	public String getFeedbackMessage() {
+		return feedbackMessage;
 	}
 	
 	public List<String> getAvaliableEquipments() {
@@ -30,7 +35,7 @@ public class EquipmentData implements IGenericDados<EquipmentDAOBusinessData> {
 			}
 			res.close();
 		}catch(Exception e) {
-			throw new Error(e.getMessage());
+			feedbackMessage = "Erro no banco de Dados";
 		}
 		return roles; 
 	}
@@ -57,8 +62,7 @@ public class EquipmentData implements IGenericDados<EquipmentDAOBusinessData> {
 			}
 			res.close();
 		}catch(Exception e) {
-			throw new Error(e.getMessage());
-			
+			feedbackMessage = "Erro no banco de Dados";
 		}
 		
 		return equipments;
@@ -84,10 +88,11 @@ public class EquipmentData implements IGenericDados<EquipmentDAOBusinessData> {
 				
 			}
 			res.close();
-			return equipment;
+			
 		}catch(Exception e) {
-			throw new Error(e.getMessage());
+			feedbackMessage = "Erro no banco de Dados";
 		}
+		return equipment;
 	}
 	
 	public EquipmentDAOBusinessData getByName(String name) {
@@ -107,10 +112,11 @@ public class EquipmentData implements IGenericDados<EquipmentDAOBusinessData> {
 				
 			}
 			res.close();
-			return equipment;
+			
 		}catch(Exception e) {
-			throw new Error(e.getMessage());
+			feedbackMessage = "Erro no banco de Dados";
 		}
+		return equipment;
 	}
 
 
@@ -144,7 +150,8 @@ public class EquipmentData implements IGenericDados<EquipmentDAOBusinessData> {
 			pst.executeUpdate();
 			pst.close();
 		}catch(Exception e) {
-			throw new Error(e.getMessage());
+			feedbackMessage = "Erro no banco de Dados";
+			return false;
 		}
 		return true;
 	}
@@ -158,7 +165,7 @@ public class EquipmentData implements IGenericDados<EquipmentDAOBusinessData> {
 			pst.executeUpdate();
 			pst.close();
 		}catch(Exception e) {
-			throw new Error(e.getMessage());
+			feedbackMessage = "Erro no banco de Dados";
 		}	
 	}
 }

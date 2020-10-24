@@ -3,7 +3,6 @@ package business;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import businessClass.BusinessGeneric;
@@ -12,7 +11,6 @@ import connections.sqllConnection;
 import data.OrderServiceData;
 import dataAccessObjectBusinessData.MeanTimeRepairDAOBusinessData;
 import dataAccessObjectBusinessData.OrderServiceDAOBusinessData;
-import dataAccessObjectBusinessData.TechnicianDAOBusinessData;
 import dataAccessObjectPresentationBusiness.OrderServiceDAOPresentationBusiness;
 
 public class OrderServiceBusiness extends BusinessGeneric implements IGenericBusiness<OrderServiceDAOPresentationBusiness> {
@@ -25,11 +23,18 @@ public class OrderServiceBusiness extends BusinessGeneric implements IGenericBus
 	
 	private void createDependencies() {
 		technicianBusiness = new TechnicianBusiness();
-		equipmentBusiness = new EquipmentBusiness();	
+		equipmentBusiness = new EquipmentBusiness();
+		orderServiceData = new OrderServiceData(sqllConnection.dbConnector());
 	}
 	
 	public OrderServiceBusiness() {
 		createDependencies();
+	}
+	
+	public OrderServiceBusiness(OrderServiceData data, TechnicianBusiness tech, EquipmentBusiness equip  ) {
+		 orderServiceData = data;
+		 technicianBusiness = tech;
+		 equipmentBusiness = equip;
 	}
 	
 	public String[] getAvaliableTypeService() {
@@ -163,7 +168,11 @@ public class OrderServiceBusiness extends BusinessGeneric implements IGenericBus
 
 	@Override
 	public OrderServiceDAOPresentationBusiness get(int id) {
-		super.verifyId(id, "Id inválido!");
+		if(!super.isValidId(id)) {
+			feedbackMessage = "Id inválido";
+			return null;
+		}
+			
 		return convertDAOOrderServiceDataToPresentation(orderServiceData.get(id));
 	}
 	

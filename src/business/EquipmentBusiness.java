@@ -3,7 +3,6 @@ package business;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import businessClass.BusinessGeneric;
@@ -15,11 +14,22 @@ import dataAccessObjectPresentationBusiness.EquipmentDAOPresentationBusiness;
 
 public class EquipmentBusiness extends BusinessGeneric implements IGenericBusiness<EquipmentDAOPresentationBusiness>{
 
-	EquipmentDAOPresentationBusiness equipmentDAO;
+	public EquipmentDAOPresentationBusiness equipmentDAO;
 	EquipmentData equipmentData = new EquipmentData(sqllConnection.dbConnector());
+	String feedbackMessage = "";
+	
+	
+	public String getFeedbackMessage(){
+		return feedbackMessage;
+	}
+	
 	
 	public EquipmentBusiness() {
 		
+	}
+	
+	public EquipmentBusiness(EquipmentData equipmentData){
+		this.equipmentData = equipmentData;
 	}
 	
 	public String[] getAvaliableEquipments() {
@@ -99,7 +109,10 @@ public class EquipmentBusiness extends BusinessGeneric implements IGenericBusine
 
 	@Override
 	public EquipmentDAOPresentationBusiness get(int id) {
-		super.verifyId(id, "Id inválido!");
+		if(!super.isValidId(id)) {
+			feedbackMessage = "Id inválido";
+			return null;
+		}
 		
 		return convertDAOBusinessDataToPresentationBusiness(equipmentData.get(id));
 	}
@@ -107,18 +120,36 @@ public class EquipmentBusiness extends BusinessGeneric implements IGenericBusine
 	public EquipmentDAOPresentationBusiness getByName(String name) {
 		return convertDAOBusinessDataToPresentationBusiness(equipmentData.getByName(name));
 	}
+	
+	private boolean hasPendencies(EquipmentDAOPresentationBusiness equipment) {
+		feedbackMessage = "";
+		
+		if (equipment.getName().trim().length() == 0)
+			feedbackMessage = "Informar o nome do equipamento.";
+		else if (equipment.getManufacturer().trim().length() == 0)
+			feedbackMessage = "Informar o fabricante do equipamento.";
+		else if (equipment.getModel().trim().length() == 0) 
+			feedbackMessage = "Informar o modelo do equipamento.";
+		
+		if (feedbackMessage.length() > 0) {
+			return true;
+		}
+		return false;	
+	}
 
 	@Override
 	public boolean save(EquipmentDAOPresentationBusiness equipment) {
-		try {
-			equipmentData.save(convertDAOPresentationBusinessToBusinessData(equipment));
-			}catch(Exception e) {
-	    		JOptionPane.showMessageDialog(null, e.getMessage());
-	    		return false;
-			}
-			
+		if (hasPendencies(equipment))
+			return false;
+		
+		if (equipmentData.save(convertDAOPresentationBusinessToBusinessData(equipment))) {
 			return true;
+		}
+		feedbackMessage = equipmentData.getFeedbackMessage();
+		return false;
 	}
+		
+		
 
 	@Override
 	public void delete(int id) {

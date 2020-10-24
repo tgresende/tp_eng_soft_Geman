@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -51,8 +50,8 @@ public class ReportPresentation {
 	public JPanel render(ActionListener goBackAction, int reportType) {
 		this.goBackAction = goBackAction;
 		JPanel tablePanel;
-		JPanel header = new Header().getHeader("Relatório de Tempo médio de Parada", backbutton);
-		JScrollPane contentContainer = new SelectionContainer().getPanel();
+		JPanel header = Header.getHeader("Relatório de Tempo médio de Parada", backbutton);
+		JScrollPane contentContainer = SelectionContainer.getPanel();
 		backbutton.addActionListener(goBackAction);
 		mainContainer = new JPanel();
 		mainContainer.setOpaque(false);

@@ -90,7 +90,7 @@ public class OrderServiceData implements IGenericDados<OrderServiceDAOBusinessDa
 		return orderService;
 	}
 	
-	public List<MeanTimeRepairDAOBusinessData>  getMeanTimeRepairs() {
+	public List<MeanTimeRepairDAOBusinessData> getMeanTimeRepairs() {
 		String query = 
 				" select idEquipment, round(avg(hour),2) hour, Equipment.name name from ( "+
 						" Select idEquipment, round((round(endHour*60 + endMinute,2)  - round(startHour*60 + startMinute,2))/60,2) hour from OrderService "+

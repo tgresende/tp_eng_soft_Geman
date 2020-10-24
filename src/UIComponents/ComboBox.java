@@ -10,13 +10,13 @@ import UIClasses.Colors;
 public final class ComboBox {
 	static JComboBox comboBox;
 	
-	private void estilyzeComboBox() {
+	private static void estilyzeComboBox() {
 		comboBox.setPreferredSize(new Dimension(200,30));
 		comboBox.setFont(new Font("Arial", Font.PLAIN, 16));
 		comboBox.setBackground(Colors.getMainWhite());
 	}
 	
-	public JComboBox getComboBox(String[] list) {
+	public static JComboBox getComboBox(String[] list) {
 		comboBox =  new JComboBox(list);
 		estilyzeComboBox();
 		return comboBox;

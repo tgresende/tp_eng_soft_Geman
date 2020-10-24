@@ -42,9 +42,9 @@ public class ReportSelectionPresentation {
 
 	public JPanel render( ActionListener goBackAction) {
 		this.goBackAction = goBackAction;
-		JPanel header = new Header().getHeader("Relatórios");
-		JPanel buttonContainer =  new ButtonsContainer().getContainer(buttonList);
-		JScrollPane contentContainer = new SelectionContainer().getPanel();
+		JPanel header = Header.getHeader("Relatórios");
+		JPanel buttonContainer =  ButtonsContainer.getContainer(buttonList);
+		JScrollPane contentContainer = SelectionContainer.getPanel();
 		mainContainer = new JPanel();
 		mainContainer.setLayout(new BoxLayout(mainContainer, BoxLayout.Y_AXIS));
 		mainContainer.add(header);
@@ -56,9 +56,9 @@ public class ReportSelectionPresentation {
 	
 	public ReportSelectionPresentation() {
 		
-		btnCostMaintenance = new PrimaryButton().getButton("Custo de Reparo", RepairCost);
-		btnStopTime = new PrimaryButton().getButton("Tempo de Parada", stopTime);
-		btnMTRR = new PrimaryButton().getButton("T. Méd. de Reparos", meanTimetoRepair);
+		btnCostMaintenance = PrimaryButton.getButton("Custo de Reparo", RepairCost);
+		btnStopTime = PrimaryButton.getButton("Tempo de Parada", stopTime);
+		btnMTRR = PrimaryButton.getButton("T. Méd. de Reparos", meanTimetoRepair);
 		
 		btnCostMaintenance.setPreferredSize(new Dimension(200,40));
 		btnStopTime.setPreferredSize(new Dimension(200,40));

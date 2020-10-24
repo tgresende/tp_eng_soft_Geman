@@ -12,16 +12,19 @@ import connections.sqllConnection;
 import data.TechnicianData;
 import dataAccessObjectBusinessData.TechnicianDAOBusinessData;
 import dataAccessObjectPresentationBusiness.TechnicianDAOPresentationBusiness;
-import dataInterface.IGenericDados;
 
 public class TechnicianBusiness extends BusinessGeneric implements IGenericBusiness<TechnicianDAOPresentationBusiness>  {
 
-	public String feebackMessage = "";
+	public String feedbackMessage = "";
 	TechnicianDAOPresentationBusiness technicianDAO;
 	TechnicianData technicianData;
 	
 	public TechnicianBusiness() {
 		technicianData = new TechnicianData(sqllConnection.dbConnector());
+	}
+	
+	public TechnicianBusiness(TechnicianData technicianData){
+		this.technicianData = technicianData;
 	}
 	
 	public TechnicianBusiness(int id, String role, String name, Double hourPrice) {
@@ -30,16 +33,16 @@ public class TechnicianBusiness extends BusinessGeneric implements IGenericBusin
 	}
 	
 	private boolean hasPendencies(TechnicianDAOPresentationBusiness technician) {
-		feebackMessage = "";
+		feedbackMessage = "";
 		
 		if (technician.getName().trim().length() == 0)
-			feebackMessage = "Informar o nome do técnico.";
+			feedbackMessage = "Informar o nome do técnico.";
 		else if (technician.getRole().trim().length() == 0)
-			feebackMessage = "Informar o cargo do técnico.";
+			feedbackMessage = "Informar o cargo do técnico.";
 		else if (technician.getHourPrice() <= 0) 
-			feebackMessage = "Informar um valor de hora do técnico maior que zero.";
+			feedbackMessage = "Informar um valor de hora do técnico maior que zero.";
 		
-		if (feebackMessage.length() > 0) {
+		if (feedbackMessage.length() > 0) {
 			return true;
 		}
 		return false;	
@@ -137,8 +140,10 @@ public class TechnicianBusiness extends BusinessGeneric implements IGenericBusin
 
 	@Override
 	public TechnicianDAOPresentationBusiness get(int id) {
-		
-		super.verifyId(id, "Id inválido!");
+		if(!super.isValidId(id)) {
+			feedbackMessage = "Id inválido";
+			return null;
+		}
 		
 		return convertDAOBusinessDataToPresentationBusiness(technicianData.get(id));
 	}

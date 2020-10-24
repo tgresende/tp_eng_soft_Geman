@@ -32,19 +32,4 @@ public class EquipmentDAOBusinessData extends GenericDataAccessObject{
 		return manufacturer;
 	}
 	
-	public void setId(int id) {
-		this.id=id;
-	}
-	
-	public void setName(String name) {
-		this.name=name ;
-	}
-	
-	public void setModel(String model) {
-		this.model=model;
-	}
-	
-	public void setManufacturer(String manufacturer) {
-		this.manufacturer=manufacturer ;
-	}
 }

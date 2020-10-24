@@ -3,6 +3,7 @@ package presentation;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,7 +85,7 @@ public class OrderServiceSelectionPresentation {
 	}
 	
 
-	private void renderEditionPanel(int id){
+	private void renderEditionPanel(int id) throws ParseException{
 		orderServiceEdition = new OrderServiceEditionPresentation();
     	JPanel editionPanel = orderServiceEdition.render(id, goBackAction);
     	PanelFunctions.panelConstructor(mainContainer, editionPanel);
@@ -93,7 +94,11 @@ public class OrderServiceSelectionPresentation {
 	ActionListener newRegister = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			renderEditionPanel(0);
+			try {
+				renderEditionPanel(0);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
 		}
 		
 	};
@@ -104,7 +109,11 @@ public class OrderServiceSelectionPresentation {
         	if (table.getSelectedRow() == -1)
         		return;
         	int id = (int)table.getValueAt(table.getSelectedRow(), 0);
-        	renderEditionPanel(id);
+        	try {
+				renderEditionPanel(id);
+			} catch (ParseException e1) {
+				e1.printStackTrace();
+			}
         }
 		
 	};
